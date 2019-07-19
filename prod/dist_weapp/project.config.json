@@ -1,0 +1,15 @@
+{
+	"projectname": "test",
+	"description": "",
+	"appid": "wx1118abdee111927f",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false
+	},
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {}
+}
