@@ -1,0 +1,59 @@
+@import "@styles/theme.scss";
+
+.title-view {
+    display: flex;
+
+    background: $primary-color;
+    
+    flex-direction:row;
+    width: 100%;
+    height: 45PX;
+
+    &-icon{
+        background: $primary-color;
+        width: 7%;
+        color: #ffffff;
+        line-height: 90px;
+        text-align: right;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    &-title{
+        background: $primary-color;
+        width: 86%;
+        color: #ffffff;
+        line-height: 90px;
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+    }
+}
+
+.title-view-rn {
+    display: flex;
+
+    background: $primary-color;
+    
+    flex-direction:row;
+    width: 100%;
+    height: 90px;
+
+    &-icon{
+        background: $primary-color;
+        width: 7%;
+        color: #ffffff;
+        line-height: 90px;
+        text-align: right;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    &-title{
+        background: $primary-color;
+        width: 86%;
+        color: #ffffff;
+        line-height: 90px;
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+    }
+}

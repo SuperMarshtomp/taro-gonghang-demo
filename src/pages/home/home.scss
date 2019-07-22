@@ -1,0 +1,32 @@
+@import "@styles/theme.scss";
+
+.home {
+  position: relative;
+}
+
+.index-select-view {
+  display: flex;
+  flex-direction: row;
+}
+
+.index-select-item {
+  width: 50%;
+}
+
+.home__wrap {
+  background: $backgorund-color;
+}
+
+.home__loading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+
+  &-txt {
+    color: $text-color-light;
+    font-size: 24px;
+  }
+}
+

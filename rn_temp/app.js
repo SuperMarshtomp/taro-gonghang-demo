@@ -3,10 +3,15 @@ var _class, _temp;
 import { Provider as TCRNProvider } from '@tarojs/components-rn';
 import TaroRouter from '@tarojs/taro-router-rn';
 import pagesIndexIndex from './pages/index/index';
+import pagesHomeHome from './pages/home/home';
 import Taro from '@tarojs/taro-rn';
 import React from 'react';
 import { Component } from "@tarojs/taro-rn";
 
+import '@tarojs/async-await';
+// import { Provider } from '@tarojs/redux'
+
+// import configStore from './redux/store'
 
 import appStyleSheet from "./app_styles";
 
@@ -15,6 +20,8 @@ import appStyleSheet from "./app_styles";
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
+// const store = configStore()
+
 
 var _styleSheet = appStyleSheet;
 let App = (_temp = _class = class App extends Component {
@@ -53,7 +60,7 @@ let App = (_temp = _class = class App extends Component {
     navigationBarTextStyle: 'black'
   }
 }, _temp);
-const RootStack = TaroRouter.initRouter([['pages/index/index', pagesIndexIndex]], Taro, App.config);
+const RootStack = TaroRouter.initRouter([['pages/home/home', pagesHomeHome], ['pages/index/index', pagesIndexIndex]], Taro, App.config);
 Taro.initNativeApi(Taro);
 Taro.initPxTransform({
   "designWidth": 750,

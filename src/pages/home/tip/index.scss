@@ -1,0 +1,32 @@
+@import "@styles/theme.scss";
+
+.tip { 
+    justify-content: space-between;
+    width: 90%;
+    height: 80px;
+
+    
+    margin: 5px auto;
+    border-radius: 10px;
+    background-color: $tip-color;
+    display: flex;
+    flex-direction: row;
+    &-text{
+        font-size: 20px;
+        padding: 10px 20px;
+        text-align: left;
+        color: #ffffff;
+        width: 80%;
+    }
+    &-btn{
+        margin: 15px 10px;
+        padding: 10px 10px;
+        font-size: 20px;
+        color: #ffffff;
+        text-align: left;
+        line-height: 30px;
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+    }
+    
+}

@@ -1,0 +1,19 @@
+@import "@styles/theme.scss";
+
+.select {
+    height: 60px;
+    flex-direction:row;
+    border: 1px solid $border-color;
+    &-txt{
+        font-size: 26px;
+        color: $primary-color;
+        text-align: center;
+        line-height: 60px;
+    }
+    &-icon{
+        color: #909399;
+        font-size: 26px;
+        text-align: center;
+        line-height: 60px;
+    }
+}
