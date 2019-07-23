@@ -83,7 +83,7 @@ let Recommend = (_temp = _class = class Recommend extends Component {
                   </View>
                   
                   <View onClick={this.handleClick.bind(this, id)} style={_styleSheet["home-recommend__list2-item-btn"]}>
-                    <Text numberOfLines={1}>
+                    <Text numberOfLines={1} style={_styleSheet["home-recommend__list2-item-btn-txt"]}>
                       立即申请
                     </Text>
                   </View>

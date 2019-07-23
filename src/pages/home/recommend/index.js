@@ -124,7 +124,7 @@ export default class Recommend extends Component {
                   </View>
                   
                   <View className='home-recommend__list2-item-btn'  onClick={this.handleClick.bind(this, id)}>
-                    <Text numberOfLines={1}>
+                    <Text className={process.env.TARO_ENV === 'rn' ? 'home-recommend__list2-item-btn-txt':'home-recommend__list2-item-btn-txt-h5'} numberOfLines={1}>
                       立即申请
                     </Text>
                   </View>

@@ -10,7 +10,7 @@ export default class Search extends Component {
     render () {
         return (
             <View className='search'>
-                <View className={process.env.TARO_ENV === 'rn' ? 'img-view_rn':'img-view'} onClick={this.props.changeList}>
+                <View className={process.env.TARO_ENV === 'rn'|| process.env.TARO_ENV === 'weapp'? 'img-view_rn':'img-view'} onClick={this.props.changeList}>
                     <Image className='img' src={this.props.isList ? icon_2 : icon_1} />
                 </View>
                 <View className='input-view'>

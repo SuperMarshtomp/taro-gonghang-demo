@@ -10,9 +10,12 @@ function scalePx2dp (uiElementPx) {
 }
 
 export default StyleSheet.create({
-  "home-recommend__list-item-info": {
-    "display": "flex",
-    "flexDirection": "column"
+  "home-recommend__list-item-btn": {
+    "backgroundColor": "#cc0000",
+    "borderBottomRightRadius": scalePx2dp(5),
+    "borderBottomLeftRadius": scalePx2dp(5),
+    "lineHeight": scalePx2dp(40),
+    "textAlign": "center"
   },
   "home-recommend": {
     "backgroundColor": "#f2f2f2"
@@ -75,12 +78,9 @@ export default StyleSheet.create({
     "paddingLeft": scalePx2dp(10),
     "backgroundColor": "#fff"
   },
-  "home-recommend__list-item-btn": {
-    "backgroundColor": "#cc0000",
-    "borderBottomRightRadius": scalePx2dp(5),
-    "borderBottomLeftRadius": scalePx2dp(5),
-    "lineHeight": scalePx2dp(40),
-    "textAlign": "center"
+  "home-recommend__list-item-info": {
+    "display": "flex",
+    "flexDirection": "column"
   },
   "home-recommend__list-item-btn-txt": {
     "fontSize": scalePx2dp(14),
@@ -99,7 +99,11 @@ export default StyleSheet.create({
     "borderBottomWidth": scalePx2dp(0.5)
   },
   "home-recommend__list2": {
-    "backgroundColor": "#f2f2f2"
+    "backgroundColor": "#f2f2f2",
+    "marginTop": scalePx2dp(5),
+    "marginRight": 0,
+    "marginBottom": scalePx2dp(5),
+    "marginLeft": 0
   },
   "home-recommend__list2-item": {
     "display": "flex",
@@ -114,12 +118,16 @@ export default StyleSheet.create({
   },
   "home-recommend__list2-item-img": {
     "alignSelf": "center",
-    "width": "28%",
+    "width": "26%",
     "height": scalePx2dp(75),
     "paddingTop": scalePx2dp(10),
-    "paddingRight": scalePx2dp(10),
+    "paddingRight": 0,
     "paddingBottom": scalePx2dp(10),
-    "paddingLeft": scalePx2dp(10)
+    "paddingLeft": 0,
+    "marginTop": 0,
+    "marginRight": scalePx2dp(12.5),
+    "marginBottom": 0,
+    "marginLeft": scalePx2dp(12.5)
   },
   "home-recommend__list2-item-info": {
     "display": "flex",
@@ -140,14 +148,22 @@ export default StyleSheet.create({
     "height": scalePx2dp(25)
   },
   "home-recommend__list2-item-btn-txt": {
+    "paddingTop": scalePx2dp(1.5),
+    "paddingRight": scalePx2dp(1.5),
+    "paddingBottom": scalePx2dp(1.5),
+    "paddingLeft": scalePx2dp(1.5),
     "fontSize": scalePx2dp(14),
-    "color": "#fff",
+    "color": "#ffffff",
     "textAlign": "center"
   },
   "home-recommend__list2-item-text": {
     "display": "flex",
     "flexDirection": "column",
-    "width": "50%"
+    "paddingTop": scalePx2dp(15),
+    "paddingRight": 0,
+    "paddingBottom": scalePx2dp(15),
+    "paddingLeft": 0,
+    "width": "45%"
   },
   "home-recommend__list2-item-text-name": {
     "color": "#000000",
