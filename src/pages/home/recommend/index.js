@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, CoverView } from '@tarojs/components'
-// import { Modal } from "react-native"
+import { Modal } from "react-native"
 import './index.scss'
-import cardImage from './1.jpg'
+import cardImage from '../../../img/1.jpg'
 
 export default class Recommend extends Component {
   static defaultProps = {
@@ -47,9 +47,9 @@ export default class Recommend extends Component {
       <View className='home-recommend'>
       {
         process.env.TARO_ENV === 'weapp' && this.state.showDetail ?
-        <View className="w1" onClick={ this.handleHidden }>
-          <View className="w2">
-            <Text>
+        <View className="w0" onClick={ this.handleHidden }>
+          <View className="w1">
+            <Text className="w2">
               {showItem.name}
             </Text>
           </View>
@@ -60,14 +60,34 @@ export default class Recommend extends Component {
       }
       {
         process.env.TARO_ENV === 'h5' && this.state.showDetail ?
-        <View className="h1" onClick={ this.handleHidden }>
-          <View  className="h2">
-            <Text>
+        <View className="h0" onClick={ this.handleHidden }>
+          <View className="h1">
+            <Text className="h2">
               {showItem.name}
             </Text>
           </View>
         </View>:
         <View />
+      }
+      {
+        process.env.TARO_ENV === 'rn' && this.state.showDetail ?
+        
+          <Modal animationType={'none'}
+                  transparent={true}
+                  visible={true}
+                  onRequestClose={() =>{}}
+                  supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
+                  >
+              {/* <View className = "r1" onClick={ this.handleHidden } style={{flex:1, marginTop: 22, justifyContent: 'center', alignItems: 'center'}}> */}
+              <View className = 'r0' onClick={ this.handleHidden } >
+                <View className = "r1" style={{ marginTop: 222}}>
+                    <View>
+                        <Text className = "r2">Hello World!</Text>
+                        <Text className = "r2">隐藏 Modal</Text>
+                    </View>
+                </View>
+              </View>
+          </Modal>:<View />
       }
       {
         isList ?
@@ -84,8 +104,9 @@ export default class Recommend extends Component {
                   <Text className='home-recommend__list-item-name' onClick={this.handleShowDetail.bind(this, categoryItem)} numberOfLines={1}>
                     {categoryItem.name}
                   </Text>
-
-                  <Image className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)} src={cardImage} />
+                  <View onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    <Image className='home-recommend__list-item-img' src={cardImage} />
+                  </View>
                   <Text className='home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
                     {categoryItem.simpleDesc}
                   </Text>
@@ -112,8 +133,9 @@ export default class Recommend extends Component {
                   className='home-recommend__list2-item'
                   
                 >
-                  <Image className='home-recommend__list2-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)} src={cardImage} />
-
+                  <View className='home-recommend__list2-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    <Image className='home-recommend__list2-item-img-ins' src={cardImage} />
+                  </View>
                   <View className="home-recommend__list2-item-text" onClick={this.handleShowDetail.bind(this, categoryItem)}>
                     <Text className='home-recommend__list2-item-text-name' numberOfLines={1}>
                       {categoryItem.name}

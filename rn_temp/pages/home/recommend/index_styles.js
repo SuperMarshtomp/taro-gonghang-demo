@@ -10,12 +10,15 @@ function scalePx2dp (uiElementPx) {
 }
 
 export default StyleSheet.create({
-  "home-recommend__list-item-btn": {
-    "backgroundColor": "#cc0000",
-    "borderBottomRightRadius": scalePx2dp(5),
-    "borderBottomLeftRadius": scalePx2dp(5),
-    "lineHeight": scalePx2dp(40),
-    "textAlign": "center"
+  "home-recommend__list-item-name": {
+    "color": "#000000",
+    "fontSize": scalePx2dp(15),
+    "lineHeight": scalePx2dp(35),
+    "textAlign": "center",
+    "borderWidth": 0,
+    "borderStyle": "solid",
+    "borderColor": "#dddddd",
+    "borderBottomWidth": scalePx2dp(0.5)
   },
   "home-recommend": {
     "backgroundColor": "#f2f2f2"
@@ -82,21 +85,18 @@ export default StyleSheet.create({
     "display": "flex",
     "flexDirection": "column"
   },
+  "home-recommend__list-item-btn": {
+    "backgroundColor": "#cc0000",
+    "borderBottomRightRadius": scalePx2dp(5),
+    "borderBottomLeftRadius": scalePx2dp(5),
+    "lineHeight": scalePx2dp(40),
+    "textAlign": "center"
+  },
   "home-recommend__list-item-btn-txt": {
     "fontSize": scalePx2dp(14),
     "lineHeight": scalePx2dp(40),
     "color": "#fff",
     "textAlign": "center"
-  },
-  "home-recommend__list-item-name": {
-    "color": "#000000",
-    "fontSize": scalePx2dp(15),
-    "lineHeight": scalePx2dp(35),
-    "textAlign": "center",
-    "borderWidth": 0,
-    "borderStyle": "solid",
-    "borderColor": "#dddddd",
-    "borderBottomWidth": scalePx2dp(0.5)
   },
   "home-recommend__list2": {
     "backgroundColor": "#f2f2f2",
@@ -128,6 +128,10 @@ export default StyleSheet.create({
     "marginRight": scalePx2dp(12.5),
     "marginBottom": 0,
     "marginLeft": scalePx2dp(12.5)
+  },
+  "home-recommend__list2-item-img-ins": {
+    "width": "100%",
+    "height": "100%"
   },
   "home-recommend__list2-item-info": {
     "display": "flex",
@@ -176,5 +180,24 @@ export default StyleSheet.create({
     "color": "#666666",
     "fontSize": scalePx2dp(13),
     "textAlign": "left"
+  },
+  "r0": {
+    "height": "100%",
+    "width": "100%"
+  },
+  "r1": {
+    "width": "100%",
+    "height": scalePx2dp(300),
+    "backgroundColor": "rgba(0, 0, 0, 0.9)",
+    "display": "flex",
+    "flexDirection": "column"
+  },
+  "r2": {
+    "color": "#dddddd",
+    "fontSize": scalePx2dp(25),
+    "paddingTop": scalePx2dp(10),
+    "paddingRight": scalePx2dp(10),
+    "paddingBottom": scalePx2dp(10),
+    "paddingLeft": scalePx2dp(10)
   }
 })

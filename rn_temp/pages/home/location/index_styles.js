@@ -20,7 +20,11 @@ export default StyleSheet.create({
     "paddingBottom": 0,
     "paddingLeft": scalePx2dp(10),
     "fontSize": scalePx2dp(13),
-    "backgroundColor": "#fff"
+    "backgroundColor": "#fff",
+    "borderWidth": 0,
+    "borderStyle": "solid",
+    "borderColor": "#dddddd",
+    "borderBottomWidth": scalePx2dp(0.5)
   },
   "location-city": {
     "display": "flex",

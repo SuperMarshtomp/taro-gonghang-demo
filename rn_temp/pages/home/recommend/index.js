@@ -4,9 +4,9 @@ import Taro from '@tarojs/taro-rn';
 import React from 'react';
 import { Component } from "@tarojs/taro-rn";
 import { View, Text, Image } from "@tarojs/components-rn";
-// import { Modal } from "react-native"
+import { Modal } from "react-native";
 import indexStyleSheet from "./index_styles";
-import cardImage from './1.jpg';
+import cardImage from '../../../img/1.jpg';
 
 var _styleSheet = indexStyleSheet;
 let Recommend = (_temp = _class = class Recommend extends Component {
@@ -47,6 +47,17 @@ let Recommend = (_temp = _class = class Recommend extends Component {
     return <View style={_styleSheet["home-recommend"]}>
       {<View />}
       {<View />}
+      {this.state.showDetail ? <Modal animationType={'none'} transparent={true} visible={true} onRequestClose={() => {}} supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}>
+              {}
+              <View onClick={this.handleHidden} style={_styleSheet["r0"]}>
+                <View style={[_styleSheet["r1"], { marginTop: 222 }]}>
+                    <View>
+                        <Text style={_styleSheet["r2"]}>Hello World!</Text>
+                        <Text style={_styleSheet["r2"]}>隐藏 Modal</Text>
+                    </View>
+                </View>
+              </View>
+          </Modal> : <View />}
       {isList ? <View style={_styleSheet["home-recommend__list"]}>
             {list.filter(item => item.type === 1).map(item => {
           const { id, categoryItem } = item;
@@ -55,8 +66,9 @@ let Recommend = (_temp = _class = class Recommend extends Component {
                   <Text onClick={this.handleShowDetail.bind(this, categoryItem)} numberOfLines={1} style={_styleSheet["home-recommend__list-item-name"]}>
                     {categoryItem.name}
                   </Text>
-
-                  <Image onClick={this.handleShowDetail.bind(this, categoryItem)} src={cardImage} style={_styleSheet["home-recommend__list-item-img"]} />
+                  <View onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    <Image src={cardImage} style={_styleSheet["home-recommend__list-item-img"]} />
+                  </View>
                   <Text onClick={this.handleShowDetail.bind(this, categoryItem)} style={_styleSheet["home-recommend__list-item-desc"]}>
                     {categoryItem.simpleDesc}
                   </Text>
@@ -71,8 +83,9 @@ let Recommend = (_temp = _class = class Recommend extends Component {
             {list.filter(item => item.type === 1).map(item => {
           const { id, categoryItem } = item;
           return <View key={id} style={_styleSheet["home-recommend__list2-item"]}>
-                  <Image onClick={this.handleShowDetail.bind(this, categoryItem)} src={cardImage} style={_styleSheet["home-recommend__list2-item-img"]} />
-
+                  <View onClick={this.handleShowDetail.bind(this, categoryItem)} style={_styleSheet["home-recommend__list2-item-img"]}>
+                    <Image src={cardImage} style={_styleSheet["home-recommend__list2-item-img-ins"]} />
+                  </View>
                   <View onClick={this.handleShowDetail.bind(this, categoryItem)} style={_styleSheet["home-recommend__list2-item-text"]}>
                     <Text numberOfLines={1} style={_styleSheet["home-recommend__list2-item-text-name"]}>
                       {categoryItem.name}
