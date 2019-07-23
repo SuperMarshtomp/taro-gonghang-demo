@@ -1,19 +1,65 @@
 @import "@styles/theme.scss";
 
 .select {
+    display: flex;
+    flex-direction:row;
+}
+
+.select-left {
     height: 60px;
     flex-direction:row;
-    border: 1px solid $border-color;
-    &-txt{
-        font-size: 26px;
-        color: $primary-color;
-        text-align: center;
-        line-height: 60px;
-    }
-    &-icon{
-        color: #909399;
-        font-size: 26px;
-        text-align: center;
-        line-height: 60px;
-    }
+    width: 50%;
+    border: 0 solid $border-color;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.select-right {
+    height: 60px;
+    flex-direction:row;
+    width: 50%;
+    border: 0 solid $border-color;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    background-color: #fff;
+    text-align: center;
+}
+
+/*postcss-pxtransform rn eject enable*/
+
+.select-txt{
+    vertical-align: top;
+    font-size: 26px;
+    color: $primary-color;
+    line-height: 60px;
+}
+
+.select-icon{
+    vertical-align: top;
+    color: #909399;
+    font-size: 26px;
+    line-height: 60px;
+}
+
+/*postcss-pxtransform rn eject disable*/
+
+.select-txt-rn{
+    // flex: 1;
+    padding: 0 0 0 125px;
+    text-align: center;
+    font-size: 26px;
+    color: $primary-color;
+    line-height: 60px;
+}
+
+.select-icon-rn{
+    // flex: 1;
+    text-align: center;
+    color: #909399;
+    font-size: 26px;
+    line-height: 60px;
 }

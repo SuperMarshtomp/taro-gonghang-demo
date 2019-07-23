@@ -39,7 +39,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/3.jpg")
         }
       },
       {
@@ -48,7 +48,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
       {
@@ -57,7 +57,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
       {
@@ -66,7 +66,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
       {
@@ -75,7 +75,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
       {
@@ -84,7 +84,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
       {
@@ -93,7 +93,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
       {
@@ -102,7 +102,7 @@ class Home extends Component {
         categoryItem:{
           name: 'haha',
           simpleDesc:"hahah",
-          listPicUrl:"1234",
+          listPicUrl:require("../../img/2.jpg")
         }
       },
     ]
@@ -130,8 +130,52 @@ class Home extends Component {
   handleTipClick = () => {
     this.setState({
       showTip: false,
-      height: parseInt(getWindowHeight())-120,
+      height: parseInt(getWindowHeight())-121,
     })
+  }
+
+  handleSelect = (id) =>{
+    console.log(id)
+    this.setState({
+      recommend:[
+        {
+          id: 1,
+          type: 1,
+          categoryItem:{
+            name: 'haha',
+            simpleDesc:"hahah",
+            listPicUrl:require("../../img/6.jpg")
+          }
+        },
+        {
+          id: 2,
+          type: 1,
+          categoryItem:{
+            name: 'haha',
+            simpleDesc:"hahah",
+            listPicUrl:require("../../img/4.jpg")
+          }
+        },
+        {
+          id: 3,
+          type: 1,
+          categoryItem:{
+            name: 'haha',
+            simpleDesc:"hahah",
+            listPicUrl:require("../../img/5.jpg")
+          }
+        },
+        {
+          id: 4,
+          type: 1,
+          categoryItem:{
+            name: 'haha',
+            simpleDesc:"hahah",
+            listPicUrl:require("../../img/3.jpg")
+          }
+        },
+      ]}
+    )
   }
 
   render () {
@@ -144,18 +188,11 @@ class Home extends Component {
         <Location city='广州' />
         { 
           this.state.showTip ? 
-          <View onClick={this.handleTipClick}>
+          <View className = "tip-background" onClick={this.handleTipClick}>
             <Tip /> 
           </View>:<View/>
         }
-        {/* <View className='index-select-view'>
-          <View className='index-select-item' onClick={ () => this.handleBrandClick() }>
-            <Select title='全部品牌'/>
-          </View>
-          <View className='index-select-item' onClick={ () => this.handleLevelClick() }>
-            <Select title='全部等级'/> 
-          </View>
-        </View> */}
+        <Select />
         
         <ScrollView
           scrollY
@@ -163,7 +200,7 @@ class Home extends Component {
           // onScrollToLower={this.loadRecommend}
           style={{ height: this.state.height}}
         >
-          <Recommend list={recommend} isList = {this.state.isList}/>
+          <Recommend list={recommend} isList = {this.state.isList} handleSelect = {this.handleSelect.bind(this)}/>
         </ScrollView>
       </View>
     )

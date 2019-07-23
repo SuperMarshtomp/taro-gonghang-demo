@@ -11,22 +11,49 @@ function scalePx2dp (uiElementPx) {
 
 export default StyleSheet.create({
   "select": {
+    "display": "flex",
+    "flexDirection": "row"
+  },
+  "select-left": {
     "height": scalePx2dp(30),
     "flexDirection": "row",
-    "borderWidth": scalePx2dp(0.5),
+    "width": "50%",
+    "borderWidth": 0,
     "borderStyle": "solid",
-    "borderColor": "#dddddd"
+    "borderColor": "#dddddd",
+    "borderBottomWidth": scalePx2dp(0.5),
+    "borderTopWidth": scalePx2dp(0.5),
+    "borderRightWidth": scalePx2dp(0.5),
+    "backgroundColor": "#fff",
+    "textAlign": "center"
   },
-  "select-txt": {
+  "select-right": {
+    "height": scalePx2dp(30),
+    "flexDirection": "row",
+    "width": "50%",
+    "borderWidth": 0,
+    "borderStyle": "solid",
+    "borderColor": "#dddddd",
+    "borderBottomWidth": scalePx2dp(0.5),
+    "borderTopWidth": scalePx2dp(0.5),
+    "borderLeftWidth": scalePx2dp(0.5),
+    "backgroundColor": "#fff",
+    "textAlign": "center"
+  },
+  "select-txt-rn": {
+    "paddingTop": 0,
+    "paddingRight": 0,
+    "paddingBottom": 0,
+    "paddingLeft": scalePx2dp(62.5),
+    "textAlign": "center",
     "fontSize": scalePx2dp(13),
     "color": "#cc0000",
-    "textAlign": "center",
     "lineHeight": scalePx2dp(30)
   },
-  "select-icon": {
+  "select-icon-rn": {
+    "textAlign": "center",
     "color": "#909399",
     "fontSize": scalePx2dp(13),
-    "textAlign": "center",
     "lineHeight": scalePx2dp(30)
   }
 })

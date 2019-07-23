@@ -1,6 +1,5 @@
 var _class, _temp;
 
-import Taro from '@tarojs/taro-rn';
 import React from 'react';
 import { Component } from "@tarojs/taro-rn";
 import { View, Text, Image } from "@tarojs/components-rn";
@@ -15,9 +14,13 @@ let Recommend = (_temp = _class = class Recommend extends Component {
     super(props);
 
     this.handleClick = id => {
-      Taro.navigateTo({
-        url: `/pages/item/item?itemId=${id}`
+      // Taro.navigateTo({
+      //   url: `/pages/item/item?itemId=${id}`
+      // })
+      this.setState({
+        pages: 2
       });
+      this.props.handleSelect(id);
     };
 
     this.handleHidden = () => {
@@ -67,7 +70,7 @@ let Recommend = (_temp = _class = class Recommend extends Component {
                     {categoryItem.name}
                   </Text>
                   <View onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Image src={cardImage} style={_styleSheet["home-recommend__list-item-img"]} />
+                    <Image src={categoryItem.listPicUrl} style={_styleSheet["home-recommend__list-item-img"]} />
                   </View>
                   <Text onClick={this.handleShowDetail.bind(this, categoryItem)} style={_styleSheet["home-recommend__list-item-desc"]}>
                     {categoryItem.simpleDesc}
@@ -107,6 +110,7 @@ let Recommend = (_temp = _class = class Recommend extends Component {
   }
 }, _class.defaultProps = {
   list: [],
-  isList: true
+  isList: true,
+  pages: 1
 }, _temp);
 export { Recommend as default };

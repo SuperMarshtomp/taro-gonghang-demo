@@ -33,5 +33,8 @@ export default StyleSheet.create({
   "home__loading-txt": {
     "color": "#666666",
     "fontSize": scalePx2dp(12)
+  },
+  "tip-background": {
+    "backgroundColor": "#fff"
   }
 })

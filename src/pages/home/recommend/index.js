@@ -7,7 +7,8 @@ import cardImage from '../../../img/1.jpg'
 export default class Recommend extends Component {
   static defaultProps = {
     list: [],
-    isList: true
+    isList: true,
+    pages:1
   }
 
   constructor(props) {
@@ -19,9 +20,13 @@ export default class Recommend extends Component {
   }
 
   handleClick = (id) => {
-    Taro.navigateTo({
-      url: `/pages/item/item?itemId=${id}`
+    // Taro.navigateTo({
+    //   url: `/pages/item/item?itemId=${id}`
+    // })
+    this.setState({
+      pages:2
     })
+    this.props.handleSelect(id)
   }
 
   handleHidden = () => {
@@ -105,7 +110,7 @@ export default class Recommend extends Component {
                     {categoryItem.name}
                   </Text>
                   <View onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Image className='home-recommend__list-item-img' src={cardImage} />
+                    <Image className='home-recommend__list-item-img' src={categoryItem.listPicUrl} />
                   </View>
                   <Text className='home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
                     {categoryItem.simpleDesc}

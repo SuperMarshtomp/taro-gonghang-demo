@@ -4,7 +4,7 @@ import React from 'react';
 
 const NAVIGATOR_HEIGHT = 44;
 var TAB_BAR_HEIGHT;
-TAB_BAR_HEIGHT = 20;
+TAB_BAR_HEIGHT = 50;
 
 /**
  * 返回屏幕可用高度

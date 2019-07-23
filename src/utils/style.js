@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 
 const NAVIGATOR_HEIGHT = 44
 var TAB_BAR_HEIGHT
-process.env.TARO_ENV === 'rn' ? TAB_BAR_HEIGHT = 20:TAB_BAR_HEIGHT = 2
+process.env.TARO_ENV === 'rn' ? TAB_BAR_HEIGHT = 50:TAB_BAR_HEIGHT = 35
 
 
 /**
