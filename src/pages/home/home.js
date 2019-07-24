@@ -29,9 +29,11 @@ class Home extends Component {
     lastItemId: 0,
     hasMore: true,
     showTip: true,
+    showItem: {},
     isList: true,
     height:parseInt(getWindowHeight())-138,
     showTip: true,
+    showDetail: false,
     recommend:[
       {
         id: 1,
@@ -134,8 +136,22 @@ class Home extends Component {
     })
   }
 
+  handleShowDetail = (showItem) => {
+    this.setState({
+      showItem,
+      showDetail : !this.state.showDetail
+    },() => {
+      this.forceUpdate()
+    })
+  }
+
+  handleHidden = () => {
+    this.setState({
+      showDetail: false
+    })
+  }
+
   handleSelect = (id) =>{
-    console.log(id)
     this.setState({
       recommend:[
         {
@@ -179,10 +195,33 @@ class Home extends Component {
   }
 
   render () {
-
-    const { recommend } = this.state
+    const { recommend, showItem } = this.state
     return (
       <View className='home'>
+        {
+          process.env.TARO_ENV === 'h5' && this.state.showDetail ?
+          <View className="h0" onClick={ this.handleHidden }>
+            <View className="h1">
+              <Text className="h2">
+                {showItem.name}
+              </Text>
+            </View>
+          </View>:
+          <View />
+        }
+        {
+          process.env.TARO_ENV === 'weapp' && this.state.showDetail ?
+          <View className="w0" onClick={ this.handleHidden }>
+            <View className="w1">
+              <Text className="w2">
+                {showItem.name}
+              </Text>
+            </View>
+                <CoverView>
+                </CoverView>
+          </View>:
+          <View />
+        }
         {
           process.env.TARO_ENV === 'h5' ? <Title /> : <View />
         }
@@ -202,7 +241,7 @@ class Home extends Component {
           // onScrollToLower={this.loadRecommend}
           style={process.env.TARO_ENV === 'rn' ? { height: this.state.height}:{height: this.state.height +'px'}}
         >
-          <Recommend list={recommend} isList = {this.state.isList} handleSelect = {this.handleSelect.bind(this)}/>
+          <Recommend handleShowDetail = {this.handleShowDetail.bind(this)} list={recommend} isList = {this.state.isList} handleSelect = {this.handleSelect.bind(this)}/>
         </ScrollView>
       </View>
     )

@@ -35,12 +35,6 @@ export default class Recommend extends Component {
     this.props.handleSelect(id)
   }
 
-  handleHidden = () => {
-    this.setState({
-      showDetail: false
-    })
-  }
-
   
   handleShowDetail = (showItem) => {
     this.setState({
@@ -49,6 +43,7 @@ export default class Recommend extends Component {
     },() => {
       this.forceUpdate()
     })
+    this.props.handleShowDetail(showItem);
   }
 
   render () {
@@ -56,30 +51,7 @@ export default class Recommend extends Component {
     const { showItem } = this.state
     return (
       <View className='home-recommend'>
-      {
-        process.env.TARO_ENV === 'weapp' && this.state.showDetail ?
-        <View className="w0" onClick={ this.handleHidden }>
-          <View className="w1">
-            <Text className="w2">
-              {showItem.name}
-            </Text>
-          </View>
-              <CoverView>
-              </CoverView>
-        </View>:
-        <View />
-      }
-      {
-        process.env.TARO_ENV === 'h5' && this.state.showDetail ?
-        <View className="h0" onClick={ this.handleHidden }>
-          <View className="h1">
-            <Text className="h2">
-              {showItem.name}
-            </Text>
-          </View>
-        </View>:
-        <View />
-      }
+      
       {
         process.env.TARO_ENV === 'rn' && this.state.showDetail ?
         
