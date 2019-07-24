@@ -20,7 +20,7 @@ const RECOMMEND_SIZE = 20
 // @connect(state => state.home, { ...actions })
 class Home extends Component {
   config = {
-    navigationBarTitleText: 'Demo'
+    navigationBarTitleText: '申请办卡'
   }
 
   state = {
@@ -183,7 +183,9 @@ class Home extends Component {
     const { recommend } = this.state
     return (
       <View className='home'>
-        <Title />
+        {
+          process.env.TARO_ENV === 'h5' ? <Title /> : <View />
+        }
         <Search isList = {this.state.isList} changeList = {this.changeList} onClick={ () => this.handleSearchClick() }/>
         <Location city='广州' />
         { 

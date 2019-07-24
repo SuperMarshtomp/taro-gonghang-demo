@@ -12,7 +12,6 @@ import Recommend from "./recommend/index";
 import homeStyleSheet from "./home_styles";
 // import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
-import { Title } from "../../components/index";
 import Search from "./search/index";
 import Location from "./location/index";
 import Tip from "./tip/index";
@@ -165,7 +164,7 @@ let Home = (_temp2 = _class = class Home extends Component {
 
     const { recommend } = this.state;
     return <View style={_styleSheet["home"]}>
-        <Title />
+        {<View />}
         <Search isList={this.state.isList} changeList={this.changeList} onClick={() => this.handleSearchClick()} />
         <Location city="广州" />
         {this.state.showTip ? <View onClick={this.handleTipClick} style={_styleSheet["tip-background"]}>
@@ -181,7 +180,7 @@ let Home = (_temp2 = _class = class Home extends Component {
       </View>;
   }
 }, _class.config = {
-  navigationBarTitleText: 'Demo'
+  navigationBarTitleText: '申请办卡'
 }, _temp2);
 
 

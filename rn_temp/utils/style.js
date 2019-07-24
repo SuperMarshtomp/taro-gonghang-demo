@@ -2,9 +2,9 @@ import Taro from '@tarojs/taro-rn';
 import React from 'react';
 
 
-const NAVIGATOR_HEIGHT = 44;
+const NAVIGATOR_HEIGHT = 45;
 var TAB_BAR_HEIGHT;
-TAB_BAR_HEIGHT = 50;
+TAB_BAR_HEIGHT = 0;
 
 /**
  * 返回屏幕可用高度

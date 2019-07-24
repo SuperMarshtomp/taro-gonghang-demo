@@ -20,13 +20,14 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/home',
+      'pages/base-info/base-info',
       'pages/index/index'
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarBackgroundColor: '#cc0000',
+      navigationBarTitleText: '申请办卡',
+      navigationBarTextStyle: 'white'
     }
   }
 

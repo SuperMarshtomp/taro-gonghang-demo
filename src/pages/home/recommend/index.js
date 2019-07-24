@@ -23,6 +23,12 @@ export default class Recommend extends Component {
     // Taro.navigateTo({
     //   url: `/pages/item/item?itemId=${id}`
     // })
+    if (this.state.pages === 2) {
+      Taro.navigateTo({
+        url: `/pages/base-info/base-info?itemId=${id}`
+      })
+      return ;
+    } 
     this.setState({
       pages:2
     })

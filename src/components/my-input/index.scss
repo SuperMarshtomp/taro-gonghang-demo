@@ -1,0 +1,44 @@
+@import "@styles/theme.scss";
+
+.text-input {
+    display: flex;
+    height: 80px;
+    line-height: 80px;
+    flex-direction: row;
+    background-color: $white;
+
+    // margin-bottom: 1px;
+    font-size: 30px;
+}
+
+.text-input-border {
+    border: 0 solid $border-color;
+    border-bottom-width: 1px;
+}
+
+.text-input-name {
+    width: 35%;
+    &-txt{
+        line-height: 80px;
+        text-align: left;
+        color: #000;
+    }
+}
+
+/*postcss-pxtransform rn eject enable*/
+
+.my-radio-icon {
+    vertical-align: text-top;
+}
+
+/*postcss-pxtransform rn eject disable*/
+
+.text-input-item-view {
+    width: 65%;
+    margin-right: 30px;
+}
+
+.text-input-item {
+    text-align: right;
+    height: 100%;
+}

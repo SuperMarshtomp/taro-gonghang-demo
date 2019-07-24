@@ -1,5 +1,6 @@
 var _class, _temp;
 
+import Taro from '@tarojs/taro-rn';
 import React from 'react';
 import { Component } from "@tarojs/taro-rn";
 import { View, Text, Image } from "@tarojs/components-rn";
@@ -17,6 +18,12 @@ let Recommend = (_temp = _class = class Recommend extends Component {
       // Taro.navigateTo({
       //   url: `/pages/item/item?itemId=${id}`
       // })
+      if (this.state.pages === 2) {
+        Taro.navigateTo({
+          url: `/pages/base-info/base-info?itemId=${id}`
+        });
+        return;
+      }
       this.setState({
         pages: 2
       });

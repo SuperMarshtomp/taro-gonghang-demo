@@ -3,6 +3,7 @@ var _class, _temp;
 import { Provider as TCRNProvider } from '@tarojs/components-rn';
 import TaroRouter from '@tarojs/taro-router-rn';
 import pagesIndexIndex from './pages/index/index';
+import pagesBaseInfoBaseInfo from './pages/base-info/base-info';
 import pagesHomeHome from './pages/home/home';
 import Taro from '@tarojs/taro-rn';
 import React from 'react';
@@ -55,12 +56,12 @@ let App = (_temp = _class = class App extends Component {
 }, _class.config = {
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    navigationBarBackgroundColor: '#cc0000',
+    navigationBarTitleText: '申请办卡',
+    navigationBarTextStyle: 'white'
   }
 }, _temp);
-const RootStack = TaroRouter.initRouter([['pages/home/home', pagesHomeHome], ['pages/index/index', pagesIndexIndex]], Taro, App.config);
+const RootStack = TaroRouter.initRouter([['pages/home/home', pagesHomeHome], ['pages/base-info/base-info', pagesBaseInfoBaseInfo], ['pages/index/index', pagesIndexIndex]], Taro, App.config);
 Taro.initNativeApi(Taro);
 Taro.initPxTransform({
   "designWidth": 750,

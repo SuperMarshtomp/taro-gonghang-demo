@@ -1,0 +1,39 @@
+@import "@styles/theme.scss";
+
+.confirm-intro {
+    margin: 15px 20px;
+    display: flex;
+    flex-direction: row;
+    &-txt{
+        width: 90%;
+        font-size: 26px;
+        color: #000;
+        margin: 0px 10px;
+    }
+}
+
+.check-box{
+    background-color: #fff;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $border-color;
+}
+
+.confirm-intro-key {
+    color: $primary-color;
+}
+
+.confirm-btn {
+    height: 80px;
+    margin: 10px 20px;
+    background-color: $primary-color;
+    border-radius: 10px;
+    text-align: center;
+    
+    &-txt{
+        color: $white;
+        text-align: center;
+        font-size: 30px;
+        line-height: 80px;
+    }
+}
