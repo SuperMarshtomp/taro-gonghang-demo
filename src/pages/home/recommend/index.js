@@ -115,8 +115,8 @@ export default class Recommend extends Component {
                   <Text className='home-recommend__list-item-name' onClick={this.handleShowDetail.bind(this, categoryItem)} numberOfLines={1}>
                     {categoryItem.name}
                   </Text>
-                  <View onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Image className='home-recommend__list-item-img' src={categoryItem.listPicUrl} />
+                  <View className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    <Image className='home-recommend__list-item-img-ins' src={categoryItem.listPicUrl} />
                   </View>
                   <Text className='home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
                     {categoryItem.simpleDesc}

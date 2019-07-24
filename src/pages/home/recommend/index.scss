@@ -48,11 +48,13 @@
     }
 
     &-img {
-      align-self: center;
-      width: 100%;
-      height: 250px;
       padding: 20px;
-      background: #fff;
+      &-ins{
+        width: 100%;
+        height: 220px;
+        align-self: center;
+        background: #fff;
+      }
     }
 
     &-info {

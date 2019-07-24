@@ -30,7 +30,7 @@ class Home extends Component {
     hasMore: true,
     showTip: true,
     isList: true,
-    height:parseInt(getWindowHeight())-170,
+    height:parseInt(getWindowHeight())-138,
     showTip: true,
     recommend:[
       {
@@ -130,7 +130,7 @@ class Home extends Component {
   handleTipClick = () => {
     this.setState({
       showTip: false,
-      height: parseInt(getWindowHeight())-121,
+      height: parseInt(getWindowHeight())-93,
     })
   }
 
@@ -200,7 +200,7 @@ class Home extends Component {
           scrollY
           className='home__wrap'
           // onScrollToLower={this.loadRecommend}
-          style={{ height: this.state.height}}
+          style={process.env.TARO_ENV === 'rn' ? { height: this.state.height}:{height: this.state.height +'px'}}
         >
           <Recommend list={recommend} isList = {this.state.isList} handleSelect = {this.handleSelect.bind(this)}/>
         </ScrollView>
