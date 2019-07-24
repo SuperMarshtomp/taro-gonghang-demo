@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Text, View, ScrollView } from '@tarojs/components'
+import { Text, Image, View, ScrollView } from '@tarojs/components'
+import { Modal } from "react-native"
 // import { Loading } from '@components'
 // import { connect } from '@tarojs/redux'
 // import * as actions from '@actions/home'
@@ -7,6 +8,7 @@ import { Text, View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '@utils/style'
 import Recommend from './recommend'
 import './home.scss'
+import detailImg from '@img/detail.png'
 // import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 import { Title } from '@components'
@@ -15,7 +17,7 @@ import Location from './location'
 import Tip from './tip'
 import Select from './select'
 
-const RECOMMEND_SIZE = 20
+// const RECOMMEND_SIZE = 20
 
 // @connect(state => state.home, { ...actions })
 class Home extends Component {
@@ -24,9 +26,9 @@ class Home extends Component {
   }
 
   state = {
-    loaded: false,
-    loading: false,
-    lastItemId: 0,
+    // loaded: false,
+    // loading: false,
+    // lastItemId: 0,
     hasMore: true,
     showTip: true,
     showItem: {},
@@ -40,7 +42,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/3.jpg")
         }
       },
@@ -49,7 +51,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -58,7 +60,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -67,7 +69,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -76,7 +78,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -85,7 +87,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -94,7 +96,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -103,7 +105,7 @@ class Home extends Component {
         type: 1,
         categoryItem:{
           name: 'haha',
-          simpleDesc:"hahah",
+          simpleDesc:["hahah"],
           listPicUrl:require("../../img/2.jpg")
         }
       },
@@ -132,7 +134,7 @@ class Home extends Component {
   handleTipClick = () => {
     this.setState({
       showTip: false,
-      height: parseInt(getWindowHeight())-93,
+      height: parseInt(getWindowHeight())-91,
     })
   }
 
@@ -147,7 +149,8 @@ class Home extends Component {
 
   handleHidden = () => {
     this.setState({
-      showDetail: false
+      showDetail: false,
+      showItem:{}
     })
   }
 
@@ -159,7 +162,7 @@ class Home extends Component {
           type: 1,
           categoryItem:{
             name: 'haha',
-            simpleDesc:"hahah",
+            simpleDesc:["hahah"],
             listPicUrl:require("../../img/6.jpg")
           }
         },
@@ -168,7 +171,7 @@ class Home extends Component {
           type: 1,
           categoryItem:{
             name: 'haha',
-            simpleDesc:"hahah",
+            simpleDesc:["hahah"],
             listPicUrl:require("../../img/4.jpg")
           }
         },
@@ -177,7 +180,7 @@ class Home extends Component {
           type: 1,
           categoryItem:{
             name: 'haha',
-            simpleDesc:"hahah",
+            simpleDesc:["hahah"],
             listPicUrl:require("../../img/5.jpg")
           }
         },
@@ -185,9 +188,9 @@ class Home extends Component {
           id: 4,
           type: 1,
           categoryItem:{
-            name: 'haha',
-            simpleDesc:"hahah",
-            listPicUrl:require("../../img/3.jpg")
+            name: '工银故宫联名信用卡',
+            simpleDesc:["白金卡免首年年费（活动期内）","金卡任意消费5笔免年费","故宫图书、文创产品9折优惠","新客赠故宫文创惊喜福袋（即将上线，敬请期待）","容时容差服务"],
+            listPicUrl:require("../../img/detail.png")
           }
         },
       ]}
@@ -202,9 +205,22 @@ class Home extends Component {
           process.env.TARO_ENV === 'h5' && this.state.showDetail ?
           <View className="h0" onClick={ this.handleHidden }>
             <View className="h1">
-              <Text className="h2">
-                {showItem.name}
-              </Text>
+              <View>
+                <Image roundAsCircle={true} className = "ins-img" src = {detailImg}> </Image>
+              </View>
+              <View className = "h2"> 
+                <Text className = "h2-title">{showItem.name}</Text>
+                {
+                  showItem.simpleDesc.map((desc, index) => {
+                    return (
+                      <View key={index} className='h2-desc'>
+                        <View className='h2-desc-point' />
+                        <Text className='h2-desc-txt'>{desc}</Text>
+                      </View>
+                    )
+                  })
+                }
+              </View>
             </View>
           </View>:
           <View />
@@ -213,14 +229,56 @@ class Home extends Component {
           process.env.TARO_ENV === 'weapp' && this.state.showDetail ?
           <View className="w0" onClick={ this.handleHidden }>
             <View className="w1">
-              <Text className="w2">
-                {showItem.name}
-              </Text>
+              <View>
+                <Image roundAsCircle={true} className = "ins-img" src = {detailImg}> </Image>
+              </View>
+              <View className = "w2"> 
+                <Text className = "w2-title">{showItem.name}</Text>
+                {
+                  showItem.simpleDesc.map((desc, index) => {
+                    return (
+                      <View key={index} className='w2-desc'>
+                        <View className='w2-desc-point' />
+                        <Text className='w2-desc-txt'>{desc}</Text>
+                      </View>
+                    )
+                  })
+                }
+              </View>
             </View>
-                <CoverView>
-                </CoverView>
+            <CoverView />
           </View>:
           <View />
+        }
+        {
+          process.env.TARO_ENV === 'rn' && this.state.showDetail ?
+            <Modal animationType={'none'}
+                    transparent={true}
+                    visible={true}
+                    onRequestClose={() =>{}}
+                    supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
+                    >
+                <View className = 'r0' onClick={ this.handleHidden } >
+                  <View className = "r1" style={{ marginTop: 100}}>
+                    <View>
+                      <Image roundAsCircle={true} className = "ins-img" src = {detailImg}> </Image>
+                    </View> 
+                    <View className = "r2"> 
+                      <Text className = "r2-title">{showItem.name}</Text>
+                      {
+                        showItem.simpleDesc.map((desc, index) => {
+                          return (
+                            <View key={index} className='r2-desc'>
+                              <View className='r2-desc-point' />
+                              <Text className='r2-desc-txt'>{desc}</Text>
+                            </View>
+                          )
+                        })
+                      }
+                    </View>
+                  </View>
+                </View>
+            </Modal>:<View />
         }
         {
           process.env.TARO_ENV === 'h5' ? <Title /> : <View />
@@ -241,7 +299,12 @@ class Home extends Component {
           // onScrollToLower={this.loadRecommend}
           style={process.env.TARO_ENV === 'rn' ? { height: this.state.height}:{height: this.state.height +'px'}}
         >
-          <Recommend handleShowDetail = {this.handleShowDetail.bind(this)} list={recommend} isList = {this.state.isList} handleSelect = {this.handleSelect.bind(this)}/>
+          <Recommend 
+            handleShowDetail = {this.handleShowDetail.bind(this)} 
+            list={recommend} 
+            isList = {this.state.isList} 
+            handleSelect = {this.handleSelect.bind(this)}
+            />
         </ScrollView>
       </View>
     )

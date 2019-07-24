@@ -52,7 +52,8 @@ const config = {
     '@constants': path.resolve(__dirname, '..', 'src/redux/constants'),
     '@reducers': path.resolve(__dirname, '..', 'src/redux/reducers'),
     '@styles': path.resolve(__dirname, '..', 'src/styles'),
-    '@utils': path.resolve(__dirname, '..', 'src/utils')
+    '@utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@img': path.resolve(__dirname, '..', 'src/img'),
   },
   copy: {
     patterns: [

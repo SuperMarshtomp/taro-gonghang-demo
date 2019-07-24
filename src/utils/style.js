@@ -21,7 +21,7 @@ export function getWindowHeight(showTabBar = true) {
   console.log(tabBarHeight);
 
   if (process.env.TARO_ENV === 'rn') {
-    tabBarHeight = 0
+    tabBarHeight = 32
     return windowHeight - statusBarHeight - NAVIGATOR_HEIGHT - tabBarHeight
   }
 
