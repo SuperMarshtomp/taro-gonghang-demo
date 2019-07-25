@@ -18,6 +18,8 @@ import Tip from './tip'
 import Select from './select'
 
 // const RECOMMEND_SIZE = 20
+var titleHeight = 138;
+var noTitleHeight = 46
 
 // @connect(state => state.home, { ...actions })
 class Home extends Component {
@@ -33,7 +35,7 @@ class Home extends Component {
     showTip: true,
     showItem: {},
     isList: true,
-    height:parseInt(getWindowHeight())-138,
+    height:parseInt(getWindowHeight()),
     showTip: true,
     showDetail: false,
     recommend:[
@@ -112,6 +114,19 @@ class Home extends Component {
     ]
   }
 
+  componentDidMount () {
+    if (process.env.TARO_ENV === 'h5'){
+      this.setState({
+        height:this.state.height - 192
+      })
+    }
+    if (process.env.TARO_ENV === 'rn'){
+      this.setState({
+        height:this.state.height - 250
+      })
+    }
+  }
+
   handleSearchClick () {
     console.log('handleSearchClick');
   }
@@ -134,7 +149,7 @@ class Home extends Component {
   handleTipClick = () => {
     this.setState({
       showTip: false,
-      height: parseInt(getWindowHeight())-91,
+      height: this.state.height + noTitleHeight,
     })
   }
 

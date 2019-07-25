@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import './base-info.scss'
-
+import { getWindowHeight } from '@utils/style'
 import Title from '@components/title'
 import Change from './change'
 import CardIntro from './card-intro'
@@ -32,15 +32,15 @@ export default class BaseInfo extends Component {
     }
 
     handleConfirmClick = () => {
-        console.log('handleConfirmClick');
+        Taro.navigateTo({
+            url: '/pages/again/again'
+        })
     }
 
     render () {
         return (
-            <View className='base-info'>
-                {
-          process.env.TARO_ENV === 'h5' ? <Title /> : <View />
-        }
+            <View className='base-info' style={ !process.env.TARO_ENV === 'rn'? { height: getWindowHeight() }:{}}>
+                {process.env.TARO_ENV === 'h5' ? <Title /> : <View />}
                 <Change cardName={this.state.cardName} onClick={this.handleChangeClick} />
                 <CardIntro cardImage={this.state.cardImage} myPoints={this.state.myPoints} introduce={this.state.introduce} />
                 <BaseInfoInput onClick={this.handleGetVerifyClick} />
