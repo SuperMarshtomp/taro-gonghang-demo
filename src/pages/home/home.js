@@ -122,7 +122,7 @@ class Home extends Component {
     }
     if (process.env.TARO_ENV === 'rn'){
       this.setState({
-        height:this.state.height - 250
+        height:this.state.height - 138
       })
     }
   }

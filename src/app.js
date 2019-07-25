@@ -20,9 +20,9 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/home',
+      'pages/success-info/success-info',
       'pages/base-info/base-info',
       'pages/again/again',
-      // 'pages/success-info/success-info',
       'pages/index/index'
     ],
     window: {

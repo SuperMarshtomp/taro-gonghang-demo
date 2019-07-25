@@ -1,0 +1,127 @@
+@import "@styles/theme.scss";
+
+.success-submit {
+    background-color: $backgorund-color;
+}
+
+.success-submit-tip {
+    height: 220px;
+    background-color: $white;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    &-icon {
+        height: 120px;
+        padding: 45px 0px;
+        align-self: center;
+        &-ins{
+            color: $icon-color;
+            align-self: center;
+        }
+    }
+    &-text {
+        text-align: center;
+        color: $icon-color;
+        height: 100px;
+        line-height: 100px;
+        font-size: 38px;
+        font-weight: bold;
+    }
+}
+
+.success-submit-image-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100px;
+    text-align: center;
+    &-txt{
+        line-height: 100px;
+        font-size: 36px;
+        color: $text-color-lighter;
+        text-align: center;
+    }
+}
+
+.success-submit-image {
+    margin: 30px 0px;
+    width: 200px; 
+    height: 40px;
+}
+
+.success-submit-number {
+    display: flex;
+    flex-direction: row;
+
+    background-color: $white;
+
+    height: 100px;
+    padding: 0 30px;
+    font-size: 26px;
+    margin: 0 0 2px 0;
+}
+
+
+.success-submit-describe-view{
+    background-color: $white;
+    padding: 0 0 10px 0;
+}
+
+.success-submit-describe {
+    display: flex;
+    flex-direction: row;
+
+    height: 70px;
+    line-height: 60px;
+    padding: 0px 30px;
+    
+    font-size: 26px;
+}
+
+.success-submit-left {
+    width: 30%;
+    &-txt{
+        color: #000;
+        line-height: 60px;
+        text-align: left;
+    }
+}
+
+.success-submit-center {
+    width: 60%;
+    &-txt{
+        color: #000;
+        line-height: 60px;
+        text-align: left;
+    }
+}
+
+.success-submit-right {
+    width: 10%;
+}
+
+.success-submit-title-left {
+    width: 30%;
+    &-txt{
+        font-size: 28px;
+        color: #000;
+        line-height: 100px;
+        text-align: left;
+        font-weight: bold;
+    }
+}
+
+.success-submit-title-center {
+    width: 60%;
+    &-txt{
+        font-size: 28px;
+        color: #000;
+        line-height: 100px;
+        text-align: left;
+        font-weight: bold;
+    }
+}
+
+.success-submit-title-right {
+    width: 10%;
+}
