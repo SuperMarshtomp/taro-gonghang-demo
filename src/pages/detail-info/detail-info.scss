@@ -24,7 +24,7 @@
 
 .info-input-pinyin-warn {
     color: $text-color-lighter;
-    margin: -20px 0 0 0;
+    margin: -25px 0 0 0;
     &-txt{
         // line-height: 80px;
         font-size: 24px;
@@ -51,12 +51,14 @@
 
 .my-radio-icon {
     // vertical-align: text-top;
+    line-height: 80px;
 }
 
 .info-input-date-picker {
     width: 65%;
     text-align: right;
-
+    font-size: 30px;
+    line-height: 80px;
     color: $text-color-lighter;
 }
 
@@ -79,9 +81,15 @@
         }
     }
     &-picker {
+        height: 50px;
+        line-height: 50px;
+        font-size: 25px;
         color: $text-color-lighter;
     }
     &-picker-black {
+        height: 50px;
+        line-height: 50px;
+        font-size: 25px;
         color: black;
     }
     &-selected {
@@ -93,7 +101,9 @@
     }
     &-selected-icon {
         width: 10%;
+        text-align: right;
         &-ins{
+            font-size: 30px;
             text-align: right;
         }
     }
@@ -101,15 +111,14 @@
         height: 80px;
         line-height: 80px;
         text-align: right;
-
+        font-size: 28px;
         padding: 0;
     }
 }
 
 .info-input-item {
     margin: 0 0 2px 0;
-    padding: 0 30px;
-
+    padding: 0 0 0 30px;
     background-color: $white;
 }
 
@@ -141,6 +150,7 @@
     margin: 0 0 2px 0;
     padding: 0 30px;
     background-color: $white;
+    font-size: 30px;
     &-txt{
         font-size: 30px;
         color: #000;  
@@ -160,7 +170,6 @@
         height: 100px;
         line-height: 100px;
         text-align: right;
-
         padding: 0;
     }
     &-phone-view {
@@ -188,6 +197,7 @@
         width: 11%;
         height: 100px;
         padding: 0 18px 0 0 ;
+        text-align: right;
         &-txt{
             text-align: right;
             
@@ -202,7 +212,7 @@
     height: 80px;
     background-color: $primary-color;
     border-radius: 10px;
-    
+    text-align: center;
     &-txt{
         text-align: center;
         line-height: 80px;

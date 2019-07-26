@@ -33,7 +33,7 @@ export default class BaseInfo extends Component {
 
     handleConfirmClick = () => {
         Taro.navigateTo({
-            url: '/pages/again/again'
+            url: '/pages/detail-info/detail-info'
         })
     }
 

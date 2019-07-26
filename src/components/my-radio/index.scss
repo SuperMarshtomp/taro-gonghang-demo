@@ -3,7 +3,7 @@
 .my-radio {
     background-color: $white;
     margin: 0 0 2px 0;
-    padding: 0 30px 30px 30px;
+    padding: 0 30px 20px 30px;
 }
 
 .my-radio-name {
@@ -29,15 +29,14 @@
 }
 
 .my-radio-list-item {
-    // rn不支持
-    // height: fit-content;
-
     border-radius: 10px;
-
     margin: 10px 0;
-    padding: 10px 0;
+    text-align: center;
+    // padding: 10px 0;
+    font-size: 27px;
     &-txt{
         text-align: center;
+        line-height: 60px;
         font-size: 27px;
         color: #000;
         &-red{

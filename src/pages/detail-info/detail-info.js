@@ -363,7 +363,7 @@ export default class DetailInfo extends Component {
             <View className='detail-info'>
                 {process.env.TARO_ENV === 'h5' ? <Title /> : <View />}
                 <InfoSave onClick={this.handleSaveClick} />
-                <ScrollView scrollY style={process.env.TARO_ENV === 'rn' ? { height: scrollHeight + 50 }:{height:(scrollHeight + 'px')}}>
+                <ScrollView scrollY style={process.env.TARO_ENV === 'rn' ? { height: scrollHeight + 55 }:{height:(scrollHeight + 'px')}}>
                     <View>
                         <View className='info-input-pinyin'>
                             <View className='info-input-pinyin-content'>
@@ -389,7 +389,6 @@ export default class DetailInfo extends Component {
                                                 ? 'info-input-date-picker'
                                                 : 'info-input-date-picker info-input-date-picker-black'}
                                 >
-                                {/* <Text>请选择</Text> */}
                                     <Picker mode='date' onChange={this.onDueDateChange}>
                                         <View>
                                             <Text>{this.state.dueDate.date}</Text>

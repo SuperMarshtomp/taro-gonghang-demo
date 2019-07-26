@@ -12,15 +12,6 @@ export default class MyRadio extends Component {
         }
     }
     render () {
-        // const radioInfo = this.props.radioInfo;
-        // let radioInfo = {};
-        // for (const i in this.props.radioInfo) {
-        //     if (typeof this.props.radioInfo[i] === 'object') {
-        //         radioInfo[i] = this.props.radioInfo[i].slice(0);
-        //     } else {
-        //         radioInfo[i] = this.props.radioInfo[i];
-        //     }
-        // }
         let radioInfo = JSON.parse(JSON.stringify(this.props.radioInfo));
 
         const listLength = radioInfo.radioList.length > 4 ? 3 : radioInfo.radioList.length;
