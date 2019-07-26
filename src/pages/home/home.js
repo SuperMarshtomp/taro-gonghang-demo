@@ -241,7 +241,7 @@ class Home extends Component {
           <View />
         }
         {
-          process.env.TARO_ENV === 'weapp' && this.state.showDetail ?
+          process.env.TARO_ENV !== 'h5' && process.env.TARO_ENV !== 'rn' && this.state.showDetail ?
           <View className="w0" onClick={ this.handleHidden }>
             <View className="w1">
               <View>
