@@ -120,9 +120,14 @@ class Home extends Component {
         height:this.state.height - 192
       })
     }
-    if (process.env.TARO_ENV === 'rn'){
+    else if (process.env.TARO_ENV === 'rn'){
       this.setState({
         height:this.state.height - 138
+      })
+    }
+    else {
+      this.setState({
+        height:this.state.height - 139
       })
     }
   }
@@ -178,7 +183,7 @@ class Home extends Component {
           categoryItem:{
             name: 'haha',
             simpleDesc:["hahah"],
-            listPicUrl:require("../../img/6.jpg")
+            listPicUrl:require("../../img/ser-6/6-1.jpg")
           }
         },
         {
@@ -187,7 +192,7 @@ class Home extends Component {
           categoryItem:{
             name: 'haha',
             simpleDesc:["hahah"],
-            listPicUrl:require("../../img/4.jpg")
+            listPicUrl:require("../../img/ser-6/6-2.jpg")
           }
         },
         {
@@ -196,7 +201,7 @@ class Home extends Component {
           categoryItem:{
             name: 'haha',
             simpleDesc:["hahah"],
-            listPicUrl:require("../../img/5.jpg")
+            listPicUrl:require("../../img/ser-6/6-3.jpg")
           }
         },
         {
@@ -206,6 +211,24 @@ class Home extends Component {
             name: '工银故宫联名信用卡',
             simpleDesc:["白金卡免首年年费（活动期内）","金卡任意消费5笔免年费","故宫图书、文创产品9折优惠","新客赠故宫文创惊喜福袋（即将上线，敬请期待）","容时容差服务"],
             listPicUrl:require("../../img/detail.png")
+          }
+        },
+        {
+          id: 5,
+          type: 1,
+          categoryItem:{
+            name: 'haha',
+            simpleDesc:["hahah"],
+            listPicUrl:require("../../img/ser-6/6-4.jpg")
+          }
+        },
+        {
+          id: 6,
+          type: 1,
+          categoryItem:{
+            name: 'haha',
+            simpleDesc:["hahah"],
+            listPicUrl:require("../../img/ser-6/6-5.jpg")
           }
         },
       ]}
