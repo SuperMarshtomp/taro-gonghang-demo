@@ -15,7 +15,7 @@ export default class SuccessInfo extends Component {
 
                 <View className='success-submit-tip'>
                 <View className='success-submit-tip-icon'>
-                    <Icon className='success-submit-tip-icon-ins' type='success' size='36'></Icon>
+                    <Icon className='success-submit-tip-icon-ins' type='success' size='36' color='#09BB07'></Icon>
                     </View>
                     <Text className='success-submit-tip-text'>提交成功</Text>
                 </View>
@@ -46,7 +46,7 @@ export default class SuccessInfo extends Component {
                                 <Text className='success-submit-center-txt'>故宫·九有一心红白金</Text>
                             </View>
                             <View className='success-submit-right'>
-                                <Icon type='success_no_circle' size='26'></Icon>
+                                <Icon type='success_no_circle' size='26' color='#09BB07'></Icon>
                             </View>
                         </View>
 
@@ -58,7 +58,7 @@ export default class SuccessInfo extends Component {
                                 <Text className='success-submit-center-txt'>广东省广州市**</Text>
                             </View>
                             <View className='success-submit-right'>
-                                <Icon type='success_no_circle' size='26'></Icon>
+                                <Icon type='success_no_circle' size='26' color='#09BB07'></Icon>
                             </View>
                         </View>
                     </View>
