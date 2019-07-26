@@ -12,11 +12,21 @@
     }
 }
 
-.check-box{
+.confirm-intro-check-box{
     background-color: #fff;
     height: 40px;
     width: 40px;
     border: 1px solid $border-color;
+}
+
+.confirm-intro-check-box-tt {
+    height: 40px;
+    width: 40px;
+}
+
+.confirm-intro-check-box-swan {
+    height: 50px;
+    width: 55px;
 }
 
 .confirm-intro-key {
