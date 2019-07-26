@@ -1,0 +1,65 @@
+@import "@styles/theme.scss";
+
+
+/*postcss-pxtransform rn eject enable*/
+
+.info-save {
+    height: 100PX;
+    text-align: center;
+}
+
+.info-save-intro {
+    height: 50PX;
+    &-txt{
+        line-height: 50PX;
+        font-weight: bold;
+        font-size: 32px;
+    }
+}
+
+.info-save-btn {
+    height: 50PX;
+}
+
+.info-save-btn-view {
+    width: 200px;
+    height: 25PX;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: $primary-color;
+    &-txt{
+        color: $white;
+        line-height: 25PX;
+        font-size: 28px;
+    }
+}
+
+/*postcss-pxtransform rn eject disable*/
+
+.info-save-rn {
+    height: 200px;
+    text-align: center;
+    &-intro{
+        height: 50px;
+        &-txt{
+            line-height: 50px;
+            font-weight: bold;
+            font-size: 32px;
+        }
+    }
+    &-btn{
+        height: 50px;
+        &-view{
+            width: 200px;
+            height: 25px;
+            margin: 0 auto;
+            border-radius: 10px;
+            background-color: $primary-color;
+            &-txt{
+                color: $white;
+                line-height: 25px;
+                font-size: 28px;
+            }
+        }
+    }
+}

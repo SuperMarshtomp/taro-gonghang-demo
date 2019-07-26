@@ -1,0 +1,212 @@
+@import "@styles/theme.scss";
+
+.detail-info {
+    background-color: $backgorund-color;
+}
+
+.info-input-pinyin {
+    background-color: $white;
+    padding: 0 30px;
+    margin: 0 0 2px 0;
+}
+
+.info-input-pinyin-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    &-txt{
+        margin: auto 0;
+        color: #000;
+        font-size: 30px;
+    }
+}
+
+.info-input-pinyin-warn {
+    color: $text-color-lighter;
+    margin: -20px 0 0 0;
+    &-txt{
+        // line-height: 80px;
+        font-size: 24px;
+    }
+}
+
+.info-input-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $white;
+    margin: 0 0 2px 0;
+    padding: 0 30px;
+    height: 80px;
+}
+
+.info-input-date-name {
+    width: 35%;
+    &-txt{
+        line-height: 80px;
+        font-size: 30px;
+    }
+}
+
+.my-radio-icon {
+    // vertical-align: text-top;
+}
+
+.info-input-date-picker {
+    width: 65%;
+    text-align: right;
+
+    color: $text-color-lighter;
+}
+
+.info-input-date-picker-black {
+    color: black;
+}
+
+.info-input-house-address {
+    background-color: $white;
+    margin: 0 0 2px 0;
+    padding: 0 30px;
+    height: 210px;
+    line-height: 80px;
+    &-title {
+        height: 80px;
+        &-txt{
+            line-height: 80px;
+            font-size: 30px;
+            color: #000;
+        }
+    }
+    &-picker {
+        color: $text-color-lighter;
+    }
+    &-picker-black {
+        color: black;
+    }
+    &-selected {
+        display: flex;
+        flex-direction: row;
+    }
+    &-selected-name {
+        width: 90%;
+    }
+    &-selected-icon {
+        width: 10%;
+        &-ins{
+            text-align: right;
+        }
+    }
+    &-input {
+        height: 80px;
+        line-height: 80px;
+        text-align: right;
+
+        padding: 0;
+    }
+}
+
+.info-input-item {
+    margin: 0 0 2px 0;
+    padding: 0 30px;
+
+    background-color: $white;
+}
+
+.info-input-income {
+    display: flex;
+    flex-direction: row;
+    
+    height: 80px;
+    
+    font-size: 30px;
+    padding: 0 30px;
+
+    &-input {
+        width: 90%;
+    }
+    &-unit {
+        width: 10%;
+        
+        &-txt{
+            line-height: 80px;
+            text-align: right;
+        }
+    }
+}
+
+.info-input-company-phone {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 2px 0;
+    padding: 0 30px;
+    background-color: $white;
+    &-txt{
+        font-size: 30px;
+        color: #000;  
+    }
+    &-name {
+        width: 30%;
+        height: 100px;
+        padding: 10px 0 0 0;
+    }
+    &-name-sub {
+        font-size: 20px;
+    }
+    &-prefix-view {
+        width: 16%;
+    }
+    &-prefix {
+        height: 100px;
+        line-height: 100px;
+        text-align: right;
+
+        padding: 0;
+    }
+    &-phone-view {
+        width: 16%;
+    }
+    &-phone {
+        height: 100px;
+        line-height: 100px;
+        text-align: right;
+
+        padding: 0;
+    }
+    &-suffix-view {
+        width: 16%;
+    }
+    &-suffix {
+        height: 100px;
+        line-height: 100px;
+        text-align: right;
+
+        padding: 0;
+    }
+
+    &-divide {
+        width: 11%;
+        height: 100px;
+        padding: 0 18px 0 0 ;
+        &-txt{
+            text-align: right;
+            
+            color: #000;
+            line-height: 100px;
+        }
+    }
+}
+
+.info-input-confirm-btn {
+    margin: 20px;
+    height: 80px;
+    background-color: $primary-color;
+    border-radius: 10px;
+    
+    &-txt{
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+        color: $white;
+    }
+}

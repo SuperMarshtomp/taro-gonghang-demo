@@ -1,0 +1,68 @@
+@import "@styles/theme.scss";
+
+.my-radio {
+    background-color: $white;
+    margin: 0 0 2px 0;
+    padding: 0 30px 30px 30px;
+}
+
+.my-radio-name {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    &-txt{
+        line-height: 80px;
+        font-size: 30px;
+        color: #000;
+    }
+}
+
+.my-radio-icon {
+    margin: auto 0px;
+}
+
+.my-radio-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;  
+}
+
+.my-radio-list-item {
+    // rn不支持
+    // height: fit-content;
+
+    border-radius: 10px;
+
+    margin: 10px 0;
+    padding: 10px 0;
+    &-txt{
+        text-align: center;
+        font-size: 27px;
+        color: #000;
+        &-red{
+            color: $primary-color;
+        }
+    }
+}
+
+.my-radio-list-item-border {
+    border: 2px solid $text-color-light;
+}
+
+.my-radio-list-item-red {
+    border-color: $primary-color;
+    color: $primary-color;
+}
+
+.my-radio-list-item-2 {
+    width: 45%;
+}
+
+.my-radio-list-item-3 {
+    width: 32%;
+}
+
+.my-radio-list-item-4 {
+    width: 24%;
+}
