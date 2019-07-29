@@ -19,12 +19,12 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/detail-info/detail-info',
       'pages/home/home',
+      'pages/index/index',
       'pages/base-info/base-info',
       'pages/success-info/success-info',
       'pages/again/again',
-      'pages/detail-info/detail-info',
-      'pages/index/index'
     ],
     window: {
       backgroundTextStyle: 'light',
