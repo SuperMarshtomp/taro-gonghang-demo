@@ -27,7 +27,7 @@ export default class MyRadio extends Component {
             <View className='my-radio'>
                 <View className='my-radio-name'>
                     <Text className='my-radio-name-txt'>{radioInfo.radioName}</Text>
-                    {radioInfo.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
+                    {radioInfo.finished ? <Icon size='18' type='success' className='my-radio-icon' color='#09BB07'></Icon> : <Text></Text>}
                 </View>
                 <View className='my-radio-list'>
                     {
