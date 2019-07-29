@@ -122,7 +122,10 @@ export default class DetailInfo extends Component {
             finished: false,
             radioList: ['单位地址', '住宅地址'],
             selected: -1
-        }
+        },
+
+        // 支付宝小程序 城市列表
+        list: []
     }
 
     componentWillMount() {
@@ -158,6 +161,28 @@ export default class DetailInfo extends Component {
         this.setState({
             companyAddress: companyAddress
         })
+
+
+        // 支付宝小程序 地区列表
+        let list = this.state.list;
+        for (let i = 0; i < provice.length; i++) {
+            let proviceTemp = Object.create(null);
+            proviceTemp.name = provice[i].name;
+            proviceTemp.subList = [];
+            for (let j = 0; j < provice[i].city.length; j++) {
+                let cityTemp = Object.create(null);
+                cityTemp.name = provice[i].city[j].name;
+                cityTemp.subList = [];
+                for (let k = 0; k < provice[i].city[j].districtAndCounty.length; k++) {
+                    let districtAndCountyTemp = Object.create(null);
+                    districtAndCountyTemp.name = provice[i].city[j].districtAndCounty[k];
+                    cityTemp.subList.push(districtAndCountyTemp);
+                }
+                proviceTemp.subList.push(cityTemp);
+            }
+            list.push(proviceTemp);
+        }
+        // console.log(list);
     }
 
     handleSaveClick = () => {
@@ -223,7 +248,37 @@ export default class DetailInfo extends Component {
         temp.date = e.detail.value;
         this.setState({
             dueDate: temp
-        })
+        }, () => {console.log(this.state.dueDate)} )
+    }
+
+    // 支付宝小程序
+    onHouseAddressClick = (option) => {
+        let temp = this.state[option];
+        if (option == 'houseAddress') {
+            my.multiLevelSelect({
+                list: this.state.list,
+                success: (result) => {
+                    if (result.success) {
+                        temp.address = result.result[0].name + ' - ' + result.result[1].name + ' - ' + result.result[2].name;
+                        this.setState({
+                            houseAddress: temp
+                        }, () => { console.log(this.state.houseAddress) })
+                    }
+                }
+            })
+        } else {
+            my.multiLevelSelect({
+                list: this.state.list,
+                success: (result) => {
+                    if (result.success) {
+                        temp.address = result.result[0].name + ' - ' + result.result[1].name + ' - ' + result.result[2].name;
+                        this.setState({
+                            companyAddress: temp
+                        }, () => { console.log(this.state.companyAddress) })
+                    }
+                }
+            })
+        }
     }
 
     onHouseAddressChange = (option, e) => {
@@ -363,7 +418,7 @@ export default class DetailInfo extends Component {
             <View className='detail-info'>
                 {process.env.TARO_ENV === 'h5' ? <Title /> : <View />}
                 <InfoSave onClick={this.handleSaveClick} />
-                <ScrollView scrollY style={process.env.TARO_ENV === 'rn' ? { height: scrollHeight + 55 }:{height:(scrollHeight + 'px')}}>
+                <ScrollView scrollY style={process.env.TARO_ENV === 'rn' ? { height: scrollHeight + 55 } : process.env.TARO_ENV === 'h5' ? { height: (scrollHeight + 'px') } : { height: (scrollHeight + 45 + 'px') }}>
                     <View>
                         <View className='info-input-pinyin'>
                             <View className='info-input-pinyin-content'>
@@ -408,27 +463,48 @@ export default class DetailInfo extends Component {
                                 <Text className='info-input-house-address-title-txt'>{this.state.houseAddress.pickerName}</Text>
                                 {this.state.houseAddress.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
                             </View>
-                            <View className={this.state.houseAddress.address == '请选择省市区'
-                                            ? 'info-input-house-address-picker'
-                                            : 'info-input-house-address-picker-black'}
-                            >
-                                <Picker
-                                  mode='multiSelector' 
-                                  onChange={this.onHouseAddressChange.bind(this, this.state.houseAddress.name)}
-                                  onColumnChange={this.onHouseAddressColumnChange.bind(this, this.state.houseAddress.name)}
-                                  range={this.state.houseAddress.addressRange}
-                                  value={this.state.houseAddress.addressIndex}
-                                >
-                                    <View className='info-input-house-address-selected'>
-                                        <View className='info-input-house-address-selected-name'>
-                                            <Text>{this.state.houseAddress.address}</Text>
-                                        </View>
-                                        <View className='info-input-house-address-selected-icon'>
-                                            <Text className='info-input-house-address-selected-icon-ins'>{'>'}</Text>
+                            {
+                                process.env.TARO_ENV === 'alipay'
+                                ?
+                                <View>
+                                    <View className={this.state.houseAddress.address == '请选择省市区'
+                                                ? 'info-input-house-address-picker'
+                                                : 'info-input-house-address-picker-black'}
+                                      onClick={this.onHouseAddressClick.bind(this, this.state.houseAddress.name)}
+                                    >
+                                        <View className='info-input-house-address-selected'>
+                                            <View className='info-input-house-address-selected-name'>
+                                                <Text>{this.state.houseAddress.address}</Text>
+                                            </View>
+                                            <View className='info-input-house-address-selected-icon'>
+                                                <Text className='info-input-house-address-selected-icon-ins'>{'>'}</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </Picker>
-                            </View>
+                                </View>
+                                :
+                                <View className={this.state.houseAddress.address == '请选择省市区'
+                                                ? 'info-input-house-address-picker'
+                                                : 'info-input-house-address-picker-black'}
+                                >
+                                    <Picker
+                                      mode='multiSelector' 
+                                      onChange={this.onHouseAddressChange.bind(this, this.state.houseAddress.name)}
+                                      onColumnChange={this.onHouseAddressColumnChange.bind(this, this.state.houseAddress.name)}
+                                      range={this.state.houseAddress.addressRange}
+                                      value={this.state.houseAddress.addressIndex}
+                                    >
+                                        <View className='info-input-house-address-selected'>
+                                            <View className='info-input-house-address-selected-name'>
+                                                <Text>{this.state.houseAddress.address}</Text>
+                                            </View>
+                                            <View className='info-input-house-address-selected-icon'>
+                                                <Text className='info-input-house-address-selected-icon-ins'>{'>'}</Text>
+                                            </View>
+                                        </View>
+                                    </Picker>
+                                </View>
+                            }
                             <View>
                                 <Input 
                                   className='info-input-house-address-input' 
@@ -447,7 +523,7 @@ export default class DetailInfo extends Component {
                             <MyInput 
                               inputName={this.state.companyName.inputName} 
                               type='text' 
-                              finished={this.state.companyName.finished} 
+                              finished={this.state.companyName.finished}
                               onInput={this.onInput.bind(this, 'companyName')}
                             />
                         </View>
@@ -457,27 +533,48 @@ export default class DetailInfo extends Component {
                                 <Text className='info-input-house-address-title-txt'>{this.state.companyAddress.pickerName}</Text>
                                 {this.state.companyAddress.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
                             </View>
-                            <View className={this.state.companyAddress.address == '请选择省市区'
-                                            ? 'info-input-house-address-picker'
-                                            : 'info-input-house-address-picker-black'}
-                            >
-                                <Picker
-                                  mode='multiSelector' 
-                                  onChange={this.onHouseAddressChange.bind(this, this.state.companyAddress.name)}
-                                  onColumnChange={this.onHouseAddressColumnChange.bind(this, this.state.companyAddress.name)}
-                                  range={this.state.companyAddress.addressRange}
-                                  value={this.state.companyAddress.addressIndex}
-                                >
-                                    <View className='info-input-house-address-selected'>
-                                        <View className='info-input-house-address-selected-name'>
-                                            <Text>{this.state.companyAddress.address}</Text>
-                                        </View>
-                                        <View className='info-input-house-address-selected-icon'>
-                                            <Text className='info-input-house-address-selected-icon-ins'>{'>'}</Text>
+                            {
+                                process.env.TARO_ENV === 'alipay'
+                                ?
+                                <View>
+                                    <View className={this.state.companyAddress.address == '请选择省市区'
+                                                ? 'info-input-house-address-picker'
+                                                : 'info-input-house-address-picker-black'}
+                                      onClick={this.onHouseAddressClick.bind(this, this.state.companyAddress.name)}
+                                    >
+                                        <View className='info-input-house-address-selected'>
+                                            <View className='info-input-house-address-selected-name'>
+                                                <Text>{this.state.companyAddress.address}</Text>
+                                            </View>
+                                            <View className='info-input-house-address-selected-icon'>
+                                                <Text className='info-input-house-address-selected-icon-ins'>{'>'}</Text>
+                                            </View>
                                         </View>
                                     </View>
-                                </Picker>
-                            </View>
+                                </View>
+                                :
+                                <View className={this.state.companyAddress.address == '请选择省市区'
+                                                ? 'info-input-house-address-picker'
+                                                : 'info-input-house-address-picker-black'}
+                                >
+                                    <Picker
+                                      mode='multiSelector' 
+                                      onChange={this.onHouseAddressChange.bind(this, this.state.companyAddress.name)}
+                                      onColumnChange={this.onHouseAddressColumnChange.bind(this, this.state.companyAddress.name)}
+                                      range={this.state.companyAddress.addressRange}
+                                      value={this.state.companyAddress.addressIndex}
+                                    >
+                                        <View className='info-input-house-address-selected'>
+                                            <View className='info-input-house-address-selected-name'>
+                                                <Text>{this.state.companyAddress.address}</Text>
+                                            </View>
+                                            <View className='info-input-house-address-selected-icon'>
+                                                <Text className='info-input-house-address-selected-icon-ins'>{'>'}</Text>
+                                            </View>
+                                        </View>
+                                    </Picker>
+                                </View>
+                            }
                             <View>
                                 <Input 
                                   className='info-input-house-address-input' 
