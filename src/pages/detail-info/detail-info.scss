@@ -41,6 +41,21 @@
     height: 80px;
 }
 
+.info-input-date-rn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $white;
+    margin: 0 0 2px 0;
+    padding: 0 30px;
+    height: 140px;
+    &-name{
+        &-txt{
+            font-size: 30px;
+        }
+    }
+}
+
 .info-input-date-name {
     width: 35%;
     &-txt{

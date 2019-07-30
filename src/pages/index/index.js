@@ -1,11 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import {Picker} from 'react-native'
 import './index.scss'
 
 export default class Index extends Component {
 
   config = {
     navigationBarTitleText: '首页'
+  }
+
+  state = {
+    language:'java',
   }
 
   componentWillMount () { }
@@ -21,7 +26,13 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <Text>Hello world!</Text>
+        <Picker
+        selectedValue={this.state.language}
+        style={{ height: 50, width: 100 }}
+        onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker>
       </View>
     )
   }
