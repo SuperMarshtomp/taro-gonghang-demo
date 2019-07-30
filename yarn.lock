@@ -978,8 +978,8 @@
 
 "@tarojs/components-rn@1.3.10":
   version "1.3.10"
-  resolved "https://registry.yarnpkg.com/@tarojs/components-rn/-/components-rn-1.3.10.tgz#7861a0d89313c41ab64fbe3509c7a0a7e6a555df"
-  integrity sha512-+UtWHCC7TbUz1uqOjE9m+rpw2wwl+ntoy+E9UPUjvA7ErXeqd7eM9kFFqB0IqlcPOQGawhJFWDcqpdvrZ3AfLg==
+  resolved "https://registry.npm.taobao.org/@tarojs/components-rn/download/@tarojs/components-rn-1.3.10.tgz#7861a0d89313c41ab64fbe3509c7a0a7e6a555df"
+  integrity sha1-eGGg2JMTxBq2T741Ccegp+alVd8=
   dependencies:
     "@ant-design/react-native" "^3.1.9"
     "@manjiz/react-native-swiper" "^0.0.3"
@@ -1086,15 +1086,15 @@
 
 "@tarojs/taro-redux-rn@1.3.10":
   version "1.3.10"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-redux-rn/-/taro-redux-rn-1.3.10.tgz#07bd757b6103801df6c458119ff3aacd337eba99"
-  integrity sha512-+JjxhAizRCmQScbEVHzZplWsjsPiPemQrtt1ksUXs0sNSbe54doIMhndeGKGFepKo57kwCBcf7ZsMoSAU6SDrA==
+  resolved "https://registry.npm.taobao.org/@tarojs/taro-redux-rn/download/@tarojs/taro-redux-rn-1.3.10.tgz#07bd757b6103801df6c458119ff3aacd337eba99"
+  integrity sha1-B711e2EDgB32xFgRn/OqzTN+upk=
   dependencies:
     react-redux "^5.0.7"
 
 "@tarojs/taro-rn@1.3.10":
   version "1.3.10"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-rn/-/taro-rn-1.3.10.tgz#425a3899b2611d582447971f8c9c536d64172999"
-  integrity sha512-17lkuNYzoE4qw+2TPGOE/mGwvdDefHBlF6a0d+9Igi7wU+aYlF271KOvuBaDNe2BuprD0UBmavtEIv3VqtrRvg==
+  resolved "https://registry.npm.taobao.org/@tarojs/taro-rn/download/@tarojs/taro-rn-1.3.10.tgz#425a3899b2611d582447971f8c9c536d64172999"
+  integrity sha1-Qlo4mbJhHVgkR5cfjJxTbWQXKZk=
   dependencies:
     "@tarojs/taro" "1.3.10"
     babel-preset-expo "^5.2.0"
@@ -1116,8 +1116,8 @@
 
 "@tarojs/taro-router-rn@1.3.10":
   version "1.3.10"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-router-rn/-/taro-router-rn-1.3.10.tgz#f5d984531892b28082533eeaecff0c7ad8988e5f"
-  integrity sha512-k/FB24sG4NnsaPaxAHUskiHDP8V4OG7u5WvlShh8+il+pXMS+ilBNHZfDfWwMJPeg1z90ZA0dMrIRGBKFfNa/Q==
+  resolved "https://registry.npm.taobao.org/@tarojs/taro-router-rn/download/@tarojs/taro-router-rn-1.3.10.tgz#f5d984531892b28082533eeaecff0c7ad8988e5f"
+  integrity sha1-9dmEUxiSsoCCUz7q7P8MetiYjl8=
   dependencies:
     query-string "^6.1.0"
     react-navigation "^2.9.0"
@@ -1891,8 +1891,8 @@ babel-core@6.26.0:
 
 babel-core@^6.24.1, babel-core@^6.26.0, babel-core@^6.7.2:
   version "6.26.3"
-  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
-  integrity sha512-6jyFLuDmeidKmUEb3NM+/yawG0M2bDZ9Z1qbZP59cyHLz8kYGKYwpJP0UwUKKUiTRNvxfLesJnTedqczP7cTDA==
+  resolved "https://registry.npm.taobao.org/babel-core/download/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
+  integrity sha1-suLwnjQtDwyI4vAuBneUEl51wgc=
   dependencies:
     babel-code-frame "^6.26.0"
     babel-generator "^6.26.0"
@@ -4978,6 +4978,14 @@ file-loader@3.0.1:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
+
+file-loader@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/file-loader/download/file-loader-4.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffile-loader%2Fdownload%2Ffile-loader-4.1.0.tgz#3a763391bc9502da7c59612fe348e38fc1980336"
+  integrity sha1-OnYzkbyVAtp8WWEv40jjj8GYAzY=
+  dependencies:
+    loader-utils "^1.2.3"
+    schema-utils "^2.0.0"
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -9941,6 +9949,14 @@ schema-utils@^1.0.0:
   dependencies:
     ajv "^6.1.0"
     ajv-errors "^1.0.0"
+    ajv-keywords "^3.1.0"
+
+schema-utils@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/schema-utils/download/schema-utils-2.0.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fschema-utils%2Fdownload%2Fschema-utils-2.0.1.tgz#1eec2e059556af841b7f3a83b61af13d7a3f9196"
+  integrity sha1-HuwuBZVWr4QbfzqDthrxPXo/kZY=
+  dependencies:
+    ajv "^6.1.0"
     ajv-keywords "^3.1.0"
 
 scss-bundle@^2.5.1:
