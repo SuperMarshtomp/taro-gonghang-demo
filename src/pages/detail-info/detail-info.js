@@ -451,7 +451,7 @@ export default class DetailInfo extends Component {
                                 (<View>
                                     <View className='info-input-date-name'>
                                         <Text className='info-input-date-name-txt'>{this.state.dueDate.pickerName}</Text>
-                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
+                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
                                     </View>
                                     <View className={this.state.dueDate.date == '请选择'
                                                     ? 'info-input-date-picker'
@@ -467,7 +467,7 @@ export default class DetailInfo extends Component {
                                 (<View>
                                     <View className='info-input-date-rn-name'>
                                         <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
-                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
+                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
                                     </View>
                                     <RnTimePicker></RnTimePicker>
                                 </View>)
@@ -484,7 +484,7 @@ export default class DetailInfo extends Component {
                         <View className='info-input-house-address'>
                             <View className='info-input-house-address-title'>
                                 <Text className='info-input-house-address-title-txt'>{this.state.houseAddress.pickerName}</Text>
-                                {this.state.houseAddress.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
+                                {this.state.houseAddress.finished ? <Icon size='18' type='success' className={process.env.TARO_ENV === 'tt' ? 'detail-info-icon-tt' : 'detail-info-icon'} color='#09BB07'></Icon> : <Text></Text>}
                             </View>
                             {
                                 process.env.TARO_ENV === 'alipay'
@@ -557,7 +557,7 @@ export default class DetailInfo extends Component {
                         <View className='info-input-house-address'>
                             <View className='info-input-house-address-title'>
                                 <Text className='info-input-house-address-title-txt'>{this.state.companyAddress.pickerName}</Text>
-                                {this.state.companyAddress.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
+                                {this.state.companyAddress.finished ? <Icon size='18' type='success' className={process.env.TARO_ENV === 'tt' ? 'detail-info-icon-tt' : 'detail-info-icon'} color='#09BB07'></Icon> : <Text></Text>}
                             </View>
                             {
                                 process.env.TARO_ENV === 'alipay'
@@ -618,9 +618,9 @@ export default class DetailInfo extends Component {
                         {/* 单位电话 */}
                         <View className='info-input-company-phone'>
                             <View className='info-input-company-phone-name'>
-                                <View>
+                                <View className='info-input-company-phone-name-super'>
                                     <Text className='info-input-company-phone-txt'>{this.state.companyPhone.inputName}</Text>
-                                    {this.state.companyPhone.finished ? <Icon size='18' type='success' className='my-radio-icon'></Icon> : <Text></Text>}
+                                    {this.state.companyPhone.finished ? <Icon size='18' type='success' className='info-input-company-phone-icon' color='#09BB07'></Icon> : <Text></Text>}
                                 </View>
                                 <View>
                                     <Text className='info-input-company-phone-name-sub'>{this.state.companyPhone.inputSubName}</Text>

@@ -39,6 +39,9 @@ const config = {
         'transform-object-rest-spread'
       ]
     },
+    uglify: {
+      enable: false
+    },
     sass: {
       importer: sassImporter
     }

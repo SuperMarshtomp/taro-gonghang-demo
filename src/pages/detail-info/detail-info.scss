@@ -58,15 +58,26 @@
 
 .info-input-date-name {
     width: 35%;
+    display: flex;
+    flex-direction: row;
     &-txt{
         line-height: 80px;
         font-size: 30px;
     }
 }
 
-.my-radio-icon {
-    // vertical-align: text-top;
-    line-height: 80px;
+.detail-info-icon {
+    // line-height: 80px;
+    // margin: auto 0;
+    margin: 20px 0;
+    // vertical-align: sub;
+}
+.detail-info-icon-tt {
+    margin: 14px 0;
+}
+
+.info-input-company-phone-icon {
+    margin: 4px 0;
 }
 
 .info-input-date-picker {
@@ -89,6 +100,8 @@
     line-height: 80px;
     &-title {
         height: 80px;
+        display: flex;
+        flex-direction: row;
         &-txt{
             line-height: 80px;
             font-size: 30px;
@@ -175,6 +188,10 @@
         width: 30%;
         height: 100px;
         padding: 10px 0 0 0;
+    }
+    &-name-super {
+        display: flex;
+        flex-direction: row;
     }
     &-name-sub {
         font-size: 20px;
