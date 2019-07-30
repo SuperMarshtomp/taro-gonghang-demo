@@ -460,10 +460,9 @@ export default class DetailInfo extends Component {
                         {
                             this.state.idCard.selected == 0
                             ? 
-                            <View className= { process.env.TARO_ENV !== 'rn' ? 'info-input-date':'info-input-date-rn'}>
-                                
+                            <View>
                                 { process.env.TARO_ENV !== 'rn' ? 
-                                (<View>
+                                (<View className = 'info-input-date'> 
                                     <View className='info-input-date-name'>
                                         <Text className='info-input-date-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
@@ -479,7 +478,7 @@ export default class DetailInfo extends Component {
                                         </Picker>
                                     </View>
                                 </View>):
-                                (<View>
+                                (<View className = 'info-input-date-rn'>
                                     <View className='info-input-date-rn-name'>
                                         <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
