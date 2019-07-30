@@ -15,10 +15,10 @@ export function getWindowHeight(showTabBar = true) {
   const { windowHeight, statusBarHeight, titleBarHeight } = info
   var tabBarHeight = showTabBar ? TAB_BAR_HEIGHT : 0
 
-  console.log(windowHeight);
-  console.log(statusBarHeight);
-  console.log(titleBarHeight);
-  console.log(tabBarHeight);
+  // console.log(windowHeight);
+  // console.log(statusBarHeight);
+  // console.log(titleBarHeight);
+  // console.log(tabBarHeight);
 
   if (process.env.TARO_ENV === 'rn') {
     tabBarHeight = 32

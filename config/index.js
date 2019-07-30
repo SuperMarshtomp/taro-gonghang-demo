@@ -24,7 +24,7 @@ const config = {
     '828': 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'dist/alipay',
+  outputRoot: 'dist/tt',
   plugins: {
     babel: {
       sourceMap: true,
@@ -38,6 +38,9 @@ const config = {
         'transform-class-properties',
         'transform-object-rest-spread'
       ]
+    },
+    uglify: {
+      enable: false
     },
     sass: {
       importer: sassImporter
