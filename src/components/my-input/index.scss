@@ -17,6 +17,9 @@
 }
 
 .text-input-name {
+    display: flex;
+    flex-direction: row;
+
     width: 35%;
     &-txt{
         line-height: 80px;
@@ -26,15 +29,15 @@
     }
 }
 
-/*postcss-pxtransform rn eject enable*/
-
 .my-input-icon {
-    // vertical-align: text-top;
     // margin: auto 0;
-    vertical-align: sub;
+    margin: 20px 0;
+    // vertical-align: sub;
 }
 
-/*postcss-pxtransform rn eject disable*/
+.my-input-icon-tt {
+    margin: 14px 0;
+}
 
 .text-input-item-view {
     width: 65%;

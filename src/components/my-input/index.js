@@ -10,7 +10,20 @@ export default class MyInput extends Component {
                     <Text className='text-input-name-txt'>
                         {this.props.inputName}
                     </Text>
-                    {this.props.finished ? <Icon size='18' type='success' className='my-input-icon' color='#09BB07'></Icon> : <Text></Text>}
+                    {
+                        this.props.finished 
+                        ? <Icon 
+                          size='18' 
+                          type='success' 
+                          className={
+                            process.env.TARO_ENV === 'tt'
+                            ? 'my-input-icon-tt'
+                            : 'my-input-icon'
+                          }
+                          color='#09BB07'
+                        ></Icon> 
+                        : <Text></Text>
+                    }
                 </View>
                 <View className='text-input-item-view'>
                     <Input 
