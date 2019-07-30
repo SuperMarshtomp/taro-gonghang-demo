@@ -31,6 +31,7 @@ export default class RnProvicePicker extends Component{
             selectedProvice:pro,
             Citys:provice.find(item => item.name == pro).city
         });
+        this.props.onProviceChange(pro)
     }
 
     updateCity(cit) {
@@ -39,6 +40,7 @@ export default class RnProvicePicker extends Component{
             selectedCity:cit,
             Districts:this.state.Citys.find(item => item.name == cit).districtAndCounty
         });
+        this.props.onProviceChange(this.state.Provices + cit)
     }
 
     updateDistrict(dis) {
@@ -46,6 +48,7 @@ export default class RnProvicePicker extends Component{
         this.setState({
             selectedDistrict: dis
         });
+        this.props.onProviceChange(this.state.Provices + this.state.Citys + dis)
     }
 
     renderDataPicker(value,key) {

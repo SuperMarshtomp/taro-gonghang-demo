@@ -7,7 +7,6 @@ import InfoSave from './info-save'
 import RnTimePicker from './rn-time-picker'
 import RnProvicePicker from './rn-provice-picker'
 import { getWindowHeight } from '@utils/style'
-
 import MyInput from '@components/my-input'
 import MyRadio from '@components/my-radio'
 
@@ -418,6 +417,22 @@ export default class DetailInfo extends Component {
         })
     }
 
+    onProviceChange = (data) => {
+        let temp = this.state.houseAddress
+        temp.address = data
+        this.setState({
+            houseAddress:temp
+        })
+    }
+
+    onConProviceChange = (data) => {
+        let temp = this.state.companyAddress
+        temp.address = data 
+        this.setState({
+            companyAddress:temp
+        })
+    }
+
     
 
     render () {
@@ -507,7 +522,7 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker></RnProvicePicker>
+                                    <RnProvicePicker onProviceChange={this.onProviceChange.bind(this)}></RnProvicePicker>
                                 </View>
                                 :<View className={this.state.houseAddress.address == '请选择省市区'
                                                 ? 'info-input-house-address-picker'
@@ -580,7 +595,7 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker></RnProvicePicker>
+                                    <RnProvicePicker onProviceChange = {this.onConProviceChange.bind(this)} ></RnProvicePicker>
                                 </View>
                                 :
                                 <View className={this.state.companyAddress.address == '请选择省市区'
