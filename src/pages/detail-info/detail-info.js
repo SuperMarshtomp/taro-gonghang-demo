@@ -5,6 +5,7 @@ import './detail-info.scss'
 import Title from '@components/title'
 import InfoSave from './info-save'
 import RnTimePicker from './rn-time-picker'
+import RnProvicePicker from './rn-provice-picker'
 import { getWindowHeight } from '@utils/style'
 
 import MyInput from '@components/my-input'
@@ -504,8 +505,11 @@ export default class DetailInfo extends Component {
                                         </View>
                                     </View>
                                 </View>
-                                :
-                                <View className={this.state.houseAddress.address == '请选择省市区'
+                                : process.env.TARO_ENV === 'rn' ? 
+                                <View>
+                                    <RnProvicePicker></RnProvicePicker>
+                                </View>
+                                :<View className={this.state.houseAddress.address == '请选择省市区'
                                                 ? 'info-input-house-address-picker'
                                                 : 'info-input-house-address-picker-black'}
                                 >
@@ -573,6 +577,10 @@ export default class DetailInfo extends Component {
                                             </View>
                                         </View>
                                     </View>
+                                </View>
+                                : process.env.TARO_ENV === 'rn' ? 
+                                <View>
+                                    <RnProvicePicker></RnProvicePicker>
                                 </View>
                                 :
                                 <View className={this.state.companyAddress.address == '请选择省市区'
