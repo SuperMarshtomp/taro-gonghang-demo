@@ -4,128 +4,134 @@ import './detail-info.scss'
 
 import Title from '@components/title'
 import InfoSave from './info-save'
+import RnTimePicker from './rn-time-picker'
+import RnProvicePicker from './rn-provice-picker'
 import { getWindowHeight } from '@utils/style'
-
 import MyInput from '@components/my-input'
 import MyRadio from '@components/my-radio'
 
 import provice from '@utils/provice'
 
 export default class DetailInfo extends Component {
-    state = {
-        idCard: {
-            name: 'idCard',
-            radioName: '身份证到期日',
-            radioList: ['手动输入', '长期有效'],
-            finished: false,
-            selected: -1
-        },
-        dueDate: {
-            pickerName: '身份证到期日',
-            finished: false,
-            date: '请选择'
-        },
-        mariage: {
-            name: 'mariage',
-            radioName: '婚姻状况',
-            finished: false,
-            radioList: ['已婚', '未婚', '其他'],
-            selected: -1
-        },
-        education: {
-            name: 'education',
-            radioName: '教育程度',
-            finished: false,
-            radioList: ['专科及以下', '本科', '硕士', '博士及以上'],
-            selected: -1
-        },
-        house: {
-            name: 'house',
-            radioName: '住宅状况',
-            finished: false,
-            radioList: ['全款购房', '贷款购房', '租房', '其他'],
-            selected: -1
-        },
-        houseAddress: {
-            name: 'houseAddress',
-            pickerName: '住宅地址',
-            finished: false,
-            address: '请选择省市区',
-            addressIndex: [0, 0, 0],
-            addressRange: [],
-            detailAddress: ''
-        },
-        job: {
-            name: 'job',
-            radioName: '职业',
-            finished: false,
-            radioList: ['公司职员', '公务员', '事业单位员工', '金融单位员工', '军人', '学生', '自由职业者'],
-            selected: -1
-        },
-        companyCharacter: {
-            name: 'companyCharacter',
-            radioName: '单位性质',
-            finished: false,
-            radioList: ['国有经济', '集体经济', '私营/民营', '股份制', '三资'],
-            selected: -1
-        },
-        level: {
-            name: 'level',
-            radioName: '职务',
-            finished: false,
-            radioList: ['科员级/职员', '科级/部门经理', '县处级/总经理', '厅局级及以上/企业负责人', '其他'],
-            selected: -1
-        },
-        companyName: {
-            inputName: '单位名称',
-            finished: false
-        },
-        companyAddress: {
-            name: 'companyAddress',
-            pickerName: '单位地址',
-            finished: false,
-            address: '请选择省市区',
-            addressIndex: [0, 0, 0],
-            addressRange: [],
-            detailAddress: ''
-        },
-        companyPhone: {
-            inputName: '单位电话',
-            inputSubName: '(分机号选填)',
-            finished: false,
-            prefix: '',
-            phone: '',
-            suffix: ''
-        },
-        income: {
-            inputName: '税前年收入',
-            finished: false
-        },
-        contactsName: {
-            inputName: '联系人姓名',
-            finished: false
-        },
-        contactsPhone: {
-            inputName: '联系人手机号',
-            finished: false
-        },
-        relationship: {
-            name: 'relationship',
-            radioName: '与申请人关系',
-            finished: false,
-            radioList: ['夫妻', '父子', '母子', '兄弟姐妹', '同事', '朋友'],
-            selected: -1
-        },
-        postalAddress: {
-            name: 'postalAddress',
-            radioName: '卡片邮寄地址',
-            finished: false,
-            radioList: ['单位地址', '住宅地址'],
-            selected: -1
-        },
+    constructor (props) {
+        super(props)
 
-        // 支付宝小程序 城市列表
-        list: []
+        this.state = {
+
+            idCard: {
+                name: 'idCard',
+                radioName: '身份证到期日',
+                radioList: ['手动输入', '长期有效'],
+                finished: false,
+                selected: -1
+            },
+            dueDate: {
+                pickerName: '身份证到期日',
+                finished: false,
+                date: '请选择'
+            },
+            mariage: {
+                name: 'mariage',
+                radioName: '婚姻状况',
+                finished: false,
+                radioList: ['已婚', '未婚', '其他'],
+                selected: -1
+            },
+            education: {
+                name: 'education',
+                radioName: '教育程度',
+                finished: false,
+                radioList: ['专科及以下', '本科', '硕士', '博士及以上'],
+                selected: -1
+            },
+            house: {
+                name: 'house',
+                radioName: '住宅状况',
+                finished: false,
+                radioList: ['全款购房', '贷款购房', '租房', '其他'],
+                selected: -1
+            },
+            houseAddress: {
+                name: 'houseAddress',
+                pickerName: '住宅地址',
+                finished: false,
+                address: '请选择省市区',
+                addressIndex: [0, 0, 0],
+                addressRange: [],
+                detailAddress: ''
+            },
+            job: {
+                name: 'job',
+                radioName: '职业',
+                finished: false,
+                radioList: ['公司职员', '公务员', '事业单位员工', '金融单位员工', '军人', '学生', '自由职业者'],
+                selected: -1
+            },
+            companyCharacter: {
+                name: 'companyCharacter',
+                radioName: '单位性质',
+                finished: false,
+                radioList: ['国有经济', '集体经济', '私营/民营', '股份制', '三资'],
+                selected: -1
+            },
+            level: {
+                name: 'level',
+                radioName: '职务',
+                finished: false,
+                radioList: ['科员级/职员', '科级/部门经理', '县处级/总经理', '厅局级及以上/企业负责人', '其他'],
+                selected: -1
+            },
+            companyName: {
+                inputName: '单位名称',
+                finished: false
+            },
+            companyAddress: {
+                name: 'companyAddress',
+                pickerName: '单位地址',
+                finished: false,
+                address: '请选择省市区',
+                addressIndex: [0, 0, 0],
+                addressRange: [],
+                detailAddress: ''
+            },
+            companyPhone: {
+                inputName: '单位电话',
+                inputSubName: '(分机号选填)',
+                finished: false,
+                prefix: '',
+                phone: '',
+                suffix: ''
+            },
+            income: {
+                inputName: '税前年收入',
+                finished: false
+            },
+            contactsName: {
+                inputName: '联系人姓名',
+                finished: false
+            },
+            contactsPhone: {
+                inputName: '联系人手机号',
+                finished: false
+            },
+            relationship: {
+                name: 'relationship',
+                radioName: '与申请人关系',
+                finished: false,
+                radioList: ['夫妻', '父子', '母子', '兄弟姐妹', '同事', '朋友'],
+                selected: -1
+            },
+            postalAddress: {
+                name: 'postalAddress',
+                radioName: '卡片邮寄地址',
+                finished: false,
+                radioList: ['单位地址', '住宅地址'],
+                selected: -1
+            },
+    
+            // 支付宝小程序 城市列表
+            list: []
+        }
     }
 
     componentWillMount() {
@@ -411,11 +417,30 @@ export default class DetailInfo extends Component {
         })
     }
 
+    onProviceChange = (data) => {
+        let temp = this.state.houseAddress
+        temp.address = data
+        this.setState({
+            houseAddress:temp
+        })
+    }
+
+    onConProviceChange = (data) => {
+        let temp = this.state.companyAddress
+        temp.address = data 
+        this.setState({
+            companyAddress:temp
+        })
+    }
+
+    
+
     render () {
         const scrollHeight = parseInt(getWindowHeight()) - 145;
 
         return (
             <View className='detail-info'>
+            {/* <RnTimePicker></RnTimePicker> */}
                 {process.env.TARO_ENV === 'h5' ? <Title /> : <View />}
                 <InfoSave onClick={this.handleSaveClick} />
                 <ScrollView scrollY style={process.env.TARO_ENV === 'rn' ? { height: scrollHeight + 55 } : process.env.TARO_ENV === 'h5' ? { height: (scrollHeight + 'px') } : { height: (scrollHeight + 45 + 'px') }}>
@@ -435,21 +460,33 @@ export default class DetailInfo extends Component {
                         {
                             this.state.idCard.selected == 0
                             ? 
-                            <View className='info-input-date'>
-                                <View className='info-input-date-name'>
-                                    <Text className='info-input-date-name-txt'>{this.state.dueDate.pickerName}</Text>
-                                    {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
-                                </View>
-                                <View className={this.state.dueDate.date == '请选择'
-                                                ? 'info-input-date-picker'
-                                                : 'info-input-date-picker info-input-date-picker-black'}
-                                >
-                                    <Picker mode='date' onChange={this.onDueDateChange}>
-                                        <View>
-                                            <Text>{this.state.dueDate.date}</Text>
-                                        </View>
-                                    </Picker>
-                                </View>
+                            <View>
+                                { process.env.TARO_ENV !== 'rn' ? 
+                                (<View className = 'info-input-date'> 
+                                    <View className='info-input-date-name'>
+                                        <Text className='info-input-date-name-txt'>{this.state.dueDate.pickerName}</Text>
+                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
+                                    </View>
+                                    <View className={this.state.dueDate.date == '请选择'
+                                                    ? 'info-input-date-picker'
+                                                    : 'info-input-date-picker info-input-date-picker-black'}
+                                    >
+                                        <Picker mode='date' onChange={this.onDueDateChange}>
+                                            <View>
+                                                <Text>{this.state.dueDate.date}</Text>
+                                            </View>
+                                        </Picker>
+                                    </View>
+                                </View>):
+                                (<View className = 'info-input-date-rn'>
+                                    <View className='info-input-date-rn-name'>
+                                        <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
+                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
+                                    </View>
+                                    <RnTimePicker></RnTimePicker>
+                                </View>)
+                                }
+                                
                             </View>
                             : <View></View>
                         }
@@ -482,8 +519,11 @@ export default class DetailInfo extends Component {
                                         </View>
                                     </View>
                                 </View>
-                                :
-                                <View className={this.state.houseAddress.address == '请选择省市区'
+                                : process.env.TARO_ENV === 'rn' ? 
+                                <View>
+                                    <RnProvicePicker onProviceChange={this.onProviceChange.bind(this)}></RnProvicePicker>
+                                </View>
+                                :<View className={this.state.houseAddress.address == '请选择省市区'
                                                 ? 'info-input-house-address-picker'
                                                 : 'info-input-house-address-picker-black'}
                                 >
@@ -551,6 +591,10 @@ export default class DetailInfo extends Component {
                                             </View>
                                         </View>
                                     </View>
+                                </View>
+                                : process.env.TARO_ENV === 'rn' ? 
+                                <View>
+                                    <RnProvicePicker onProviceChange = {this.onConProviceChange.bind(this)} ></RnProvicePicker>
                                 </View>
                                 :
                                 <View className={this.state.companyAddress.address == '请选择省市区'

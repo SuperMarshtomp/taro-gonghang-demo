@@ -24,7 +24,6 @@ class App extends Component {
       'pages/base-info/base-info',
       'pages/success-info/success-info',
       'pages/again/again',
-      'pages/index/index'
     ],
     window: {
       backgroundTextStyle: 'light',

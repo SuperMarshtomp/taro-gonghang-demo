@@ -101,6 +101,9 @@ const config = {
   },
   h5: {
     publicPath: '/',
+    devServer: {
+      port: 10088
+    },
     staticDirectory: 'static',
     module: {
       postcss: {
