@@ -130,6 +130,17 @@ class Home extends Component {
         height:this.state.height - 139
       })
     }
+
+  // AJAX
+  Taro.request({
+    method: 'POST',
+    url: 'http://localhost:8080/api/seriesLists',
+    data: {
+      sessionId: '1'
+    }
+  })
+  .then(res => console.log(res.data))
+
   }
 
   handleSearchClick () {
@@ -270,7 +281,7 @@ class Home extends Component {
               <View>
                 <Image roundAsCircle={true} className = "ins-img" src = {detailImg}> </Image>
               </View>
-              <View className = "w2"> 
+              <View className= "w2"> 
                 <Text className = "w2-title">{showItem.name}</Text>
                 {
                   showItem.simpleDesc.map((desc, index) => {
