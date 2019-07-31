@@ -17,6 +17,8 @@ import Location from './location'
 import Tip from './tip'
 import Select from './select'
 
+import axios from 'axios'
+
 // const RECOMMEND_SIZE = 20
 var titleHeight = 138;
 var noTitleHeight = 46
@@ -130,16 +132,6 @@ class Home extends Component {
         height:this.state.height - 139
       })
     }
-
-  // AJAX
-  Taro.request({
-    method: 'POST',
-    url: 'http://localhost:8080/api/seriesLists',
-    data: {
-      sessionId: '1'
-    }
-  })
-  .then(res => console.log(res.data))
 
   }
 
