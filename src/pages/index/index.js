@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { Text, View } from '@tarojs/components'
 
 import './index.scss'
 import fetch from '../../server'
@@ -10,22 +10,19 @@ export default class Index extends Component {
     navigationBarTitleText: '首页'
   }
 
+  state = {
+    temp:''
+  }
+
   getTest(){
-    // fetch({ url: 'http://localhost:8080/api/seriesLists', showToast: true,payload:{sessionId:1}}).then((res) => {
-    //   if (res) {
-    //     console.log(res)
-    //   } else {
-    //     console.log('err')
-    //   }
-    // })
-    Taro.request({
-      method: 'POST',
-      url: 'http://localhost:3333/api/seriesLists',
-      data: {
-        sessionId: '1'
-      },
-      header: {
-        'content-type': 'application/json'
+    fetch({ url: 'http://localhost:3333/api/seriesLists', showToast: true,payload:{sessionId:1}}).then((res) => {
+      if (res) {
+        console.log(res)
+        this.setState({
+          temp:res.msg
+        })
+      } else {
+        console.log('err')
       }
     })
       .then((res) => console.log(res.data))
@@ -47,7 +44,7 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-        {/* <Text></Text> */}
+        <Text>{this.state.temp}</Text>
       </View>
     )
   }
