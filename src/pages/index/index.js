@@ -15,7 +15,7 @@ export default class Index extends Component {
   }
 
   getTest(){
-    fetch({ url: 'http://localhost:3333/api/seriesLists', showToast: true,payload:{sessionId:1}}).then((res) => {
+    fetch({ url: 'http://10.0.2.2:3333/api/seriesLists', showToast: true,payload:{sessionId:1}}).then((res) => {
       if (res) {
         console.log(res)
         this.setState({
@@ -25,7 +25,6 @@ export default class Index extends Component {
         console.log('err')
       }
     })
-      .then((res) => console.log(res.data))
   }
 
 
