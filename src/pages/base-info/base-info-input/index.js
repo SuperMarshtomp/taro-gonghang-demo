@@ -9,9 +9,9 @@ export default class BaseInfoInput extends Component {
         return (
             <View className='base-info-input-view'>
                 <View className='base-info-input'>
-                    <MyInput inputName='姓名' type='text' hasBorder onInput={this.props.onNameInput} />
-                    <MyInput inputName='身份证号' type='idcard' hasBorder onInput={this.props.onIdCardInput} />
-                    <MyInput inputName='手机号' type='number' hasBorder onInput={this.props.onPhoneInput} />
+                    <MyInput inputName='姓名' type='text' value={this.props.baseInfo.name} hasBorder onInput={this.props.onNameInput} />
+                    <MyInput inputName='身份证号' type='idcard' value={this.props.baseInfo.idCard} hasBorder onInput={this.props.onIdCardInput} />
+                    <MyInput inputName='手机号' type='number' value={this.props.baseInfo.phone} hasBorder onInput={this.props.onPhoneInput} />
                     <View className='base-info-input-verify'>
                         {/* <MyInput inputName='短信验证码' type='number' /> */}
                         <View className='verify-text-input'>
@@ -25,6 +25,7 @@ export default class BaseInfoInput extends Component {
                               type='number' 
                               placeholder='请输入短信验证码' 
                               onInput={this.props.onVerifyCodeInput}
+                              value={this.props.baseInfo.verifyCode}
                             />
                         </View>
                         

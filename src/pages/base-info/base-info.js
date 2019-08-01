@@ -31,64 +31,70 @@ export default class BaseInfo extends Component {
     }
 
     getCardInfo () {
-        fetch({
-            url: `${LOCAL_HOST}/api/seriesLists/specificCards/cards`,
-            payload: {
-                sessionId: '1' ,
-                seriesId: '5',
-                cardId: '001'
-            }
-        }).then((res) => {
-            console.log(res);
-            const { seriesData, cardData } = res;
-            this.setState({
-                cardName: cardData[0].cardTitle,
-                cardImage: LOCAL_HOST + '/' + cardData[0].cardPicture,
-                myPoints: seriesData[0].seriesProperty,
-                introduce: seriesData[0].seriesContent
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/cards`,
+                payload: {
+                    sessionId: '1' ,
+                    seriesId: '5',
+                    cardId: '001'
+                }
+            }).then((res) => {
+                console.log(res);
+                const { seriesData, cardData } = res;
+                this.setState({
+                    cardName: cardData[0].cardTitle,
+                    cardImage: LOCAL_HOST + '/' + cardData[0].cardPicture,
+                    myPoints: seriesData[0].seriesProperty,
+                    introduce: seriesData[0].seriesContent
+                })
             })
-        })
+        }
     }
 
     // 判断是否二次办卡
     getHistory () {
-        fetch({
-            url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/pageTurns`,
-            payload: {
-                sessionId: '1',
-                userIdCard: this.state.baseInfo.idCard
-            }
-        }).then((res) => {
-            console.log(res);
-            if (res.page == '0') {
-                Taro.navigateTo({
-                    url: '/pages/detail-info/detail-info'
-                })
-            } else {
-                Taro.navigateTo({
-                    url: '/pages/again/again'
-                })
-            }
-        })
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/pageTurns`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: this.state.baseInfo.idCard
+                }
+            }).then((res) => {
+                console.log(res);
+                if (res.page == '0') {
+                    Taro.navigateTo({
+                        url: '/pages/detail-info/detail-info?userIdCard=' + this.state.baseInfo.idCard
+                    })
+                } else {
+                    Taro.navigateTo({
+                        url: '/pages/again/again'
+                    })
+                }
+            })
+        }
     }
 
     postBaseInfo () {
-        fetch({
-            url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases`,
-            payload: {
-                sessionId: '1',
-                userName: this.state.baseInfo.name,
-                userIdCard: this.state.baseInfo.idCard,
-                userPhone: this.state.baseInfo.phone,
-                cardId: '001',
-                cardTitle: this.state.cardName
-            }
-        }).then((res) => {
-            console.log(res);
-            if (res.status >= 200 && res.status <= 300) {
-                this.getHistory();
-            }
-        })
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases`,
+                payload: {
+                    sessionId: '1',
+                    userName: this.state.baseInfo.name,
+                    userIdCard: this.state.baseInfo.idCard,
+                    userPhone: this.state.baseInfo.phone,
+                    cardId: '001',
+                    cardTitle: this.state.cardName
+                }
+            }).then((res) => {
+                console.log(res);
+                if (res.status >= 200 && res.status <= 300) {
+                    this.getHistory();
+                }
+            })
+        }
     }
 
     componentWillMount () { 

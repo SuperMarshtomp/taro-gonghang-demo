@@ -31,6 +31,7 @@ export default class MyInput extends Component {
                       type={this.props.type} 
                       placeholder={this.props.noPlaceholder ? '' :'请输入' + this.props.inputName} 
                       onInput={this.props.onInput}
+                      value={this.props.value}
                     />
                 </View>
             </View>
