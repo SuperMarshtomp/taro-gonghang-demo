@@ -146,7 +146,14 @@ export default class DetailInfo extends Component {
 
     setRadioSelected (radio, value) {
         if (radio === 'idCard') {
-            if (value != null) {
+            if (value == '长期有效') {
+                let temp = this.state.idCard;
+                temp.finished = true;
+                temp.selected = 1;
+                this.setState({
+                    idCard: temp
+                })
+            } else if (value != '请选择' && value != null) {
                 let temp = this.state.idCard;
                 temp.finished = true;
                 temp.selected = 0;
@@ -158,7 +165,7 @@ export default class DetailInfo extends Component {
                 })
             }
         } else {
-            if (value != null) {
+            if (value != 'null') {
                 for (let i = 0; i < this.state[radio].radioList.length; i++) {
                     if (this.state[radio].radioList[i] == value) {
                         let temp = this.state[radio];
@@ -173,11 +180,34 @@ export default class DetailInfo extends Component {
         }
     }
     setMyInput (myInput, value) {
-        if (value != null) {
+        if (value != 'null') {
             let temp = this.state[myInput];
             temp.value = value;
             this.setState({
                 [myInput]: temp
+            })
+        }
+    }
+    setAddress (option, region, detailAddress) {
+        if (region != '请选择省市区' && region != null && region != 'null') {
+            let temp = this.state[option];
+            temp.address = region;
+            this.setState({
+                [option]: temp
+            })
+        }
+        if (detailAddress != null && detailAddress != 'null') {
+            let temp = this.state[option];
+            temp.detailAddress = detailAddress;
+            this.setState({
+                [option]: temp
+            })
+        }
+        if (region != '请选择省市区' && region != null && region != 'null' && detailAddress != null && detailAddress != 'null') {
+            let temp = this.state[option];
+            temp.finished = true;
+            this.setState({
+                [option]: temp
             })
         }
     }
@@ -193,8 +223,10 @@ export default class DetailInfo extends Component {
             }).then((res) => {
                 console.log(res);
                 let { userSpell, userIdDeadline, maritalStatus, educationStatus, liveStatus,
-                    liveAddress, profession, companyProperty, duty, companyName, companyAddress, 
-                    companyPhone, income, contactName, contactPhone, contactRelation, mailAddress } = res;
+                    liveAddress, liveAddressSelect, profession, companyProperty, duty, 
+                    companyName, companyAddress, companyAddressSelect,
+                    companyPhoneA, companyPhoneB, companyPhoneC,
+                    income, contactName, contactPhone, contactRelation, mailAddress } = res;
                 this.setRadioSelected('idCard', userIdDeadline);
                 this.setRadioSelected('mariage', maritalStatus);
                 this.setRadioSelected('education', educationStatus);
@@ -210,9 +242,11 @@ export default class DetailInfo extends Component {
                 this.setMyInput('contactsName', contactName);
                 this.setMyInput('contactsPhone', contactPhone);
 
+                this.setAddress('houseAddress', liveAddressSelect, liveAddress);
+                this.setAddress('companyAddress', companyAddressSelect, companyAddress);
+
                 this.setState({
                     userSpell: userSpell,
-                    
                 })
             })
         }
@@ -281,8 +315,54 @@ export default class DetailInfo extends Component {
         }, () => {this.getDetailInfo()})
     }
 
+    // 保存信息
+    saveDetailInfo () {
+        if (this.state.idCard.selected == 1) {
+            let temp = this.state.dueDate;
+            temp.date = '长期有效';
+            this.setState({
+                dueDate: temp
+            })
+        }
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/users`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: this.$router.params.userIdCard,
+                    userSpell: this.state.userSpell,
+                    userIdDeadline: this.state.dueDate.date || 'null',
+                    maritalStatus: this.state.mariage.radioList[this.state.mariage.selected] || 'null',
+                    educationStatus: this.state.education.radioList[this.state.education.selected] || 'null',
+                    liveStatus: this.state.house.radioList[this.state.house.selected] || 'null',
+                    liveAddress: this.state.houseAddress.detailAddress || 'null',
+                    liveAddressSelect: this.state.houseAddress.address || 'null',
+                    profession: this.state.job.radioList[this.state.job.selected] || 'null',
+                    companyProperty: this.state.companyCharacter.radioList[this.state.companyCharacter.selected] || 'null',
+                    duty: this.state.level.radioList[this.state.level.selected] || 'null',
+                    companyName: this.state.companyName.value || 'null',
+                    companyAddress: this.state.companyAddress.detailAddress || 'null',
+                    companyAddressSelect: this.state.companyAddress.address || 'null',
+                    companyPhoneA: '' || 'null',
+                    companyPhoneB: '' || 'null',
+                    companyPhoneC: '' || 'null',
+                    income: this.state.income.value || 'null',
+                    contactName: this.state.contactsName.value || 'null',
+                    contactPhone: this.state.contactsPhone.value || 'null',
+                    contactRelation: this.state.relationship.radioList[this.state.relationship.selected] || 'null',
+                    mailAddress: this.state.postalAddress.radioList[this.state.postalAddress.selected] || 'null'
+                }
+            }).then((res) => {
+                console.log(res);
+                Taro.showToast({
+                    title: '保存信息成功'
+                })
+            })
+        }
+    }
     handleSaveClick = () => {
         console.log('handleSaveClick');
+        this.saveDetailInfo();
     }
 
     onRadioClick = (index, option) => {
@@ -395,6 +475,7 @@ export default class DetailInfo extends Component {
 
     onHouseDetailAddressInput = (option, e) => {
         let temp = this.state[option];
+        temp.detailAddress = e.detail.value;
         if (e.detail.value != '' && temp.address != '请选择省市区') {
             temp.finished = true;
         } else {
@@ -598,6 +679,7 @@ export default class DetailInfo extends Component {
                                   type='text' 
                                   placeholder='请具体到门牌号且不少于3个字'
                                   onInput={this.onHouseDetailAddressInput.bind(this, this.state.houseAddress.name)}
+                                  value={this.state.houseAddress.detailAddress}
                                 />
                             </View>
                         </View>
@@ -673,6 +755,7 @@ export default class DetailInfo extends Component {
                                   type='text' 
                                   placeholder='请具体到门牌号且不少于3个字'
                                   onInput={this.onHouseDetailAddressInput.bind(this, this.state.companyAddress.name)}
+                                  value={this.state.companyAddress.detailAddress}
                                 />
                             </View>
                         </View>
