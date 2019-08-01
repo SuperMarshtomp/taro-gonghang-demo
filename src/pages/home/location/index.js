@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import './index.scss'
 
-import locationImage from './assets/location.png'
+import locationImage from './assets/location.jpg'
 
 export default class Location extends Component {
 
@@ -14,7 +14,7 @@ export default class Location extends Component {
       return (
           <View className='location'>
               <View className='location-city'>
-                  <Image className='location-img' src={ locationImage }/>
+                  <Image className='location-img' src={ locationImage }></Image>
                   <View>
                       <Text>
                           当前城市：{ this.props.city }

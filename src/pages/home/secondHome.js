@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Text, Image, View, ScrollView } from '@tarojs/components'
-import { Modal } from "react-native"
+import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '@utils/style'
 import Recommend from './recommend-second/index-sec'
 import './home.scss'
@@ -32,68 +31,69 @@ class Home extends Component {
       height:parseInt(getWindowHeight()),
       showTip: true,
       // showDetail: false,
-      recommend:[
-        {
-          cardId: "001",
-          cardTitle: "故宫·九有一心红白金",
-          cardPicture: "cards/九有一心红白金.jpg"
-        },
-        {
-          cardId: "002",
-          cardTitle: "故宫·九有一心红金卡",
-          cardPicture: "cards/九有一心红金卡.jpg"
-        },
-        {
-          cardId: "003",
-          cardTitle: "故宫·九有一心蓝白金",
-          cardPicture: "cards/九有一心蓝白金.jpg"
-        },
-        {
-          cardId: "004",
-          cardTitle: "故宫·九有一心蓝金卡",
-          cardPicture: "cards/九有一心蓝金卡.jpg"
-        },
-        {
-          cardId: "005",
-          cardTitle: "故宫·协和万邦红白金",
-          cardPicture: "cards/协和万邦红白金.jpg"
-        },
-        {
-          cardId: "006",
-          cardTitle: "故宫·协和万邦红金卡",
-          cardPicture: "cards/协和万邦红金卡.jpg"
-        },
-        {
-          cardId: "007",
-          cardTitle: "协和万邦蓝白金",
-          cardPicture: "cards/协和万邦蓝白金.jpg"
-        },
-        {
-          cardId: "008",
-          cardTitle: "协和万邦蓝金卡",
-          cardPicture: "cards/协和万邦蓝金卡.jpg"
-        },
-        {
-          cardId: "009",
-          cardTitle: "自强不息红白金",
-          cardPicture: "cards/自强不息红白金.jpg"
-        },
-        {
-          cardId: "010",
-          cardTitle: "故宫·自强不息红金卡",
-          cardPicture: "cards/自强不息红金卡.jpg"
-        },
-        {
-          cardId: "011",
-          cardTitle: "故宫·自强不息蓝白金",
-          cardPicture: "cards/自强不息蓝白金.jpg"
-        },
-        {
-          cardId: "012",
-          cardTitle: "故宫·九有一心蓝金卡",
-          cardPicture: "cards/自强不息蓝金卡.jpg"
-        }
-      ]
+      recommend: LOCAL_HOST !== 'null' ? []
+        :[
+          {
+            cardId: "001",
+            cardTitle: "故宫·九有一心红白金",
+            cardPicture: require('../../img/ser-6/6-1.jpg')
+          },
+          {
+            cardId: "002",
+            cardTitle: "故宫·九有一心红金卡",
+            cardPicture: require('../../img/ser-6/6-2.jpg')
+          },
+          {
+            cardId: "003",
+            cardTitle: "故宫·九有一心蓝白金",
+            cardPicture: require('../../img/ser-6/6-3.jpg')
+          },
+          {
+            cardId: "004",
+            cardTitle: "故宫·九有一心蓝金卡",
+            cardPicture: require('../../img/ser-6/6-4.jpg')
+          },
+          {
+            cardId: "005",
+            cardTitle: "故宫·协和万邦红白金",
+            cardPicture: require('../../img/ser-6/6-5.jpg')
+          },
+          {
+            cardId: "006",
+            cardTitle: "故宫·协和万邦红金卡",
+            cardPicture: require('../../img/ser-6/6-6.jpg')
+          },
+          // {
+          //   cardId: "007",
+          //   cardTitle: "协和万邦蓝白金",
+          //   cardPicture: require('../../img/ser-6/6-7.jpg')
+          // },
+          // {
+          //   cardId: "008",
+          //   cardTitle: "协和万邦蓝金卡",
+          //   cardPicture: require('../../img/ser-6/6-8.jpg')
+          // },
+          // {
+          //   cardId: "009",
+          //   cardTitle: "自强不息红白金",
+          //   cardPicture: require('../../img/ser-6/6-9.jpg')
+          // },
+          // {
+          //   cardId: "010",
+          //   cardTitle: "故宫·自强不息红金卡",
+          //   cardPicture: require('../../img/ser-6/6-1.jpg')
+          // },
+          // {
+          //   cardId: "011",
+          //   cardTitle: "故宫·自强不息蓝白金",
+          //   cardPicture: require('../../img/ser-6/6-1.jpg')
+          // },
+          // {
+          //   cardId: "012",
+          //   cardTitle: "故宫·九有一心蓝金卡",
+          //   cardPicture: require('../../img/ser-6/6-1.jpg')
+          // }
+        ]
     }
     this.seriesId = parseInt(this.$router.params.id)
   }
@@ -114,16 +114,18 @@ class Home extends Component {
         height:this.state.height - 139
       })
     }
-    fetch({ url: `${LOCAL_HOST}/api/seriesLists/specificCards`, showToast: true,payload:{sessionId:1,seriesId:this.seriesId}}).then((res) => {
-      if (res) {
-        console.log(res)
-        this.setState({
-          recommend: res.cardData
-        })
-      } else {
-        console.log('err')
-      }
-    })
+    if (LOCAL_HOST !== 'null'){
+      fetch({ url: `${LOCAL_HOST}/api/seriesLists/specificCards`, showToast: true,payload:{sessionId:1,seriesId:this.seriesId}}).then((res) => {
+        if (res) {
+          console.log(res)
+          this.setState({
+            recommend: res.cardData
+          })
+        } else {
+          console.log('err')
+        }
+      })
+    }
   }
 
   handleSearchClick () {

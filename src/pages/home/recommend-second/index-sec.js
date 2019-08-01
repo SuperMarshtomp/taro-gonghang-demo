@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, CoverView } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import './index-sec.scss'
 import cardImage from '../../../img/1.jpg'
 import { LOCAL_HOST } from "@server" 
@@ -31,6 +31,7 @@ export default class Recommend extends Component {
 
   render () {
     const { list,isList } = this.props
+    const localUrl = LOCAL_HOST === 'null' ? null : LOCAL_HOST+'/'
     return (
       <View className='home-recommend'>
       {
@@ -49,7 +50,7 @@ export default class Recommend extends Component {
                     {categoryItem.name}
                   </Text>
                   <View className='home-recommend__list-item-img'>
-                    <Image className='home-recommend__list-item-img-ins' src={LOCAL_HOST +'/'+ categoryItem.listPicUrl} />
+                    <Image className='home-recommend__list-item-img-ins' src={localUrl + categoryItem.listPicUrl} />
                   </View>
                   <View 
                     className='home-recommend__list-item-btn'
@@ -76,7 +77,7 @@ export default class Recommend extends Component {
                   
                 >
                   <View className='home-recommend__list2-item-img' >
-                    <Image className='home-recommend__list2-item-img-ins' src={LOCAL_HOST +'/' + categoryItem.listPicUrl} />
+                    <Image className='home-recommend__list2-item-img-ins' src={ localUrl + categoryItem.listPicUrl} />
                   </View>
                   <View className="home-recommend__list2-item-text" >
                     <Text className='home-recommend__list2-item-text-name-sec' numberOfLines={1}>
