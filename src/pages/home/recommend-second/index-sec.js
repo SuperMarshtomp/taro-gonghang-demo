@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, CoverView } from '@tarojs/components'
-import './index.scss'
+import './index-sec.scss'
 import cardImage from '../../../img/1.jpg'
 import { LOCAL_HOST } from "@server" 
 
@@ -14,12 +14,14 @@ export default class Recommend extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pages:1
     }
   }
 
   handleClick = (id) => {
-    this.props.handleSelect(id)
+    let tempid = parseInt(id);
+    Taro.navigateTo({
+      url: `/pages/base-info/base-info?itemId=${tempid}`
+    })
   }
 
   
@@ -35,30 +37,23 @@ export default class Recommend extends Component {
         isList ?
           <View className='home-recommend__list'>
             {list.map((item) => {
-              const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
-              const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
+              const { cardId, cardTitle, cardPicture } = item
+              const categoryItem = { name:cardTitle, listPicUrl:cardPicture }
               return (
                 <View
-                  key={seriesId}
+                  key={cardId}
                   className='home-recommend__list-item'
                 >
                   
-                  <Text className='home-recommend__list-item-name' onClick={this.handleShowDetail.bind(this, categoryItem)} numberOfLines={1}>
+                  <Text className='home-recommend__list-item-name' numberOfLines={1}>
                     {categoryItem.name}
                   </Text>
-                  <View className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                  <View className='home-recommend__list-item-img'>
                     <Image className='home-recommend__list-item-img-ins' src={LOCAL_HOST +'/'+ categoryItem.listPicUrl} />
                   </View>
-                  <Text 
-                    className='home-recommend__list-item-desc' 
-                    onClick={this.handleShowDetail.bind(this, categoryItem)}
-                    numberOfLines = {3}
-                    >
-                    {categoryItem.simpleDesc}
-                  </Text>
                   <View 
                     className='home-recommend__list-item-btn'
-                    onClick={this.handleClick.bind(this, seriesId)}
+                    onClick={this.handleClick.bind(this, cardId)}
                   >
                     <Text className='home-recommend__list-item-btn-txt' numberOfLines={1}>
                       立即申请
@@ -72,30 +67,24 @@ export default class Recommend extends Component {
         :
           <View className='home-recommend__list2'>
             {list.map((item) => {
-              const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
-              const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
+              const { cardId, cardTitle, cardPicture } = item
+              const categoryItem = { name:cardTitle, listPicUrl:cardPicture }
               return (
                 <View
-                  key={seriesId}
+                  key={cardId}
                   className='home-recommend__list2-item'
                   
                 >
-                  <View className='home-recommend__list2-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)} >
+                  <View className='home-recommend__list2-item-img' >
                     <Image className='home-recommend__list2-item-img-ins' src={LOCAL_HOST +'/' + categoryItem.listPicUrl} />
                   </View>
-                  <View className="home-recommend__list2-item-text" onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Text className='home-recommend__list2-item-text-name' numberOfLines={1}>
+                  <View className="home-recommend__list2-item-text" >
+                    <Text className='home-recommend__list2-item-text-name-sec' numberOfLines={1}>
                       {categoryItem.name}
-                    </Text>
-                    <Text 
-                      className='home-recommend__list2-item-text-desc' 
-                      onClick={this.handleShowDetail.bind(this, categoryItem)}
-                      numberOfLines = {3}>
-                      {categoryItem.simpleDesc}
                     </Text>
                   </View>
                   
-                  <View className='home-recommend__list2-item-btn'  onClick={this.handleClick.bind(this, seriesId)}>
+                  <View className='home-recommend__list2-item-btn'  onClick={this.handleClick.bind(this, cardId)}>
                     <Text className={process.env.TARO_ENV === 'rn' ? 'home-recommend__list2-item-btn-txt':'home-recommend__list2-item-btn-txt-h5'} numberOfLines={1}>
                       立即申请
                     </Text>
