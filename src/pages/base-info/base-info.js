@@ -50,6 +50,28 @@ export default class BaseInfo extends Component {
         })
     }
 
+    // 判断是否二次办卡
+    getHistory () {
+        fetch({
+            url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/pageTurns`,
+            payload: {
+                sessionId: '1',
+                userIdCard: this.state.baseInfo.idCard
+            }
+        }).then((res) => {
+            console.log(res);
+            if (res.page == '0') {
+                Taro.navigateTo({
+                    url: '/pages/detail-info/detail-info'
+                })
+            } else {
+                Taro.navigateTo({
+                    url: '/pages/again/again'
+                })
+            }
+        })
+    }
+
     postBaseInfo () {
         fetch({
             url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases`,
@@ -64,9 +86,7 @@ export default class BaseInfo extends Component {
         }).then((res) => {
             console.log(res);
             if (res.status >= 200 && res.status <= 300) {
-                Taro.navigateTo({
-                    url: '/pages/detail-info/detail-info'
-                })
+                this.getHistory();
             }
         })
     }
