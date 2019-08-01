@@ -12,11 +12,17 @@ import MyRadio from '@components/my-radio'
 
 import provice from '@utils/provice'
 
+import { LOCAL_HOST, fetch } from '@server'
+
 export default class DetailInfo extends Component {
     constructor (props) {
         super(props)
 
         this.state = {
+
+            userIdCard: '',
+
+            userSpell: '',
 
             idCard: {
                 name: 'idCard',
@@ -83,7 +89,8 @@ export default class DetailInfo extends Component {
             },
             companyName: {
                 inputName: '单位名称',
-                finished: false
+                finished: false,
+                value: ''
             },
             companyAddress: {
                 name: 'companyAddress',
@@ -104,15 +111,18 @@ export default class DetailInfo extends Component {
             },
             income: {
                 inputName: '税前年收入',
-                finished: false
+                finished: false,
+                value: ''
             },
             contactsName: {
                 inputName: '联系人姓名',
-                finished: false
+                finished: false,
+                value: ''
             },
             contactsPhone: {
                 inputName: '联系人手机号',
-                finished: false
+                finished: false,
+                value: ''
             },
             relationship: {
                 name: 'relationship',
@@ -131,6 +141,114 @@ export default class DetailInfo extends Component {
     
             // 支付宝小程序 城市列表
             list: []
+        }
+    }
+
+    setRadioSelected (radio, value) {
+        if (radio === 'idCard') {
+            if (value == '长期有效') {
+                let temp = this.state.idCard;
+                temp.finished = true;
+                temp.selected = 1;
+                this.setState({
+                    idCard: temp
+                })
+            } else if (value != '请选择' && value != null) {
+                let temp = this.state.idCard;
+                temp.finished = true;
+                temp.selected = 0;
+                let temp2 = this.state.dueDate;
+                temp2.date = value;
+                this.setState({
+                    idCard: temp,
+                    dueDate: temp2
+                })
+            }
+        } else {
+            if (value != 'null') {
+                for (let i = 0; i < this.state[radio].radioList.length; i++) {
+                    if (this.state[radio].radioList[i] == value) {
+                        let temp = this.state[radio];
+                        temp.finished = true;
+                        temp.selected = i;
+                        this.setState({
+                            [radio]: temp
+                        })
+                    }
+                }
+            }
+        }
+    }
+    setMyInput (myInput, value) {
+        if (value != 'null') {
+            let temp = this.state[myInput];
+            temp.value = value;
+            this.setState({
+                [myInput]: temp
+            })
+        }
+    }
+    setAddress (option, region, detailAddress) {
+        if (region != '请选择省市区' && region != null && region != 'null') {
+            let temp = this.state[option];
+            temp.address = region;
+            this.setState({
+                [option]: temp
+            })
+        }
+        if (detailAddress != null && detailAddress != 'null') {
+            let temp = this.state[option];
+            temp.detailAddress = detailAddress;
+            this.setState({
+                [option]: temp
+            })
+        }
+        if (region != '请选择省市区' && region != null && region != 'null' && detailAddress != null && detailAddress != 'null') {
+            let temp = this.state[option];
+            temp.finished = true;
+            this.setState({
+                [option]: temp
+            })
+        }
+    }
+    // 获取用户详细信息
+    getDetailInfo () {
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/usersInquires`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: this.state.userIdCard
+                }
+            }).then((res) => {
+                console.log(res);
+                let { userSpell, userIdDeadline, maritalStatus, educationStatus, liveStatus,
+                    liveAddress, liveAddressSelect, profession, companyProperty, duty, 
+                    companyName, companyAddress, companyAddressSelect,
+                    companyPhoneA, companyPhoneB, companyPhoneC,
+                    income, contactName, contactPhone, contactRelation, mailAddress } = res;
+                this.setRadioSelected('idCard', userIdDeadline);
+                this.setRadioSelected('mariage', maritalStatus);
+                this.setRadioSelected('education', educationStatus);
+                this.setRadioSelected('house', liveStatus);
+                this.setRadioSelected('job', profession);
+                this.setRadioSelected('companyCharacter', companyProperty);
+                this.setRadioSelected('level', duty);
+                this.setRadioSelected('relationship', contactRelation);
+                this.setRadioSelected('postalAddress', mailAddress);
+
+                this.setMyInput('companyName', companyName);
+                this.setMyInput('income', income);
+                this.setMyInput('contactsName', contactName);
+                this.setMyInput('contactsPhone', contactPhone);
+
+                this.setAddress('houseAddress', liveAddressSelect, liveAddress);
+                this.setAddress('companyAddress', companyAddressSelect, companyAddress);
+
+                this.setState({
+                    userSpell: userSpell,
+                })
+            })
         }
     }
 
@@ -189,63 +307,71 @@ export default class DetailInfo extends Component {
             list.push(proviceTemp);
         }
         // console.log(list);
+
+
+        // 获取用户详细信息
+        this.setState({
+            userIdCard: this.$router.params.userIdCard
+        }, () => {this.getDetailInfo()})
     }
 
+    // 保存信息
+    saveDetailInfo () {
+        if (this.state.idCard.selected == 1) {
+            let temp = this.state.dueDate;
+            temp.date = '长期有效';
+            this.setState({
+                dueDate: temp
+            })
+        }
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/users`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: this.$router.params.userIdCard,
+                    userSpell: this.state.userSpell,
+                    userIdDeadline: this.state.dueDate.date || 'null',
+                    maritalStatus: this.state.mariage.radioList[this.state.mariage.selected] || 'null',
+                    educationStatus: this.state.education.radioList[this.state.education.selected] || 'null',
+                    liveStatus: this.state.house.radioList[this.state.house.selected] || 'null',
+                    liveAddress: this.state.houseAddress.detailAddress || 'null',
+                    liveAddressSelect: this.state.houseAddress.address || 'null',
+                    profession: this.state.job.radioList[this.state.job.selected] || 'null',
+                    companyProperty: this.state.companyCharacter.radioList[this.state.companyCharacter.selected] || 'null',
+                    duty: this.state.level.radioList[this.state.level.selected] || 'null',
+                    companyName: this.state.companyName.value || 'null',
+                    companyAddress: this.state.companyAddress.detailAddress || 'null',
+                    companyAddressSelect: this.state.companyAddress.address || 'null',
+                    companyPhoneA: '' || 'null',
+                    companyPhoneB: '' || 'null',
+                    companyPhoneC: '' || 'null',
+                    income: this.state.income.value || 'null',
+                    contactName: this.state.contactsName.value || 'null',
+                    contactPhone: this.state.contactsPhone.value || 'null',
+                    contactRelation: this.state.relationship.radioList[this.state.relationship.selected] || 'null',
+                    mailAddress: this.state.postalAddress.radioList[this.state.postalAddress.selected] || 'null'
+                }
+            }).then((res) => {
+                console.log(res);
+                Taro.showToast({
+                    title: '保存信息成功'
+                })
+            })
+        }
+    }
     handleSaveClick = () => {
         console.log('handleSaveClick');
+        this.saveDetailInfo();
     }
 
     onRadioClick = (index, option) => {
         let temp = this.state[option];
         temp.selected = parseInt(index);
         temp.finished = true;
-        switch (option) {
-            case 'idCard':
-                this.setState({
-                    idCard: temp
-                }, () => {console.log(this.state.idCard)});
-                break;
-            case 'mariage':
-                this.setState({
-                    mariage: temp
-                }, () => {console.log(this.state.mariage)});
-                break;
-            case 'education':
-                this.setState({
-                    education: temp
-                }, () => {console.log(this.state.education)});
-                break;
-            case 'house':
-                this.setState({
-                    house: temp
-                }, () => {console.log(this.state.house)});
-                break;
-            case 'job':
-                this.setState({
-                    job: temp
-                }, () => {console.log(this.state.job)});
-                break;
-            case 'companyCharacter':
-                this.setState({
-                    companyCharacter: temp
-                }, () => {console.log(this.state.companyCharacter)});
-                break;
-            case 'level':
-                this.setState({
-                    level: temp
-                }, () => {console.log(this.state.level)});
-                break;
-            case 'relationship':
-                this.setState({
-                    relationship: temp
-                }, () => {console.log(this.state.relationship)});
-                break;
-            case 'postalAddress':
-                this.setState({
-                    postalAddress: temp
-                }, () => {console.log(this.state.postalAddress)});
-                break;
-        }
+        this.setState({
+            [option]: temp
+        }, () => {console.log(this.state)});
     }
 
     onDueDateChange = (e) => {
@@ -349,6 +475,7 @@ export default class DetailInfo extends Component {
 
     onHouseDetailAddressInput = (option, e) => {
         let temp = this.state[option];
+        temp.detailAddress = e.detail.value;
         if (e.detail.value != '' && temp.address != '请选择省市区') {
             temp.finished = true;
         } else {
@@ -369,6 +496,7 @@ export default class DetailInfo extends Component {
         let temp = this.state[option];
         if (e.detail.value != '') {
             temp.finished = true;
+            temp.value = e.detail.value;
         } else {
             temp.finished = false;
         }
@@ -448,7 +576,7 @@ export default class DetailInfo extends Component {
                         <View className='info-input-pinyin'>
                             <View className='info-input-pinyin-content'>
                                 <Text className='info-input-pinyin-content-txt'>姓名拼音</Text>
-                                <Text className='info-input-pinyin-content-txt'>CHEN XU TAO</Text>
+                                <Text className='info-input-pinyin-content-txt'>{this.state.userSpell}</Text>
                             </View>
                             <View className='info-input-pinyin-warn'>
                                 <Text className='info-input-pinyin-warn-txt'>请核对，可修改，每字间请以单个空格隔开</Text>
@@ -462,7 +590,7 @@ export default class DetailInfo extends Component {
                             ? 
                             <View>
                                 { process.env.TARO_ENV !== 'rn' ? 
-                                (<View className = 'info-input-date'> 
+                                (<View className='info-input-date'> 
                                     <View className='info-input-date-name'>
                                         <Text className='info-input-date-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
@@ -478,7 +606,7 @@ export default class DetailInfo extends Component {
                                         </Picker>
                                     </View>
                                 </View>):
-                                (<View className = 'info-input-date-rn'>
+                                (<View className='info-input-date-rn'>
                                     <View className='info-input-date-rn-name'>
                                         <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
@@ -551,6 +679,7 @@ export default class DetailInfo extends Component {
                                   type='text' 
                                   placeholder='请具体到门牌号且不少于3个字'
                                   onInput={this.onHouseDetailAddressInput.bind(this, this.state.houseAddress.name)}
+                                  value={this.state.houseAddress.detailAddress}
                                 />
                             </View>
                         </View>
@@ -564,6 +693,7 @@ export default class DetailInfo extends Component {
                               inputName={this.state.companyName.inputName} 
                               type='text' 
                               finished={this.state.companyName.finished}
+                              value={this.state.companyName.value}
                               onInput={this.onInput.bind(this, 'companyName')}
                             />
                         </View>
@@ -594,7 +724,7 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker onProviceChange = {this.onConProviceChange.bind(this)} ></RnProvicePicker>
+                                    <RnProvicePicker onProviceChange={this.onConProviceChange.bind(this)} ></RnProvicePicker>
                                 </View>
                                 :
                                 <View className={this.state.companyAddress.address == '请选择省市区'
@@ -625,6 +755,7 @@ export default class DetailInfo extends Component {
                                   type='text' 
                                   placeholder='请具体到门牌号且不少于3个字'
                                   onInput={this.onHouseDetailAddressInput.bind(this, this.state.companyAddress.name)}
+                                  value={this.state.companyAddress.detailAddress}
                                 />
                             </View>
                         </View>
@@ -679,6 +810,7 @@ export default class DetailInfo extends Component {
                                   inputName={this.state.income.inputName}
                                   type='number' 
                                   finished={this.state.income.finished}
+                                  value={this.state.income.value}
                                   onInput={this.onInput.bind(this, 'income')}
                                   noPlaceholder
                                 />
@@ -691,6 +823,7 @@ export default class DetailInfo extends Component {
                               inputName={this.state.contactsName.inputName} 
                               type='text' 
                               finished={this.state.contactsName.finished} 
+                              value={this.state.contactsName.value}
                               onInput={this.onInput.bind(this, 'contactsName')}
                             />
                         </View>
@@ -699,6 +832,7 @@ export default class DetailInfo extends Component {
                               inputName={this.state.contactsPhone.inputName} 
                               type='number' 
                               finished={this.state.contactsPhone.finished} 
+                              value={this.state.contactsPhone.value}
                               onInput={this.onInput.bind(this, 'contactsPhone')}
                             />
                         </View>
