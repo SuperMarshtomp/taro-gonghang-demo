@@ -57,6 +57,7 @@ const config = {
     '@styles': path.resolve(__dirname, '..', 'src/styles'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
     '@img': path.resolve(__dirname, '..', 'src/img'),
+    '@server': path.resolve(__dirname, '..', 'src/server'),
   },
   copy: {
     patterns: [

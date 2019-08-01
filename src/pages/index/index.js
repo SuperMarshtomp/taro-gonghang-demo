@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { Text, View } from '@tarojs/components'
 
 import './index.scss'
-import fetch from '../../server'
+import { LOCAL_HOST, fetch } from '@server'
 
 export default class Index extends Component {
 
@@ -15,7 +15,11 @@ export default class Index extends Component {
   }
 
   getTest(){
+<<<<<<< HEAD
     fetch({ url: 'http://10.0.2.2:3333/api/seriesLists', showToast: true,payload:{sessionId:1}}).then((res) => {
+=======
+    fetch({ url: `${LOCAL_HOST}/api/seriesLists`, showToast: true,payload:{sessionId:1}}).then((res) => {
+>>>>>>> yx/master
       if (res) {
         console.log(res)
         this.setState({
