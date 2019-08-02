@@ -36,8 +36,8 @@ export default class BaseInfo extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/cards`,
                 payload: {
                     sessionId: '1' ,
-                    seriesId: '5',
-                    cardId: '001'
+                    seriesId: this.$router.params.seriesId,
+                    cardId: this.$router.params.cardId
                 }
             }).then((res) => {
                 console.log(res);
@@ -69,7 +69,7 @@ export default class BaseInfo extends Component {
                     })
                 } else {
                     Taro.navigateTo({
-                        url: '/pages/again/again'
+                        url: '/pages/again/again?userIdCard=' + this.state.baseInfo.idCard
                     })
                 }
             })
@@ -81,11 +81,11 @@ export default class BaseInfo extends Component {
             fetch({
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases`,
                 payload: {
-                    sessionId: '1',
+                    sessionId: this.$router.params.seriesId,
                     userName: this.state.baseInfo.name,
                     userIdCard: this.state.baseInfo.idCard,
                     userPhone: this.state.baseInfo.phone,
-                    cardId: '001',
+                    cardId: this.$router.params.cardId,
                     cardTitle: this.state.cardName
                 }
             }).then((res) => {

@@ -159,6 +159,7 @@ export default class DetailInfo extends Component {
                 temp.selected = 0;
                 let temp2 = this.state.dueDate;
                 temp2.date = value;
+                temp2.finished = true;
                 this.setState({
                     idCard: temp,
                     dueDate: temp2
@@ -183,6 +184,7 @@ export default class DetailInfo extends Component {
         if (value != 'null' && value != null) {
             let temp = this.state[myInput];
             temp.value = value;
+            temp.finished = true;
             this.setState({
                 [myInput]: temp
             })
@@ -579,6 +581,13 @@ export default class DetailInfo extends Component {
     submitDetailInfo () {
         if (LOCAL_HOST !== 'null') {
             if (this.finishAll()) {
+                if (this.state.idCard.selected == 1) {
+                    let temp = this.state.dueDate;
+                    temp.date = '长期有效';
+                    this.setState({
+                        dueDate: temp
+                    })
+                }
                 fetch({
                     url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/userSubmits`,
                     payload: {
@@ -609,7 +618,7 @@ export default class DetailInfo extends Component {
                 }).then((res) => {
                     console.log(res);
                     Taro.navigateTo({
-                        url: '/pages/success-info/success-info'
+                        url: '/pages/success-info/success-info?userIdCard=' + this.state.userIdCard
                     })
                 })
             } else {
