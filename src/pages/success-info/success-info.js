@@ -22,14 +22,22 @@ export default class SuccessInfo extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/users/submits`,
                 payload: {
                     sessionId: '1',
-                    userIdCard: '2',
+                    userIdCard: this.$router.params.userIdCard,
                 }
             }).then((res) => {
                 console.log(res);
+                let mailAddress = '';
+                for (let i = 0; i < res.mailAddress.length; i++) {
+                    if (res.mailAddress[i] == ' ' || res.mailAddress[i] == '-') {
+                        continue;
+                    }
+                    mailAddress += res.mailAddress[i];
+                }
+
                 this.setState({
                     applyId: res.applyId,
                     cardTitle: res.cardTitle,
-                    mailAddress: res.mailAddress
+                    mailAddress: mailAddress
                 })
             })
         }
