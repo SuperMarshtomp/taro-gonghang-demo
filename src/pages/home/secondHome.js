@@ -23,6 +23,7 @@ class Home extends Component {
 
   constructor(props) {
     super(props)
+    this.seriesId = parseInt(this.$router.params.itemId)
     this.state = {
       hasMore: true,
       showTip: true,
@@ -95,7 +96,7 @@ class Home extends Component {
           // }
         ]
     }
-    this.seriesId = parseInt(this.$router.params.id)
+    
   }
 
   componentDidMount () {
