@@ -38,8 +38,11 @@
 .card-intro-text {
     background-color: $backgorund-color;
     font-size: 26px;
-    padding: 20px;
-    
+    padding: 20px 35px 20px 35px;
+    width: 100%;
+    &-ins{
+        font-size: 26px;
+    }
     // 
     // text-indent: 2em;
 }

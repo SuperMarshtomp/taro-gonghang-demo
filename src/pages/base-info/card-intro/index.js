@@ -32,7 +32,7 @@ export default class CardIntro extends Component {
                     </View>
                 </View>
                 <View className='card-intro-text'>
-                    <Text>
+                    <Text className='card-intro-text-ins'>
                         {this.props.introduce}
                     </Text>
                 </View>
