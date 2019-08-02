@@ -19,9 +19,7 @@ export default class Recommend extends Component {
 
   handleClick = (id) => {
     let tempid = parseInt(id);
-    Taro.navigateTo({
-      url: `/pages/base-info/base-info?itemId=${tempid}`
-    })
+    this.props.handleSelect(tempid);
   }
 
   

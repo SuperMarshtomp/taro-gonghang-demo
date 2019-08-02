@@ -47,7 +47,7 @@ export default class Recommend extends Component {
                     {categoryItem.name}
                   </Text>
                   <View className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Image className='home-recommend__list-item-img-ins' src={ '' + categoryItem.listPicUrl } />
+                    <Image className='home-recommend__list-item-img-ins' src={ localUrl + categoryItem.listPicUrl } />
                   </View>
                   <Text 
                     className='home-recommend__list-item-desc' 

@@ -33,6 +33,6 @@ export function fetch(options) {
         icon: 'none'
       })
     }
-    return Promise.reject({ message: defaultMsg, ...err })
+    return Promise.reject({ message: defaultMsg, err: err })
   })
 }

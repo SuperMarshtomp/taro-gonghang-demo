@@ -237,7 +237,7 @@ class Home extends Component {
               <View>
                 <Image roundAsCircle={true} className = "ins-img" src = {detailImg}> </Image>
               </View>
-              <View className = "w2"> 
+              <View className= "w2"> 
                 <Text className = "w2-title">{showItem.name}</Text>
                 {
                   showItem.detail.map((desc, index) => {

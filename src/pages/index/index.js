@@ -22,7 +22,7 @@ export default class Index extends Component {
           temp:res.msg
         })
       } else {
-        console.log('err')
+        console.log('err') 
       }
     })
   }
