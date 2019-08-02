@@ -153,7 +153,7 @@ export default class DetailInfo extends Component {
                 this.setState({
                     idCard: temp
                 })
-            } else if (value != '请选择' && value != null) {
+            } else if (value != '请选择' && value != null && value != 'null') {
                 let temp = this.state.idCard;
                 temp.finished = true;
                 temp.selected = 0;
@@ -165,7 +165,7 @@ export default class DetailInfo extends Component {
                 })
             }
         } else {
-            if (value != 'null') {
+            if (value != 'null' && value != null) {
                 for (let i = 0; i < this.state[radio].radioList.length; i++) {
                     if (this.state[radio].radioList[i] == value) {
                         let temp = this.state[radio];
@@ -180,7 +180,7 @@ export default class DetailInfo extends Component {
         }
     }
     setMyInput (myInput, value) {
-        if (value != 'null') {
+        if (value != 'null' && value != null) {
             let temp = this.state[myInput];
             temp.value = value;
             this.setState({
@@ -210,6 +210,24 @@ export default class DetailInfo extends Component {
                 [option]: temp
             })
         }
+    }
+    setPhone (prefix, phone, suffix) {
+        let temp = this.state.companyPhone;
+        if (prefix != 'null' && prefix != null) {
+            temp.prefix = prefix;
+        }
+        if (phone != 'null' && phone != null) {
+            temp.phone = phone;
+        }
+        if (suffix != 'null' && suffix != null) {
+            temp.suffix = suffix;
+        }
+        if (prefix != 'null' && prefix != null && phone != 'null' && phone != null && suffix != 'null' && suffix != null) {
+            temp.finished = true;
+        }
+        this.setState({
+            companyPhone: temp
+        })
     }
     // 获取用户详细信息
     getDetailInfo () {
@@ -244,6 +262,8 @@ export default class DetailInfo extends Component {
 
                 this.setAddress('houseAddress', liveAddressSelect, liveAddress);
                 this.setAddress('companyAddress', companyAddressSelect, companyAddress);
+
+                this.setPhone(companyPhoneA, companyPhoneB, companyPhoneC);
 
                 this.setState({
                     userSpell: userSpell,
@@ -343,9 +363,9 @@ export default class DetailInfo extends Component {
                     companyName: this.state.companyName.value || 'null',
                     companyAddress: this.state.companyAddress.detailAddress || 'null',
                     companyAddressSelect: this.state.companyAddress.address || 'null',
-                    companyPhoneA: '' || 'null',
-                    companyPhoneB: '' || 'null',
-                    companyPhoneC: '' || 'null',
+                    companyPhoneA: this.state.companyPhone.prefix || 'null',
+                    companyPhoneB: this.state.companyPhone.phone || 'null',
+                    companyPhoneC: this.state.companyPhone.suffix || 'null',
                     income: this.state.income.value || 'null',
                     contactName: this.state.contactsName.value || 'null',
                     contactPhone: this.state.contactsPhone.value || 'null',
@@ -538,11 +558,71 @@ export default class DetailInfo extends Component {
         }, () => { console.log(this.state.companyPhone) });
     }
 
+
+    finishAll () {
+        let infoArray = ['idCard', 'mariage', 'education', 'house', 'job', 'houseAddress',
+            'companyCharacter','level', 'companyName', 'companyAddress', 'companyPhone', 
+            'income', 'contactsName', 'contactsPhone', 'relationship', 'postalAddress'];
+        for (let i = 0; i < infoArray.length; i++) {
+            if (!this.state[infoArray[i]].finished) {
+                return false;
+            }
+        }
+        if (this.state.idCard.selected == 0) {
+            if (!this.state.dueDate.finished) {
+                return false;
+            }
+        }
+        return true;
+    }
+    // 提交申请
+    submitDetailInfo () {
+        if (LOCAL_HOST !== 'null') {
+            if (this.finishAll()) {
+                fetch({
+                    url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/userSubmits`,
+                    payload: {
+                        sessionId: '1',
+                        userIdCard: this.$router.params.userIdCard,
+                        userSpell: this.state.userSpell,
+                        userIdDeadline: this.state.dueDate.date,
+                        maritalStatus: this.state.mariage.radioList[this.state.mariage.selected],
+                        educationStatus: this.state.education.radioList[this.state.education.selected],
+                        liveStatus: this.state.house.radioList[this.state.house.selected],
+                        liveAddress: this.state.houseAddress.detailAddress,
+                        liveAddressSelect: this.state.houseAddress.address,
+                        profession: this.state.job.radioList[this.state.job.selected],
+                        companyProperty: this.state.companyCharacter.radioList[this.state.companyCharacter.selected],
+                        duty: this.state.level.radioList[this.state.level.selected],
+                        companyName: this.state.companyName.value,
+                        companyAddress: this.state.companyAddress.detailAddress,
+                        companyAddressSelect: this.state.companyAddress.address,
+                        companyPhoneA: this.state.companyPhone.prefix,
+                        companyPhoneB: this.state.companyPhone.phone,
+                        companyPhoneC: this.state.companyPhone.suffix,
+                        income: this.state.income.value,
+                        contactName: this.state.contactsName.value,
+                        contactPhone: this.state.contactsPhone.value,
+                        contactRelation: this.state.relationship.radioList[this.state.relationship.selected],
+                        mailAddress: this.state.postalAddress.radioList[this.state.postalAddress.selected]
+                    }
+                }).then((res) => {
+                    console.log(res);
+                    Taro.navigateTo({
+                        url: '/pages/success-info/success-info'
+                    })
+                })
+            } else {
+                Taro.showToast({
+                    title: '信息未填写完整',
+                    icon: 'none'
+                })
+            }
+        }
+    }
     onConfirmClick = () => {
         console.log('onConfirmClick');
-        Taro.navigateTo({
-            url: '/pages/success-info/success-info'
-        })
+        this.submitDetailInfo();
     }
 
     onProviceChange = (data) => {
@@ -777,6 +857,7 @@ export default class DetailInfo extends Component {
                                   placeholder='区号' 
                                   className='info-input-company-phone-prefix' 
                                   onInput={this.onCompanyPhoneInput.bind(this, 'prefix')}
+                                  value={this.state.companyPhone.prefix}
                                 />
                             </View>
                             <View className='info-input-company-phone-divide'>
@@ -788,6 +869,7 @@ export default class DetailInfo extends Component {
                                   placeholder='电话号' 
                                   className='info-input-company-phone-phone' 
                                   onInput={this.onCompanyPhoneInput.bind(this, 'phone')}
+                                  value={this.state.companyPhone.phone}
                                 />
                             </View>
                             <View className='info-input-company-phone-divide'>
@@ -799,6 +881,7 @@ export default class DetailInfo extends Component {
                                   placeholder='分机号' 
                                   className='info-input-company-phone-suffix' 
                                   onInput={this.onCompanyPhoneInput.bind(this, 'suffix')}
+                                  value={this.state.companyPhone.suffix}
                                 />
                             </View>
                         </View>
