@@ -7,7 +7,34 @@ import appIcon from './assets/appIcon.png'
 
 import { getWindowHeight } from '@utils/style'
 
+import { LOCAL_HOST, fetch } from '@server'
+
 export default class SuccessInfo extends Component {
+    state = {
+        applyId: '36022019190400961',
+        cardTitle: '故宫·九有一心红白金',
+        mailAddress: '广东省广州市**'
+    }
+
+    componentWillMount () { 
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/users/submits`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: '2',
+                }
+            }).then((res) => {
+                console.log(res);
+                this.setState({
+                    applyId: res.applyId,
+                    cardTitle: res.cardTitle,
+                    mailAddress: res.mailAddress
+                })
+            })
+        }
+    }
+    
     render () {
         return (
             <View className='success-submit' style={{ height: getWindowHeight() }}>
@@ -31,7 +58,7 @@ export default class SuccessInfo extends Component {
                             <Text className='success-submit-title-left-txt'>申请单编号：</Text>
                         </View>
                         <View className='success-submit-title-center'>
-                            <Text className='success-submit-title-center-txt'>36022019190400961</Text>
+                            <Text className='success-submit-title-center-txt'>{this.state.applyId}</Text>
                         </View>
                         <View className='success-submit-title-right'>
                         </View>
@@ -43,7 +70,7 @@ export default class SuccessInfo extends Component {
                                 <Text className='success-submit-left-txt'>信用卡产品：</Text>
                             </View>
                             <View className='success-submit-center'>
-                                <Text className='success-submit-center-txt'>故宫·九有一心红白金</Text>
+                                <Text className='success-submit-center-txt'>{this.state.cardTitle}</Text>
                             </View>
                             <View className='success-submit-right'>
                                 <Icon type='success_no_circle' size='26' color='#09BB07'></Icon>
@@ -55,7 +82,7 @@ export default class SuccessInfo extends Component {
                                 <Text className='success-submit-left-txt'>卡片邮寄地址：</Text>
                             </View>
                             <View className='success-submit-center'>
-                                <Text className='success-submit-center-txt'>广东省广州市**</Text>
+                                <Text className='success-submit-center-txt'>{this.state.mailAddress}</Text>
                             </View>
                             <View className='success-submit-right'>
                                 <Icon type='success_no_circle' size='26' color='#09BB07'></Icon>

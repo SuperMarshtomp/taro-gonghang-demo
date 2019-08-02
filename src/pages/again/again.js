@@ -6,6 +6,8 @@ import Title from '@components/title'
 
 import { getWindowHeight } from '@utils/style'
 
+import { LOCAL_HOST, fetch } from '@server'
+
 export default class Again extends Component {
     state = {
         name: '陈旭涛',
@@ -21,6 +23,69 @@ export default class Again extends Component {
         houseAddress: '广东省汕头市'
     }
 
+    getName () {
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/secondApplyInquires`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: '2',
+                }
+            }).then((res) => {
+                console.log(res);
+                this.setState({
+                    name: res.userName
+                })
+            })
+        }
+    }
+
+    getHouseAddress () {
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/addressAInquires`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: '2',
+                }
+            }).then((res) => {
+                console.log(res);
+                this.setState({
+                    houseAddress: res.liveAddress
+                })
+            })
+        }
+    }
+
+    getCompanyAddress () {
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/addressBInquires`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: '2',
+                }
+            }).then((res) => {
+                console.log(res);
+                this.setState({
+                    companyAddress: res.companyAddress
+                })
+            })
+        }
+    }
+
+    componentWillMount () { 
+        this.getName();
+        this.getHouseAddress();
+        this.getCompanyAddress();
+    }
+
+    goToDetail = () => {
+        Taro.navigateTo({
+            url: '/pages/detail-info/detail-info?userIdCard=2'
+        })
+    }
+
     onRadioClick = (index) => {
         let temp = this.state.radioInfo;
         temp.selected = parseInt(index);
@@ -30,10 +95,26 @@ export default class Again extends Component {
         }, () => {console.log(this.state.radioInfo)})
     }
 
+    // 提交申请
+    submitInfo () {
+        if (LOCAL_HOST !== 'null') {
+            fetch({
+                url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/secondSubmits`,
+                payload: {
+                    sessionId: '1',
+                    userIdCard: '2',
+                    mailAddress: this.state.radioInfo.radioList[this.state.radioInfo.selected]
+                }
+            }).then((res) => {
+                console.log(res);
+                Taro.navigateTo({
+                    url: '/pages/success-info/success-info'
+                })
+            })
+        }
+    }
     onConfirmClick = () => {
-        Taro.navigateTo({
-            url: '/pages/success-info/success-info'
-        })
+        this.submitInfo();
     }
 
     render () {
@@ -53,14 +134,14 @@ export default class Again extends Component {
                         <Text className='again-tip-view-txt'>尊敬的 {this.state.name} { this.state.sex == '男' ? '先生' : '女士'}</Text>
                     </View>
                     <View className='again-tip'>
-                        <Text className='again-tip-view-txt'>您仅需选择以下信息即可完成办卡申请，申请信息将使用您近一年半内最近一次在我行申请办卡的信息，若您希望更新申请信息，可 <Text className='again-tip-blue'>填写完整信息</Text> 并重新办理。</Text>
+                        <Text className='again-tip-view-txt'>您仅需选择以下信息即可完成办卡申请，申请信息将使用您近一年半内最近一次在我行申请办卡的信息，若您希望更新申请信息，可 <Text className='again-tip-blue' onClick={this.goToDetail}>填写完整信息</Text> 并重新办理。</Text>
                     </View>
                 </View>
 
                 <View>
                     <View className='again-radio'>
                         <View className='again-radio-name'>
-                            <Text className="again-radio-name-txt">{this.state.radioInfo.radioName}</Text>
+                            <Text className='again-radio-name-txt'>{this.state.radioInfo.radioName}</Text>
                             <Icon size='15' type='info' className='again-radio-icon' color='#ff204d'></Icon>
                         </View>
                         <View className='again-radio-list'>
@@ -74,9 +155,10 @@ export default class Again extends Component {
                                                         ? 'again-radio-list-item'
                                                         : 'again-radio-list-item again-radio-list-item-red'}
                                             >
-                                                <Text className = {radioInfo.selected != index 
+                                                <Text className={radioInfo.selected != index 
                                                         ? 'again-radio-list-txt'
-                                                        : 'again-radio-list-txt again-radio-list-txt-red'}>{item}</Text>
+                                                        : 'again-radio-list-txt again-radio-list-txt-red'}
+                                                >{item}</Text>
                                             </View>
                                     )
                                 })
