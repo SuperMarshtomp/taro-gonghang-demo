@@ -29,7 +29,7 @@ export default class Again extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/secondApplyInquires`,
                 payload: {
                     sessionId: '1',
-                    userIdCard: '2',
+                    userIdCard: this.$router.params.userIdCard,
                 }
             }).then((res) => {
                 console.log(res);
@@ -46,12 +46,20 @@ export default class Again extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/addressAInquires`,
                 payload: {
                     sessionId: '1',
-                    userIdCard: '2',
+                    userIdCard: this.$router.params.userIdCard,
                 }
             }).then((res) => {
                 console.log(res);
+                let liveAddress = '';
+                for (let i = 0; i < res.liveAddress.length; i++) {
+                    if (res.liveAddress[i] == ' ' || res.liveAddress[i] == '-') {
+                        continue;
+                    }
+                    liveAddress += res.liveAddress[i];
+                }
+
                 this.setState({
-                    houseAddress: res.liveAddress
+                    houseAddress: liveAddress
                 })
             })
         }
@@ -63,12 +71,20 @@ export default class Again extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/addressBInquires`,
                 payload: {
                     sessionId: '1',
-                    userIdCard: '2',
+                    userIdCard: this.$router.params.userIdCard,
                 }
             }).then((res) => {
                 console.log(res);
+                let companyAddress = '';
+                for (let i = 0; i < res.companyAddress.length; i++) {
+                    if (res.companyAddress[i] == ' ' || res.companyAddress[i] == '-') {
+                        continue;
+                    }
+                    companyAddress += res.companyAddress[i];
+                }
+
                 this.setState({
-                    companyAddress: res.companyAddress
+                    companyAddress: companyAddress
                 })
             })
         }
@@ -82,7 +98,7 @@ export default class Again extends Component {
 
     goToDetail = () => {
         Taro.navigateTo({
-            url: '/pages/detail-info/detail-info?userIdCard=2'
+            url: '/pages/detail-info/detail-info?userIdCard=' + this.$router.params.userIdCard
         })
     }
 
@@ -102,13 +118,13 @@ export default class Again extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/secondSubmits`,
                 payload: {
                     sessionId: '1',
-                    userIdCard: '2',
+                    userIdCard: this.$router.params.userIdCard,
                     mailAddress: this.state.radioInfo.radioList[this.state.radioInfo.selected]
                 }
             }).then((res) => {
                 console.log(res);
                 Taro.navigateTo({
-                    url: '/pages/success-info/success-info'
+                    url: '/pages/success-info/success-info?userIdCard=' + this.$router.params.userIdCard
                 })
             })
         }
