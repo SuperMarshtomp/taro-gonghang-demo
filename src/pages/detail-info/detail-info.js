@@ -700,7 +700,7 @@ export default class DetailInfo extends Component {
                                         <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
                                     </View>
-                                    <RnTimePicker></RnTimePicker>
+                                    <RnTimePicker date={this.state.dueDate.date}></RnTimePicker>
                                 </View>)
                                 }
                                 
@@ -738,7 +738,10 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker onProviceChange={this.onProviceChange.bind(this)}></RnProvicePicker>
+                                    <RnProvicePicker 
+                                      onProviceChange={this.onProviceChange.bind(this)}
+                                      address={this.state.houseAddress.address}
+                                    ></RnProvicePicker>
                                 </View>
                                 :<View className={this.state.houseAddress.address == '请选择省市区'
                                                 ? 'info-input-house-address-picker'
@@ -813,7 +816,10 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker onProviceChange={this.onConProviceChange.bind(this)} ></RnProvicePicker>
+                                    <RnProvicePicker 
+                                      onProviceChange={this.onConProviceChange.bind(this)} 
+                                      address={this.state.companyAddress.address}
+                                    ></RnProvicePicker>
                                 </View>
                                 :
                                 <View className={this.state.companyAddress.address == '请选择省市区'
