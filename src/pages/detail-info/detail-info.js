@@ -691,7 +691,7 @@ export default class DetailInfo extends Component {
                                         <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
                                     </View>
-                                    <RnTimePicker></RnTimePicker>
+                                    <RnTimePicker selectedDate = {this.onDueDateChange.bind(this)}></RnTimePicker>
                                 </View>)
                                 }
                                 

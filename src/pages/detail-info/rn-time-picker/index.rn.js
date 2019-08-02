@@ -82,8 +82,13 @@ export default class RnTimePicker extends Component{
 
         this.setState({
             selectedDay: day
-        });
-        // this.props.selectedDay(day)
+        },() => {
+            this.props.selectedDate({
+                detail:{
+                value:this.state.selectedYear + '-' + this.state.selectedMonth + '-' + this.state.selectedDay
+            }})
+        })
+        
     }
 
     judgeDay(year,month) {

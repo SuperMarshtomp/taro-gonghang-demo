@@ -50,6 +50,8 @@
     padding: 0 30px;
     height: 140px;
     &-name{
+        display: flex;
+        flex-direction: row;
         &-txt{
             font-size: 30px;
         }
@@ -72,8 +74,13 @@
     margin: 20px 5px;
     // vertical-align: sub;
 }
+
 .detail-info-icon-tt {
-    margin: 14px 0;
+    margin: 14px 5px;
+}
+
+.detail-info-icon-rn {
+    margin: 0 5px;
 }
 
 .info-input-company-phone-icon {
