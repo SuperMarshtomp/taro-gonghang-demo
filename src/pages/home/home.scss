@@ -4,8 +4,6 @@
   position: relative;
 }
 
-
-
 .index-select-view {
   display: flex;
   flex-direction: row;
@@ -33,9 +31,12 @@
 }
 
 .tip-background {
-  background-color: #fff;
+  background-color: white;
 }
 
+.scroll-view{
+  background-color: white;
+}
 
 /*postcss-pxtransform rn eject disable*/
 
@@ -65,7 +66,7 @@
 
 .w2 {
   background-color: #fff;
-  padding: 25px;
+  padding: 0 25px 25px 25px;
   border-radius: 0px 0px 20px 20px;
 
   &-title{
@@ -78,19 +79,20 @@
   &-desc{
     display: flex;
     flex-direction: row;
-    margin: 10px 5px 0px 5px;
+    margin: 0px 5px;
 
     &-point{
-      width: 15px;
-      height: 15px;
+      width: 8px;
+      height: 8px;
       margin: 10px;
-      border-radius: 15px;
+      padding: 8px;
+      border-radius: 8px;
       background-color: $primary-color;
     }
 
     &-txt{
       color: #000;
-      font-size: 23px;
+      font-size: 25px;
     }
   }
 }
@@ -120,8 +122,8 @@
 }
 
 .h2 {
-  background-color: #fff;
-  padding: 25px;
+  background-color: white;
+  padding: 0 25px 25px 25px;
   border-radius: 0px 0px 20px 20px;
 
   &-title{
@@ -135,19 +137,20 @@
     vertical-align: top;
     display: flex;
     flex-direction: row;
-    margin: 10px 5px 0px 5px;
+    margin: 0 5px;
     
     &-point{
-      width: 15px;
-      height: 15px;
-      margin: 12px;
-      border-radius: 15px;
+      width: 8px;
+      height: 8px;
+      margin: 10px;
+      padding: 8px;
+      border-radius: 8px;
       background-color: $primary-color;
     }
 
     &-txt{
       color: #000;
-      font-size: 23px;
+      font-size: 25px;
     }
   }
 }
@@ -171,7 +174,7 @@
 
 .r2 {
   background-color: #fff;
-  padding: 25px;
+  padding: 10px 25px 25px 25px;
   border-radius: 0px 0px 20px 20px;
 
   &-title{
@@ -182,27 +185,29 @@
   }
 
   &-desc{
+    width: 93% ;
     display: flex;
     flex-direction: row;
-    margin: 5px;
+    margin: 0 5px;
 
     &-point{
-      width: 15px;
-      height: 15px;
-      margin: 12px;
-      border-radius: 15px;
+      width: 8px;
+      height: 8px;
+      margin: 10px;
+      padding: 8px;
+      border-radius: 8px;
       background-color: $primary-color;
     }
 
     &-txt{
       color: #000;
-      font-size: 23px;
+      font-size: 25px;
     }
   }
 }
 
 .ins-img{
   width: 100%;
-  height: 400px;
+  height: 420px;
   border-radius: 20px 20px 0px 0px;
 }

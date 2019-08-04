@@ -1,10 +1,10 @@
 @import "@styles/theme.scss";
 
-.home-recommend {
+.home-recommend-sec {
   background: $backgorund-color;
 }
 
-.home-recommend__title {
+.home-recommend-sec__title {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,7 +19,7 @@
   }
 }
 
-.home-recommend__list {
+.home-recommend-sec__list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -28,27 +28,35 @@
   
   &-item {
     display: flex;
-    margin: 15px;
+    margin: 15px 11px 0 11px;
     flex-direction: column;
     background-color: $backgorund-color;
-    width: 46%;
+    width: 47%;
     
     &-desc {
       padding: 0px 20px 5px 20px;
       color: #666666;
       font-size: 26px;
       background-color: $white;
+      border: 0 solid $border-color;
+      border-left-width: 1px;
+      border-right-width: 1px;
       @include lamp-clamp(3);
     }
 
     &-img {
-      padding: 20px;
+      padding: 25px 25px 10px 25px;
       background-color: $white;
-      height: 230px;
+      height: 185px;
+      line-height: 185px;
+      text-align: center;
+      border: 0 solid $border-color;
+      border-left-width: 1px;
+      border-right-width: 1px;
       &-ins{
-        width: 100%;
-        height: 100%;
         align-self: center;
+        width: 80%;
+        height: 100%;
       }
     }
 
@@ -60,16 +68,32 @@
     }
 
     &-btn{
-      background-color: $primary-color;
+      background-color: white;
       border-bottom-right-radius:10px;
       border-bottom-left-radius:10px;
       border: 0 solid $border-color;
-      border-top-width: 1px;
-      line-height: 80px;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      width: 100%;
+      height: 110px;
+      /*postcss-pxtransform rn eject enable*/
+      padding: 25px 0 0 0;
+      /*postcss-pxtransform rn eject disable*/
       text-align: center;
+      &-ins{
+        height: 50px;
+        width: 120px;
+        border-radius: 5px;
+        align-self: center;
+        margin: auto;
+        
+        background-color: $primary-color;
+      }
       &-txt{
-        font-size: 28px;
-        line-height: 80px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 23px;
         color: #fff;
         text-align: center;
       }
@@ -83,15 +107,19 @@
       line-height: 70px;
       text-align: center;
       border: 0 solid $border-color;
-      border-top-right-radius:10px;
-      border-top-left-radius:10px;
       border-bottom-width: 1px;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      border-top-width: 1px;
+      border-top-right-radius:10px;
+      border-top-left-radius:10px;  
+      
       @include text-ellipsis;
     }
   }
 }
 
-.home-recommend__list2 {
+.home-recommend-sec__list2 {
   background: #f2f2f2;
   // margin: 5px 0px;
 
@@ -149,7 +177,7 @@
       &-name-sec {
         color: $text-color;
         font-size: 30px;
-        line-height: 140px;
+        line-height: 135px;
         color: #000000;
         font-weight:normal;
         text-align: left;
@@ -171,7 +199,17 @@
 
 /*postcss-pxtransform rn eject enable*/
 
-.home-recommend__list2-item-btn-txt-h5{
+.home-recommend-sec__list-item-btn-ins-h5{
+  height: 50px;
+  width: 120px;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  line-height: 30px;
+  background-color: $primary-color;
+}
+
+.home-recommend-sec__list2-item-btn-txt-h5{
   vertical-align: top;
   line-height: 50px;
   // height: 50px;

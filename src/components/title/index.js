@@ -10,7 +10,7 @@ export default class Title extends Component {
     }
 
     render () {
-        const backIcon = '<';
+        const backIcon = '〈 返回';
         return (
             <View className={process.env.TARO_ENV === 'rn' ? 'title-view-rn':'title-view'}>
                 <Text  className={process.env.TARO_ENV === 'rn' ? 'title-view-rn-icon':'title-view-icon'} onClick = {this.handleBack.bind(this)}>
