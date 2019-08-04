@@ -3,6 +3,7 @@ import {
     View,
     Dimensions,
     Text,
+    Alert
 } from 'react-native';
 import Taro, { Component } from '@tarojs/taro'
 
@@ -53,6 +54,18 @@ export default class RnTimePicker extends Component{
             selectedMonth: '1',
             selectedDay: '1',
             language: 'java',
+        }
+    }
+
+    componentWillMount(){
+        let value = this.props.date
+        if (value != '请选择' && value != null && value != 'null'){
+            let temp = value.split('-')
+            this.setState({
+                selectedYear: temp[0],
+                selectedMonth: temp[1],
+                selectedDay: temp[2]
+            })
         }
     }
 

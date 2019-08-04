@@ -3,7 +3,8 @@ import {
     View,
     Dimensions,
     Text,
-    Alert
+    Alert,
+    Button
 } from 'react-native';
 import Taro, { Component } from '@tarojs/taro'
 import provice from '@utils/provice'
@@ -14,31 +15,76 @@ export default class RnProvicePicker extends Component{
     constructor (props) {
         super(props)
 
-        this.state = {
-            Provices:provice,
-            Citys:[],
-            Districts:[],
+        let Provices = provice.map(item => item.name)
+        let temp = provice[0].city
+        let Citys = temp.map(item => item.name)
+        let Districts = temp[0].districtAndCounty
 
+        this.state = {
+            Provices:Provices,
+            Citys:Citys,
+            Districts:Districts,
+            tempCitys:[],
             selectedProvice: "",
             selectedCity: "",
             selectedDistrict: "",
         }
     }
 
-    updateProvice(pro) {
+    myInit() {
+        var _this = this
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                var region = _this.props.address.address.split("-")
+                if (region != '请选择省市区' && region != null && region != 'null'){
+                    _this.setState({
+                        selectedProvice: region[0].trim(),
+                        selectedCity: region[1].trim(),
+                        selectedDistrict: region[2].trim()
+                    },() => {
+                        // let Provices = provice.map(item => item.name)
+                        
+                        let temp = provice.find(item => item.name == _this.state.selectedProvice).city
+                        let Citys = temp.map(item => item.name)
+                        let Districts = temp.find(item => item.name == _this.state.selectedCity).districtAndCounty
+                        _this.setState({
+                            tempCitys:temp,
+                            Citys,
+                            Districts
+                        })
+                    })
+                }
+            }, 1200)
+            
+        } )
+        
+    }
 
+    async componentWillMount(){
+        await this.myInit()
+    }
+
+    updateProvice(pro) {
+        let temp = provice.find(item => item.name == pro).city
+        let Citys = []
+        Citys = temp.map(item => item.name)
         this.setState({
             selectedProvice:pro,
-            Citys:provice.find(item => item.name == pro).city
+            Citys,
+            tempCitys: temp
+        },() => {
+            this.props.onProviceChange(this.state.selectedProvice + ' - ' + this.state.Citys[0] + ' - ' + this.state.Districts[0])
         });
         // this.props.onProviceChange(pro)
     }
 
     updateCity(cit) {
-
+        let Districts = this.state.tempCitys.find(item => item.name == cit).districtAndCounty
         this.setState({
             selectedCity:cit,
-            Districts:this.state.Citys.find(item => item.name == cit).districtAndCounty
+            Districts,
+        },() => {
+            this.props.onProviceChange(this.state.selectedProvice + ' - ' + this.state.selectedCity + ' - ' + this.state.Districts[0])
         });
         // this.props.onProviceChange(this.state.Provices + cit)
     }
@@ -54,13 +100,24 @@ export default class RnProvicePicker extends Component{
     }
 
     renderDataPicker(value,key) {
-        return <Picker.Item key={key} label={value.name} value={value.name}/>
+        return <Picker.Item key={key} label={value} value={value}/>
+    }
+
+    handleClick = () => {
+        Alert.alert('here') 
+        this.setState({
+            selectedProvice:"内蒙古"
+        },() => {
+            Alert.alert(this.state.selectedProvice) 
+        })
     }
     
     render() {
         return (
             <View style={{height:28, flexDirection: 'row', alignItems: 'center'}}>
+                {/* <Button title={"单击"} onPress={this.handleClick.bind(this)} /> */}
                 <Text>省:</Text>
+                {/* <Text>{this.props.address[0]}</Text> */}
                 <Picker style={{ width: width * 0.28}}
                         // itemStyle = {{textAlign:'justify'}}
                         selectedValue={this.state.selectedProvice}
@@ -77,7 +134,7 @@ export default class RnProvicePicker extends Component{
                 <Picker style={{width: width * 0.28}}
                         selectedValue={this.state.selectedDistrict}
                         onValueChange={(dis) => this.updateDistrict(dis)}>
-                    {this.state.Districts.map((value, key) => <Picker.Item key={key} label={value} value={value}/>)}
+                    {this.state.Districts.map((key, i) => this.renderDataPicker(key, i))}
                 </Picker>
                 
             </View>

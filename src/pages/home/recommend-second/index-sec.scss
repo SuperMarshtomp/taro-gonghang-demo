@@ -32,7 +32,6 @@
     flex-direction: column;
     background-color: $backgorund-color;
     width: 46%;
-    border-radius: 10px;
     
     &-desc {
       padding: 0px 20px 5px 20px;
@@ -84,6 +83,8 @@
       line-height: 70px;
       text-align: center;
       border: 0 solid $border-color;
+      border-top-right-radius:10px;
+      border-top-left-radius:10px;
       border-bottom-width: 1px;
       @include text-ellipsis;
     }
@@ -92,7 +93,7 @@
 
 .home-recommend__list2 {
   background: #f2f2f2;
-  margin: 5px 0px;
+  // margin: 5px 0px;
 
   &-item {
     display: flex;
@@ -101,7 +102,7 @@
     width: 100%;
     border: 0 solid $border-color;
     border-bottom-width: 1px;
-    height: 190px;
+    height: 150px;
     
 
     &-img {
@@ -123,14 +124,16 @@
     &-btn{
       background-color: $primary-color;
       border-radius: 10px;
-      padding: 3px 0px 0px 3px;
-      width: 123px;
-      margin: 75px 35px;
+      width: 130px;
+      margin: 55px 35px;
       height: 50px;
+      text-align: center;
       &-txt{
         // vertical-align: top;
+        height: 49px;
+        line-height: 49px;
         align-self: center;
-        font-size: 28px;
+        font-size: 25px;
         color: #ffffff;
         text-align: center;
       }
@@ -146,7 +149,7 @@
       &-name-sec {
         color: $text-color;
         font-size: 30px;
-        line-height: 180px;
+        line-height: 140px;
         color: #000000;
         font-weight:normal;
         text-align: left;
@@ -170,8 +173,10 @@
 
 .home-recommend__list2-item-btn-txt-h5{
   vertical-align: top;
-  padding: 3px;
-  font-size: 28px;
+  line-height: 50px;
+  // height: 50px;
+  padding: 10px;
+  font-size: 24px;
   color: #ffffff;
   text-align: center;
 }

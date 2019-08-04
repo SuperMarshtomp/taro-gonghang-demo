@@ -18,10 +18,21 @@ export default class DetailInfo extends Component {
     constructor (props) {
         super(props)
 
+        let addressRange = []
+        let Provices = provice.map(item => item.name)
+        addressRange.push(Provices);
+        let temp = provice[0].city
+        let Citys = temp.map(item => item.name)
+        addressRange.push(Citys);
+        let Districts = temp[0].districtAndCounty
+        addressRange.push(Districts);
+
+        let addressRangeCom = addressRange.concat()
+        let addressRangeCom1 = addressRange.concat()
+
+        this.userIdCard = this.$router.params.userIdCard
+
         this.state = {
-
-            userIdCard: '',
-
             userSpell: '',
 
             idCard: {
@@ -63,7 +74,7 @@ export default class DetailInfo extends Component {
                 finished: false,
                 address: '请选择省市区',
                 addressIndex: [0, 0, 0],
-                addressRange: [],
+                addressRange: addressRangeCom,
                 detailAddress: ''
             },
             job: {
@@ -98,7 +109,7 @@ export default class DetailInfo extends Component {
                 finished: false,
                 address: '请选择省市区',
                 addressIndex: [0, 0, 0],
-                addressRange: [],
+                addressRange: addressRangeCom1,
                 detailAddress: ''
             },
             companyPhone: {
@@ -146,6 +157,7 @@ export default class DetailInfo extends Component {
 
     setRadioSelected (radio, value) {
         if (radio === 'idCard') {
+            
             if (value == '长期有效') {
                 let temp = this.state.idCard;
                 temp.finished = true;
@@ -180,6 +192,7 @@ export default class DetailInfo extends Component {
             }
         }
     }
+
     setMyInput (myInput, value) {
         if (value != 'null' && value != null) {
             let temp = this.state[myInput];
@@ -190,29 +203,21 @@ export default class DetailInfo extends Component {
             })
         }
     }
+
     setAddress (option, region, detailAddress) {
         if (region != '请选择省市区' && region != null && region != 'null') {
             let temp = this.state[option];
             temp.address = region;
+            if (detailAddress != null && detailAddress != 'null'){
+                temp.finished = true;
+                temp.detailAddress = detailAddress;
+            }
             this.setState({
                 [option]: temp
             })
-        }
-        if (detailAddress != null && detailAddress != 'null') {
-            let temp = this.state[option];
-            temp.detailAddress = detailAddress;
-            this.setState({
-                [option]: temp
-            })
-        }
-        if (region != '请选择省市区' && region != null && region != 'null' && detailAddress != null && detailAddress != 'null') {
-            let temp = this.state[option];
-            temp.finished = true;
-            this.setState({
-                [option]: temp
-            })
-        }
+        }      
     }
+
     setPhone (prefix, phone, suffix) {
         let temp = this.state.companyPhone;
         if (prefix != 'null' && prefix != null) {
@@ -231,6 +236,7 @@ export default class DetailInfo extends Component {
             companyPhone: temp
         })
     }
+
     // 获取用户详细信息
     getDetailInfo () {
         if (LOCAL_HOST !== 'null') {
@@ -238,7 +244,7 @@ export default class DetailInfo extends Component {
                 url: `${LOCAL_HOST}/api/seriesLists/specificCards/bases/usersInquires`,
                 payload: {
                     sessionId: '1',
-                    userIdCard: this.state.userIdCard
+                    userIdCard: this.userIdCard
                 }
             }).then((res) => {
                 console.log(res);
@@ -247,6 +253,8 @@ export default class DetailInfo extends Component {
                     companyName, companyAddress, companyAddressSelect,
                     companyPhoneA, companyPhoneB, companyPhoneC,
                     income, contactName, contactPhone, contactRelation, mailAddress } = res;
+                this.setAddress('houseAddress', liveAddressSelect, liveAddress);
+                this.setAddress('companyAddress', companyAddressSelect, companyAddress);
                 this.setRadioSelected('idCard', userIdDeadline);
                 this.setRadioSelected('mariage', maritalStatus);
                 this.setRadioSelected('education', educationStatus);
@@ -262,9 +270,6 @@ export default class DetailInfo extends Component {
                 this.setMyInput('contactsName', contactName);
                 this.setMyInput('contactsPhone', contactPhone);
 
-                this.setAddress('houseAddress', liveAddressSelect, liveAddress);
-                this.setAddress('companyAddress', companyAddressSelect, companyAddress);
-
                 this.setPhone(companyPhoneA, companyPhoneB, companyPhoneC);
 
                 this.setState({
@@ -275,39 +280,8 @@ export default class DetailInfo extends Component {
     }
 
     componentWillMount() {
-        // 地区选择器初始化
-        let houseAddress = this.state.houseAddress;
-        let addressRange = houseAddress.addressRange;
 
-        let temp = [];
-        for (let i = 0; i < provice.length; i++) {
-            temp.push(provice[i].name);
-        }
-        addressRange.push(temp);
-        temp = [];
-        for (let i = 0; i < provice[0].city.length; i++) {
-            temp.push(provice[0].city[i].name);
-        }
-        addressRange.push(temp);
-        temp = [];
-        for (let i = 0; i < provice[0].city[0].districtAndCounty.length; i++) {
-            temp.push(provice[0].city[0].districtAndCounty[i]);
-        }
-        addressRange.push(temp);
-        houseAddress.addressRange = addressRange;
-
-        this.setState({
-            houseAddress: houseAddress
-        })
-
-
-        // 简单复用住宅地址
-        let companyAddress = this.state.companyAddress;
-        companyAddress.addressRange = addressRange.slice(0);
-        this.setState({
-            companyAddress: companyAddress
-        })
-
+        this.getDetailInfo()
 
         // 支付宝小程序 地区列表
         let list = this.state.list;
@@ -328,13 +302,13 @@ export default class DetailInfo extends Component {
             }
             list.push(proviceTemp);
         }
-        // console.log(list);
+    }
 
-
+    componentDidMount() {
         // 获取用户详细信息
-        this.setState({
-            userIdCard: this.$router.params.userIdCard
-        }, () => {this.getDetailInfo()})
+        // this.setState({
+        //     userIdCard: this.$router.params.userIdCard
+        // }, () => {this.getDetailInfo()})
     }
 
     // 保存信息
@@ -618,7 +592,7 @@ export default class DetailInfo extends Component {
                 }).then((res) => {
                     console.log(res);
                     Taro.navigateTo({
-                        url: '/pages/success-info/success-info?userIdCard=' + this.state.userIdCard
+                        url: '/pages/success-info/success-info?userIdCard=' + this.userIdCard
                     })
                 })
             } else {
@@ -700,7 +674,7 @@ export default class DetailInfo extends Component {
                                         <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
                                         {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon-rn' color='#09BB07'></Icon> : <Text></Text>}
                                     </View>
-                                    <RnTimePicker selectedDate = {this.onDueDateChange.bind(this)}></RnTimePicker>
+                                    <RnTimePicker selectedDate = {this.onDueDateChange.bind(this)} date={this.state.dueDate.date}></RnTimePicker>
                                 </View>)
                                 }
                                 
@@ -738,7 +712,7 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker onProviceChange={this.onProviceChange.bind(this)}></RnProvicePicker>
+                                    <RnProvicePicker onProviceChange={this.onProviceChange.bind(this)} address={this.state.houseAddress}></RnProvicePicker>
                                 </View>
                                 :<View className={this.state.houseAddress.address == '请选择省市区'
                                                 ? 'info-input-house-address-picker'
@@ -813,7 +787,10 @@ export default class DetailInfo extends Component {
                                 </View>
                                 : process.env.TARO_ENV === 'rn' ? 
                                 <View>
-                                    <RnProvicePicker onProviceChange={this.onConProviceChange.bind(this)} ></RnProvicePicker>
+                                    <RnProvicePicker 
+                                      onProviceChange={this.onConProviceChange.bind(this)} 
+                                      address={this.state.companyAddress}
+                                    ></RnProvicePicker>
                                 </View>
                                 :
                                 <View className={this.state.companyAddress.address == '请选择省市区'
