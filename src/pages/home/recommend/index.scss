@@ -37,10 +37,10 @@
       padding: 0 20px 5px 20px;
       color: #666666;
       font-size: 25px;
-      height: 105px;
-      /*postcss-pxtransform rn eject enable*/
       height:120px;
-      /*postcss-pxtransform rn eject disable*/
+      /*postcss-pxtransform h5 eject enable*/
+      height: 100px;
+      /*postcss-pxtransform h5 eject disable*/
       background-color: $white;
       border: 0 solid $border-color;
       border-left-width: 1px;
