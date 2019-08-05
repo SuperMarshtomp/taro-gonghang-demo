@@ -215,6 +215,12 @@ class Home extends Component {
               </View>
               <View className = "h2"> 
                 <Text className = "h2-title">{showItem.name}</Text>
+                <ScrollView
+                  scrollY
+                  className='scroll-view'
+                  // onScrollToLower={this.loadRecommend}
+                  style={process.env.TARO_ENV === 'rn' ? { height: this.state.height/2.2}:{height: this.state.height/2.2 +'px'}}
+                >
                 {
                   showItem.detail.map((desc, index) => {
                     return (
@@ -225,6 +231,7 @@ class Home extends Component {
                     )
                   })
                 }
+                </ScrollView>
               </View>
             </View>
           </View>:
@@ -239,6 +246,12 @@ class Home extends Component {
               </View>
               <View className= "w2"> 
                 <Text className = "w2-title">{showItem.name}</Text>
+                <ScrollView
+                  scrollY
+                  className='scroll-view'
+                  // onScrollToLower={this.loadRecommend}
+                  style={process.env.TARO_ENV === 'rn' ? { height: this.state.height/2.2}:{height: this.state.height/2.2 +'px'}}
+                >
                 {
                   showItem.detail.map((desc, index) => {
                     return (
@@ -249,6 +262,7 @@ class Home extends Component {
                     )
                   })
                 }
+                </ScrollView>
               </View>
             </View>
             <CoverView />
@@ -269,6 +283,12 @@ class Home extends Component {
                     </View> 
                     <View className = "r2"> 
                       <Text className = "r2-title">{showItem.name}</Text>
+                      <ScrollView
+                        scrollY
+                        className='scroll-view'
+                        // onScrollToLower={this.loadRecommend}
+                        style={process.env.TARO_ENV === 'rn' ? { height: this.state.height/2.2}:{height: this.state.height/2.2 +'px'}}
+                      >
                       {
                         showItem.detail.map((desc, index) => {
                           return (
@@ -279,6 +299,7 @@ class Home extends Component {
                           )
                         })
                       }
+                      </ScrollView>
                     </View>
                   </View>
                 </View>
