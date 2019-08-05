@@ -166,7 +166,7 @@ class Home extends Component {
 
   handleSelect = (id) =>{
     Taro.navigateTo({
-      url: `/pages/home/secondHome?itemId=${id}`
+      url: `/pages/home/secondHome?itemId=${id}&isList=${this.state.isList}`
     })
     // this.setState({
     //   recommend:[

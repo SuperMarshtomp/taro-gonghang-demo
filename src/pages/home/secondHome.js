@@ -24,11 +24,12 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.seriesId = parseInt(this.$router.params.itemId)
+
     this.state = {
       hasMore: true,
       showTip: true,
       // showItem: {},
-      isList: true,
+      isList: this.$router.params.isList === 'true',
       height:parseInt(getWindowHeight()),
       showTip: true,
       // showDetail: false,

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Text, Picker, Icon, Input } from '@tarojs/components'
+import { View, ScrollView, Text, Picker, Icon, Input, Image } from '@tarojs/components'
 import './detail-info.scss'
 
 import Title from '@components/title'
@@ -13,6 +13,7 @@ import MyRadio from '@components/my-radio'
 import provice from '@utils/provice'
 
 import { LOCAL_HOST, fetch } from '@server'
+import successIcon from '../../img/successIcon.png'
 
 export default class DetailInfo extends Component {
     constructor (props) {
@@ -95,7 +96,7 @@ export default class DetailInfo extends Component {
                 name: 'level',
                 radioName: '职务',
                 finished: false,
-                radioList: ['科员级/职员', '科级/部门经理', '县处级/总经理', '厅局级及以上/企业负责人', '其他'],
+                radioList: ['科员级/职员', '科级/部门经理', '县处级/总经理', '厅局级及以上', '其他'],
                 selected: -1
             },
             companyName: {
@@ -495,6 +496,7 @@ export default class DetailInfo extends Component {
             temp.value = e.detail.value;
         } else {
             temp.finished = false;
+            temp.value = '';
         }
         switch (option) {
             case 'companyName':
@@ -653,11 +655,27 @@ export default class DetailInfo extends Component {
                             ? 
                             <View>
                                 { process.env.TARO_ENV !== 'rn' ? 
-                                (<View className='info-input-date'> 
-                                    <View className='info-input-date-name'>
-                                        <Text className='info-input-date-name-txt'>{this.state.dueDate.pickerName}</Text>
-                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon' color='#09BB07'></Icon> : <Text></Text>}
+                                (<View className='info-input-date'>
+                                    <View className='my-info-input-house-address-title'>
+                                        <View className='my-info-input-house-address-title-name'>
+                                            <Text className='my-info-input-house-address-title-name-txt'>{this.state.dueDate.pickerName}</Text>
+                                        </View>
+                                        <View className='my-info-input-house-address-title-img'>
+                                            { 
+                                                this.state.dueDate.finished
+                                                    ? <Image 
+                                                      src={successIcon} 
+                                                      className={
+                                                            process.env.TARO_ENV === 'h5' 
+                                                            ? 'my-info-input-house-address-title-img-icon'
+                                                            : 'my-info-input-house-address-title-img-icon-weapp'  
+                                                            }
+                                                    />
+                                                    : null
+                                            }
+                                        </View>
                                     </View>
+
                                     <View className={this.state.dueDate.date == '请选择'
                                                     ? 'info-input-date-picker'
                                                     : 'info-input-date-picker info-input-date-picker-black'}
@@ -670,9 +688,24 @@ export default class DetailInfo extends Component {
                                     </View>
                                 </View>):
                                 (<View className='info-input-date-rn'>
-                                    <View className='info-input-date-rn-name'>
-                                        <Text className='info-input-date-rn-name-txt'>{this.state.dueDate.pickerName}</Text>
-                                        {this.state.dueDate.finished ? <Icon size='18' type='success' className='detail-info-icon-rn' color='#09BB07'></Icon> : <Text></Text>}
+                                    <View className='my-info-input-house-address-title'>
+                                        <View className='my-info-input-house-address-title-name'>
+                                            <Text className='my-info-input-house-address-title-name-txt'>{this.state.dueDate.pickerName}</Text>
+                                        </View>
+                                        <View className='my-info-input-house-address-title-img'>
+                                            { 
+                                                this.state.dueDate.finished
+                                                    ? <Image 
+                                                      src={successIcon} 
+                                                      className={
+                                                            process.env.TARO_ENV === 'h5' 
+                                                            ? 'my-info-input-house-address-title-img-icon'
+                                                            : 'my-info-input-house-address-title-img-icon-weapp'  
+                                                            }
+                                                    />
+                                                    : null
+                                            }
+                                        </View>
                                     </View>
                                     <RnTimePicker selectedDate = {this.onDueDateChange.bind(this)} date={this.state.dueDate.date}></RnTimePicker>
                                 </View>)
@@ -687,10 +720,26 @@ export default class DetailInfo extends Component {
 
                         <MyRadio radioInfo={this.state.house} onRadioClick={this.onRadioClick} />
                         <View className='info-input-house-address'>
-                            <View className='info-input-house-address-title'>
-                                <Text className='info-input-house-address-title-txt'>{this.state.houseAddress.pickerName}</Text>
-                                {this.state.houseAddress.finished ? <Icon size='18' type='success' className={process.env.TARO_ENV === 'tt' ? 'detail-info-icon-tt' : 'detail-info-icon'} color='#09BB07'></Icon> : <Text></Text>}
+                            <View className='my-info-input-house-address-title'>
+                                <View className='my-info-input-house-address-title-name'>
+                                    <Text className='my-info-input-house-address-title-name-txt'>{this.state.houseAddress.pickerName}</Text>
+                                </View>
+                                <View className='my-info-input-house-address-title-img'>
+                                    { 
+                                        this.state.houseAddress.finished
+                                            ? <Image 
+                                              src={successIcon} 
+                                              className={
+                                                    process.env.TARO_ENV === 'h5' 
+                                                    ? 'my-info-input-house-address-title-img-icon'
+                                                    : 'my-info-input-house-address-title-img-icon-weapp'  
+                                                    }
+                                            />
+                                            : null
+                                    }
+                                </View>
                             </View>
+
                             {
                                 process.env.TARO_ENV === 'alipay'
                                 ?
@@ -762,10 +811,26 @@ export default class DetailInfo extends Component {
                         </View>
                         {/* 单位地址--简单复用住宅地址 */}
                         <View className='info-input-house-address'>
-                            <View className='info-input-house-address-title'>
-                                <Text className='info-input-house-address-title-txt'>{this.state.companyAddress.pickerName}</Text>
-                                {this.state.companyAddress.finished ? <Icon size='18' type='success' className={process.env.TARO_ENV === 'tt' ? 'detail-info-icon-tt' : 'detail-info-icon'} color='#09BB07'></Icon> : <Text></Text>}
+                        <View className='my-info-input-house-address-title'>
+                            <View className='my-info-input-house-address-title-name'>
+                                <Text className='my-info-input-house-address-title-name-txt'>{this.state.companyAddress.pickerName}</Text>
                             </View>
+                            <View className='my-info-input-house-address-title-img'>
+                                { 
+                                    this.state.companyAddress.finished
+                                        ? <Image 
+                                          src={successIcon} 
+                                          className={
+                                                process.env.TARO_ENV === 'h5' 
+                                                ? 'my-info-input-house-address-title-img-icon'
+                                                : 'my-info-input-house-address-title-img-icon-weapp'  
+                                                }
+                                        />
+                                        : null
+                                }
+                            </View>
+                        </View>
+
                             {
                                 process.env.TARO_ENV === 'alipay'
                                 ?
@@ -829,14 +894,30 @@ export default class DetailInfo extends Component {
                         {/* 单位电话 */}
                         <View className='info-input-company-phone'>
                             <View className='info-input-company-phone-name'>
-                                <View className='info-input-company-phone-name-super'>
-                                    <Text className='info-input-company-phone-txt'>{this.state.companyPhone.inputName}</Text>
-                                    {this.state.companyPhone.finished ? <Icon size='18' type='success' className='info-input-company-phone-icon' color='#09BB07'></Icon> : <Text></Text>}
+                                <View className='my-info-input-company-phone-title'>
+                                    <View className='my-info-input-company-phone-title-name'>
+                                        <Text className='my-info-input-company-phone-title-name-txt'>{this.state.companyPhone.inputName}</Text>
+                                    </View>
+                                    <View className='my-info-input-company-phone-title-img'>
+                                        { 
+                                            this.state.companyPhone.finished 
+                                                ? <Image 
+                                                  src={successIcon} 
+                                                  className={
+                                                        process.env.TARO_ENV === 'h5' 
+                                                        ? 'my-info-input-company-phone-title-img-icon'
+                                                        : 'my-info-input-company-phone-title-img-icon-weapp'  
+                                                        }
+                                                />
+                                                : null
+                                        }
+                                    </View>
                                 </View>
                                 <View>
                                     <Text className='info-input-company-phone-name-sub'>{this.state.companyPhone.inputSubName}</Text>
                                 </View>
                             </View>
+
                             <View className='info-input-company-phone-prefix-view'>
                                 <Input 
                                   type='number' 

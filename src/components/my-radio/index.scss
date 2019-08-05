@@ -6,6 +6,33 @@
     padding: 0 30px 20px 30px;
 }
 
+.my-radio-title {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    &-name {
+        height: 80px;
+        &-txt {
+            line-height: 80px;
+            font-size: 30px;
+            color: #000;
+        }
+    }
+    &-img {
+        height: 80px;
+        &-icon {
+            width: 36px;
+            height: 36px;
+            margin: 25px 5px 0;
+            &-weapp {
+                width: 36px;
+                height: 36px;
+                margin: 22px 5px 0;
+            }
+        }
+    }
+}
+
 .my-radio-name {
     height: 80px;
     display: flex;
