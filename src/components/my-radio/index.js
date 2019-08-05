@@ -27,22 +27,21 @@ export default class MyRadio extends Component {
 
         return (
             <View className='my-radio'>
-                {/* <View className='my-radio-name'>
-                    <Text className='my-radio-name-txt'>{radioInfo.radioName}</Text>
-                    { 
-                        radioInfo.finished 
-                            ? <Icon size='18' type='success' className='my-radio-icon' color='#09BB07'></Icon> 
-                            : null
-                    }
-                </View> */}
                 <View className='my-radio-title'>
                     <View className='my-radio-title-name'>
                         <Text className='my-radio-title-name-txt'>{radioInfo.radioName}</Text>
                     </View>
-                    <View>
+                    <View className='my-radio-title-img'>
                         { 
                             radioInfo.finished 
-                                ? <Image src={successIcon} className='my-radio-title-img' />
+                                ? <Image 
+                                  src={successIcon} 
+                                  className={
+                                      process.env.TARO_ENV === 'h5' 
+                                      ? 'my-radio-title-img-icon'
+                                      : 'my-radio-title-img-icon-weapp'  
+                                    }
+                                />
                                 : null
                         }
                     </View>

@@ -48,7 +48,7 @@
     background-color: $white;
     margin: 0 0 2px 0;
     padding: 0 30px;
-    height: 140px;
+    height: 170px;
     &-name{
         display: flex;
         flex-direction: row;
@@ -104,7 +104,7 @@
     margin: 0 0 2px 0;
     padding: 0 30px;
     height: 210px;
-    line-height: 80px;
+    // line-height: 80px;
     &-title {
         height: 80px;
         display: flex;
@@ -180,6 +180,59 @@
     }
 }
 
+.my-info-input-company-phone-title {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    &-name {
+        height: 100px;
+        &-txt {
+            line-height: 100px;
+            font-size: 30px;
+            color: #000;
+        }
+    }
+    &-img {
+        height: 100px;
+        &-icon {
+            width: 36px;
+            height: 36px;
+            margin: 32px 5px 0;
+            &-weapp {
+                width: 36px;
+                height: 36px;
+                margin: 32px 5px 0;
+            }
+        }
+    }
+}
+.my-info-input-house-address-title {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    &-name {
+        height: 80px;
+        &-txt {
+            line-height: 80px;
+            font-size: 30px;
+            color: #000;
+        }
+    }
+    &-img {
+        height: 80px;
+        &-icon {
+            width: 36px;
+            height: 36px;
+            margin: 25px 5px 0;
+            &-weapp {
+                width: 36px;
+                height: 36px;
+                margin: 22px 5px 0;
+            }
+        }
+    }
+}
+
 .info-input-company-phone {
     display: flex;
     flex-direction: row;
@@ -194,7 +247,7 @@
     &-name {
         width: 30%;
         height: 100px;
-        padding: 10px 0 0 0;
+        // padding: 10px 0 0 0;
     }
     &-name-super {
         display: flex;
