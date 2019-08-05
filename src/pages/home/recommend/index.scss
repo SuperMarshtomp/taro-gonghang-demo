@@ -37,10 +37,19 @@
       padding: 0 20px 5px 20px;
       color: #666666;
       font-size: 25px;
+      height:100px;
+      background-color: $white;
+      border: 0 solid $border-color;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      @include lamp-clamp(3);
+    }
+
+    &-desc-h5 {
+      padding: 0 20px 5px 20px;
+      color: #666666;
+      font-size: 25px;
       height:120px;
-      /*postcss-pxtransform h5 eject enable*/
-      height: 100px;
-      /*postcss-pxtransform h5 eject disable*/
       background-color: $white;
       border: 0 solid $border-color;
       border-left-width: 1px;
@@ -141,16 +150,17 @@
     &-btn{
       background-color: $primary-color;
       border-radius: 10px;
-      width: 130px;
-      margin: 75px 35px;
+      // margin: 75px 35px;
+      margin: auto;
       height: 50px;
+      width: 120px;
       text-align: center;
       &-txt{
         // vertical-align: top;
         height: 49px;
         line-height: 49px;
         align-self: center;
-        font-size: 25px;
+        font-size: 24px;
         color: #ffffff;
         text-align: center;
       }
