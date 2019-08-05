@@ -84,7 +84,7 @@ export default class DetailInfo extends Component {
                 name: 'level',
                 radioName: '职务',
                 finished: false,
-                radioList: ['科员级/职员', '科级/部门经理', '县处级/总经理', '厅局级及以上/企业负责人', '其他'],
+                radioList: ['科员级/职员', '科级/部门经理', '县处级/总经理', '厅局级及以上', '其他'],
                 selected: -1
             },
             companyName: {
@@ -196,7 +196,7 @@ export default class DetailInfo extends Component {
             temp.address = region;
             this.setState({
                 [option]: temp
-            })
+            }, () => {console.log(this.state[option].address)})
         }
         if (detailAddress != null && detailAddress != 'null') {
             let temp = this.state[option];

@@ -1,6 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Icon } from '@tarojs/components'
+import { View, Text, Icon, Image } from '@tarojs/components'
 import './index.scss'
+
+import successIcon from '../../img/successIcon.png'
 
 export default class MyRadio extends Component {
     static defaultProps = {
@@ -25,10 +27,27 @@ export default class MyRadio extends Component {
 
         return (
             <View className='my-radio'>
-                <View className='my-radio-name'>
+                {/* <View className='my-radio-name'>
                     <Text className='my-radio-name-txt'>{radioInfo.radioName}</Text>
-                    {radioInfo.finished ? <Icon size='18' type='success' className='my-radio-icon' color='#09BB07'></Icon> : <Text></Text>}
+                    { 
+                        radioInfo.finished 
+                            ? <Icon size='18' type='success' className='my-radio-icon' color='#09BB07'></Icon> 
+                            : null
+                    }
+                </View> */}
+                <View className='my-radio-title'>
+                    <View className='my-radio-title-name'>
+                        <Text className='my-radio-title-name-txt'>{radioInfo.radioName}</Text>
+                    </View>
+                    <View>
+                        { 
+                            radioInfo.finished 
+                                ? <Image src={successIcon} className='my-radio-title-img' />
+                                : null
+                        }
+                    </View>
                 </View>
+
                 <View className='my-radio-list'>
                     {
                         temp.map((item, index) => {

@@ -6,6 +6,19 @@
     padding: 0 30px 20px 30px;
 }
 
+.my-radio-title {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    &-name {
+
+    }
+    &-img {
+        height: 60px;
+        width: 60px;
+    }
+}
+
 .my-radio-name {
     height: 80px;
     display: flex;
