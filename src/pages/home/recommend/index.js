@@ -50,7 +50,7 @@ export default class Recommend extends Component {
                     <Image className='home-recommend__list-item-img-ins' src={ localUrl + categoryItem.listPicUrl } />
                   </View>
                   <Text 
-                    className='home-recommend__list-item-desc' 
+                    className={process.env.TARO_ENV==='h5'?'home-recommend__list-item-desc-h5':'home-recommend__list-item-desc'} 
                     onClick={this.handleShowDetail.bind(this, categoryItem)}
                     numberOfLines = {3}
                     >

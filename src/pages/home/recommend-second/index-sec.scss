@@ -84,7 +84,7 @@
       &-ins{
         height: 50px;
         width: 120px;
-        border-radius: 5px;
+        border-radius: 10px;
         align-self: center;
         margin: auto;
         
@@ -93,7 +93,7 @@
       &-txt{
         height: 50px;
         line-height: 50px;
-        font-size: 23px;
+        font-size: 24px;
         color: #fff;
         text-align: center;
       }
@@ -152,16 +152,17 @@
     &-btn{
       background-color: $primary-color;
       border-radius: 10px;
-      width: 130px;
-      margin: 55px 35px;
+      // margin: 55px 35px;
+      margin: auto;
       height: 50px;
+      width: 120px;
       text-align: center;
       &-txt{
         // vertical-align: top;
         height: 49px;
         line-height: 49px;
         align-self: center;
-        font-size: 25px;
+        font-size: 24px;
         color: #ffffff;
         text-align: center;
       }
@@ -202,7 +203,7 @@
 .home-recommend-sec__list-item-btn-ins-h5{
   height: 50px;
   width: 120px;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
   margin: auto;
   line-height: 30px;
