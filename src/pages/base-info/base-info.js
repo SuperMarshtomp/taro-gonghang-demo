@@ -23,8 +23,8 @@ export default class BaseInfo extends Component {
         checked: false,
 
         baseInfo: {
-            name: '',
-            idCard: '',
+            name: '陈某',
+            idCard: '440582199801100000',
             phone: '',
             verifyCode: ''
         }
