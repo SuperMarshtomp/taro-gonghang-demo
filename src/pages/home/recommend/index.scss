@@ -35,34 +35,44 @@
     
     &-desc {
       padding: 0 20px 5px 20px;
-      color: #666666;
-      font-size: 25px;
-      height:100px;
-      line-height: 33.3px;
+      height:106px;
       background-color: $white;
       border: 0 solid $border-color;
       border-left-width: 1px;
       border-right-width: 1px;
-      @include lamp-clamp(3);
+      &-view{
+        line-height: 35px;
+      }
+      &-txt{
+        color: #666666;
+        font-size: 25px;
+        line-height: 35px;
+        @include lamp-clamp(1);
+      }
     }
 
-    &-desc-h5 {
-      padding: 0 20px 5px 20px;
-      color: #666666;
-      font-size: 25px;
-      height:120px;
-      line-height: 40px;
-      background-color: $white;
-      border: 0 solid $border-color;
-      border-left-width: 1px;
-      border-right-width: 1px;
-      @include lamp-clamp(3);
-    }
+    /*postcss-pxtransform tt eject enable*/
 
     &-img {
       padding: 20px;
       background-color: $white;
       height: 230px;
+      border: 0 solid $border-color;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      &-ins{
+        width: 100%;
+        height: 100%;
+        align-self: center;
+      }
+    }
+
+    /*postcss-pxtransform tt eject disable*/
+
+    &-img-tt {
+      padding: 20px;
+      background-color: $white;
+      height: 190px;
       border: 0 solid $border-color;
       border-left-width: 1px;
       border-right-width: 1px;
@@ -158,13 +168,13 @@
       width: 120px;
       text-align: center;
       &-txt{
-        // vertical-align: top;
         height: 49px;
         line-height: 49px;
         align-self: center;
         font-size: 24px;
         color: #ffffff;
         text-align: center;
+        
       }
 
     }
@@ -172,7 +182,7 @@
     &-text{
       display: flex;
       flex-direction: column;
-      padding: 10px 0px;
+      padding: 10px 0 0 10px;
       width: 45%;
       
       &-name {
@@ -188,12 +198,18 @@
       }
 
       &-desc {
-        color: #666666;
-        font-size: 22px;
-        // background: #fff;
-        text-align: left;
-        @include lamp-clamp(3);
+        // padding: 0 20px 5px 20px;
+        height:105px;
+        background-color: $white;
+        &-txt{
+          color: #666666;
+          font-size: 25px;
+          line-height: 35px;
+          text-align: left;
+          @include lamp-clamp(1);
+        }
       }
+
     }
   }
 }
@@ -202,12 +218,13 @@
 
 .home-recommend__list2-item-btn-txt-h5{
   vertical-align: top;
-  line-height: 50px;
-  // height: 50px;
+  height: 49px;
+  line-height: 49px;
   padding: 10px;
   font-size: 24px;
   color: #ffffff;
   text-align: center;
+  padding: 0;
 }
 
 /*postcss-pxtransform rn eject disable*/

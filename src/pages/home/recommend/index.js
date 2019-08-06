@@ -8,13 +8,13 @@ export default class Recommend extends Component {
   static defaultProps = {
     list: [],
     isList: true,
-    
+    pages:1
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      pages:1
+      pages:1,
     }
   }
 
@@ -35,7 +35,7 @@ export default class Recommend extends Component {
       {
         isList ?
           <View className='home-recommend__list'>
-            {list.map((item) => {
+            {list.map((item, index) => {
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
               return (
@@ -46,16 +46,25 @@ export default class Recommend extends Component {
                   <Text className='home-recommend__list-item-name' onClick={this.handleShowDetail.bind(this, categoryItem)} numberOfLines={1}>
                     {categoryItem.name}
                   </Text>
-                  <View className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Image className='home-recommend__list-item-img-ins' src={ localUrl + categoryItem.listPicUrl } />
+                  <View className={process.env.TARO_ENV === 'tt'?'home-recommend__list-item-img-tt':'home-recommend__list-item-img'} onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    <Image className={process.env.TARO_ENV === 'tt'?'home-recommend__list-item-img-tt-ins':'home-recommend__list-item-img-ins'} 
+                      src={ localUrl + categoryItem.listPicUrl } />
                   </View>
-                  <Text 
-                    className={process.env.TARO_ENV==='h5'?'home-recommend__list-item-desc-h5':'home-recommend__list-item-desc'} 
-                    onClick={this.handleShowDetail.bind(this, categoryItem)}
-                    numberOfLines = {3}
-                    >
-                    {categoryItem.simpleDesc}
-                  </Text>
+                  <View className = 'home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                  {seriesContent.map((value, key) => {
+                    if (key > 2) return (<View></View>)
+                    else return (
+                      <View key={key}>
+                        <Text 
+                          className = 'home-recommend__list-item-desc-txt'
+                          numberOfLines = {1}
+                          >
+                            {'-' + value}
+                        </Text>
+                      </View>
+                    )
+                  })}
+                    </View>
                   <View 
                     className='home-recommend__list-item-btn'
                     onClick={this.handleClick.bind(this, seriesId)}
@@ -71,7 +80,7 @@ export default class Recommend extends Component {
           </View>
         :
           <View className='home-recommend__list2'>
-            {list.map((item) => {
+            {list.map((item, index) => {
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
               return (
@@ -87,12 +96,20 @@ export default class Recommend extends Component {
                     <Text className='home-recommend__list2-item-text-name' numberOfLines={1}>
                       {categoryItem.name}
                     </Text>
-                    <Text 
-                      className='home-recommend__list2-item-text-desc' 
-                      onClick={this.handleShowDetail.bind(this, categoryItem)}
-                      numberOfLines = {3}>
-                      {categoryItem.simpleDesc}
-                    </Text>
+                    <View className = 'home-recommend__list2-item-text-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    {seriesContent.map((value, key) => {
+                      if (key > 2) return (<View></View>)
+                      else return (
+                        <View key={key}>
+                          <Text
+                            className = 'home-recommend__list2-item-text-desc-txt'
+                            numberOfLines = {1}
+                            >
+                              {'-' + value}
+                          </Text>
+                        </View>
+                      )})}
+                      </View>
                   </View>
                   
                   <View className='home-recommend__list2-item-btn'  onClick={this.handleClick.bind(this, seriesId)}>
