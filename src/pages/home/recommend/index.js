@@ -3,7 +3,6 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import cardImage from '../../../img/1.jpg'
 import { LOCAL_HOST } from "@server" 
-import { __values } from 'tslib';
 
 export default class Recommend extends Component {
   static defaultProps = {
@@ -16,7 +15,6 @@ export default class Recommend extends Component {
     super(props)
     this.state = {
       pages:1,
-      temp:['1','2','3','4']
     }
   }
 
@@ -29,19 +27,6 @@ export default class Recommend extends Component {
     this.props.handleShowDetail(showItem);
   }
 
-  testmap(item,index){
-    return (
-      <View key={index} className='home-recommend__list-item-desc-view'>
-        <Text 
-          className = 'home-recommend__list-item-desc-txt'
-          numberOfLines = {1}
-          >
-            {'-' + item}
-        </Text>
-      </View>
-    )
-  }
-
   render () {
     const { list,isList } = this.props
     const localUrl = LOCAL_HOST !== 'null' ? LOCAL_HOST+'/' : process.env.TARO_ENV === 'rn' ? null : ''
@@ -50,8 +35,7 @@ export default class Recommend extends Component {
       {
         isList ?
           <View className='home-recommend__list'>
-            {list.map((item, key) => {
-              // console.log(item)
+            {list.map((item, index) => {
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
               return (
@@ -66,13 +50,19 @@ export default class Recommend extends Component {
                     <Image className='home-recommend__list-item-img-ins' src={ localUrl + categoryItem.listPicUrl } />
                   </View>
                   <View className = 'home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                  {this.state.temp.map((item, haha) => this.testmap(item,haha))}
-                    {/* <Text 
+                  {seriesContent.map((value, key) => {
+                    if (key > 2) return (<View></View>)
+                    else return (
+                      <View key={key}>
+                        <Text 
                           className = 'home-recommend__list-item-desc-txt'
                           numberOfLines = {1}
                           >
-                            {'-' + categoryItem.simpleDesc[0]}
-                        </Text> */}
+                            {'-' + value}
+                        </Text>
+                      </View>
+                    )
+                  })}
                     </View>
                   <View 
                     className='home-recommend__list-item-btn'
@@ -89,7 +79,7 @@ export default class Recommend extends Component {
           </View>
         :
           <View className='home-recommend__list2'>
-            {list.map((item) => {
+            {list.map((item, index) => {
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
               return (
@@ -106,15 +96,15 @@ export default class Recommend extends Component {
                       {categoryItem.name}
                     </Text>
                     <View className = 'home-recommend__list2-item-text-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    {categoryItem.simpleDesc.map((item, index) => {
-                      if (index > 2) return ;
+                    {seriesContent.map((value, key) => {
+                      if (key > 2) return (<View></View>)
                       else return (
-                        <View key={index}>
+                        <View key={key}>
                           <Text
                             className = 'home-recommend__list2-item-text-desc-txt'
                             numberOfLines = {1}
                             >
-                              {'-' + item}
+                              {'-' + value}
                           </Text>
                         </View>
                       )})}
