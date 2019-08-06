@@ -168,7 +168,7 @@ class Home extends Component {
 
   handleSelect = (id) => {
     Taro.navigateTo({
-      url: `/pages/base-info/base-info?cardId=${id}&seriesId=${this.seriesId}`
+      url: `/pages/base-info/base-info?cardId=${id}&seriesId=${this.seriesId}&isList=${this.$router.params.isList}`
     })
   }
 

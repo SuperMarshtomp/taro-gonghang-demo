@@ -103,7 +103,7 @@ export default class BaseInfo extends Component {
 
     handleChangeClick = () => {
         Taro.navigateTo({
-            url: '/pages/home/home'
+            url: `/pages/home/home?isList=${this.$router.params.isList}`
         })
     }
 

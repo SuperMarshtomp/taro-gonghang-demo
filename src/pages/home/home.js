@@ -26,7 +26,7 @@ class Home extends Component {
     hasMore: true,
     showTip: true,
     showItem: {},
-    isList: true,
+    isList: this.$router.params.isList === 'true' ? true : this.$router.params.isList === 'false' ? false : true,
     height:parseInt(getWindowHeight()),
     showTip: true,
     showDetail: false,
