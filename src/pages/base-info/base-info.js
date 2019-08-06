@@ -23,8 +23,8 @@ export default class BaseInfo extends Component {
         checked: false,
 
         baseInfo: {
-            name: '',
-            idCard: '',
+            name: '陈某',
+            idCard: '440582199801100000',
             phone: '',
             verifyCode: ''
         }
@@ -169,7 +169,7 @@ export default class BaseInfo extends Component {
 
     render () {
         return (
-            <View className='base-info' style={ !process.env.TARO_ENV === 'rn'? { height: getWindowHeight() }:{}}>
+            <View className='base-info' style={process.env.TARO_ENV !== 'rn' ? { height: getWindowHeight() } : {}}>
                 {process.env.TARO_ENV === 'h5' ? <Title /> : <View />}
                 <Change cardName={this.state.cardName} onClick={this.handleChangeClick} />
                 <CardIntro cardImage={this.state.cardImage} myPoints={this.state.myPoints} introduce={this.state.introduce} />

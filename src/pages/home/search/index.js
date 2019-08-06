@@ -18,8 +18,8 @@ export default class Search extends Component {
                         <Input className='card-input' type='text' placeholder='想要什么卡？' />
                     </View>
                 </View>
-                <View onClick={this.props.onClick}>
-                    <Text className='button-view' >
+                <View onClick={this.props.onClick} className='button-view'>
+                    <Text className='button-view-txt' >
                         查询
                     </Text>
                 </View>

@@ -3,18 +3,20 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import cardImage from '../../../img/1.jpg'
 import { LOCAL_HOST } from "@server" 
+import { __values } from 'tslib';
 
 export default class Recommend extends Component {
   static defaultProps = {
     list: [],
     isList: true,
-    
+    pages:1
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      pages:1
+      pages:1,
+      temp:['1','2','3','4']
     }
   }
 
@@ -27,6 +29,19 @@ export default class Recommend extends Component {
     this.props.handleShowDetail(showItem);
   }
 
+  testmap(item,index){
+    return (
+      <View key={index} className='home-recommend__list-item-desc-view'>
+        <Text 
+          className = 'home-recommend__list-item-desc-txt'
+          numberOfLines = {1}
+          >
+            {'-' + item}
+        </Text>
+      </View>
+    )
+  }
+
   render () {
     const { list,isList } = this.props
     const localUrl = LOCAL_HOST !== 'null' ? LOCAL_HOST+'/' : process.env.TARO_ENV === 'rn' ? null : ''
@@ -35,7 +50,8 @@ export default class Recommend extends Component {
       {
         isList ?
           <View className='home-recommend__list'>
-            {list.map((item) => {
+            {list.map((item, key) => {
+              // console.log(item)
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
               return (
@@ -49,13 +65,15 @@ export default class Recommend extends Component {
                   <View className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
                     <Image className='home-recommend__list-item-img-ins' src={ localUrl + categoryItem.listPicUrl } />
                   </View>
-                  <Text 
-                    className={process.env.TARO_ENV==='h5'?'home-recommend__list-item-desc-h5':'home-recommend__list-item-desc'} 
-                    onClick={this.handleShowDetail.bind(this, categoryItem)}
-                    numberOfLines = {3}
-                    >
-                    {categoryItem.simpleDesc}
-                  </Text>
+                  <View className = 'home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                  {this.state.temp.map((item, haha) => this.testmap(item,haha))}
+                    {/* <Text 
+                          className = 'home-recommend__list-item-desc-txt'
+                          numberOfLines = {1}
+                          >
+                            {'-' + categoryItem.simpleDesc[0]}
+                        </Text> */}
+                    </View>
                   <View 
                     className='home-recommend__list-item-btn'
                     onClick={this.handleClick.bind(this, seriesId)}
@@ -87,12 +105,20 @@ export default class Recommend extends Component {
                     <Text className='home-recommend__list2-item-text-name' numberOfLines={1}>
                       {categoryItem.name}
                     </Text>
-                    <Text 
-                      className='home-recommend__list2-item-text-desc' 
-                      onClick={this.handleShowDetail.bind(this, categoryItem)}
-                      numberOfLines = {3}>
-                      {categoryItem.simpleDesc}
-                    </Text>
+                    <View className = 'home-recommend__list2-item-text-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    {categoryItem.simpleDesc.map((item, index) => {
+                      if (index > 2) return ;
+                      else return (
+                        <View key={index}>
+                          <Text
+                            className = 'home-recommend__list2-item-text-desc-txt'
+                            numberOfLines = {1}
+                            >
+                              {'-' + item}
+                          </Text>
+                        </View>
+                      )})}
+                      </View>
                   </View>
                   
                   <View className='home-recommend__list2-item-btn'  onClick={this.handleClick.bind(this, seriesId)}>

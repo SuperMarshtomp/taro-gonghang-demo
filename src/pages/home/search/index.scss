@@ -16,10 +16,13 @@
 
 .img-view {
     padding: 5px 0;
+
+    width: 10%;
 }
 
 .img-view_rn {
     padding: 20px 0;
+    width: 10%;
 }
 
 .img {
@@ -29,10 +32,11 @@
 
 .input-view {
     margin: 10px 0;
+    width: 80%;
 }
 
 .input {
-    width: 500px;
+    // width: 500px;
     height: 60px;
     padding: 0px 20px;
     border: 1px solid #DCDFE6;
@@ -52,8 +56,15 @@
 }
 
 .button-view {
-    font-size: 28px;
-    line-height: 80px;
-    text-align: center;
-    color:$primary-color;
+    width: 10%;
+    text-align: right;
+    height: 80px;
+    line-height: 65px;
+    &-txt {
+        font-size: 28px;
+        text-align: right;
+        height: 80px;
+        line-height: 80px;
+        color:$primary-color;
+    }
 }
