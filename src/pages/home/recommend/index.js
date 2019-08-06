@@ -38,6 +38,7 @@ export default class Recommend extends Component {
             {list.map((item, index) => {
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
+              console.log(seriesContent)
               return (
                 <View
                   key={seriesId}

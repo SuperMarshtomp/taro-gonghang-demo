@@ -29,7 +29,7 @@ export default class Recommend extends Component {
 
   render () {
     const { list,isList } = this.props
-    const localUrl = LOCAL_HOST === 'null' ? null : LOCAL_HOST+'/'
+    const localUrl = LOCAL_HOST !== 'null' ? LOCAL_HOST+'/' : process.env.TARO_ENV === 'rn' ? null : ''
     return (
       <View className='home-recommend-sec'>
       {
