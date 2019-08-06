@@ -24,7 +24,7 @@ const config = {
     '828': 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'dist/weapp',
+  outputRoot: 'dist/alipay',
   plugins: {
     babel: {
       sourceMap: true,
