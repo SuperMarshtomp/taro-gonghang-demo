@@ -12,11 +12,21 @@
     }
 }
 
-.confirm-intro-check-box{
+.confirm-intro-check-box {
     background-color: #fff;
     height: 40px;
     width: 40px;
     border: 1px solid $border-color;
+}
+
+/*postcss-pxtransform rn eject enable*/
+.confirm-intro-check-box-h5 {
+    vertical-align: top;
+}
+/*postcss-pxtransform rn eject disable*/
+
+.confirm-intro-check-box-weapp {
+    width: 45px;
 }
 
 .confirm-intro-check-box-tt {
@@ -26,7 +36,8 @@
 
 .confirm-intro-check-box-swan {
     height: 50px;
-    width: 55px;
+    width: 70px;
+    margin-right: -20px;
 }
 
 .confirm-intro-key {
