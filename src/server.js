@@ -5,6 +5,8 @@ const CODE_AUTH_EXPIRED = '600'
 export const LOCAL_HOST = process.env.TARO_ENV === 'rn' ? "http://10.0.2.2:3333" 
     : process.env.TARO_ENV === 'weapp' ? "http://127.0.0.1:3333" 
     : process.env.TARO_ENV === 'h5' ?  "http://127.0.0.1:3333"
+    : process.env.TARO_ENV === 'tt' ?  "http://127.0.0.1:3333"
+    // : process.env.TARO_ENV === 'alipay' ?  "http://127.0.0.1:3333"
     : 'null'
 /**
  * 简易封装网络请求

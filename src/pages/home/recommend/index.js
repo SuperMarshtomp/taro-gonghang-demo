@@ -38,7 +38,6 @@ export default class Recommend extends Component {
             {list.map((item, index) => {
               const { seriesId, seriesTitle, seriesPicture, seriesContent, seriesDetailContent } = item
               const categoryItem = {name:seriesTitle, listPicUrl:seriesPicture, simpleDesc:seriesContent, detail:seriesDetailContent}
-              console.log(seriesContent)
               return (
                 <View
                   key={seriesId}
@@ -47,8 +46,9 @@ export default class Recommend extends Component {
                   <Text className='home-recommend__list-item-name' onClick={this.handleShowDetail.bind(this, categoryItem)} numberOfLines={1}>
                     {categoryItem.name}
                   </Text>
-                  <View className='home-recommend__list-item-img' onClick={this.handleShowDetail.bind(this, categoryItem)}>
-                    <Image className='home-recommend__list-item-img-ins' src={ localUrl + categoryItem.listPicUrl } />
+                  <View className={process.env.TARO_ENV === 'tt'?'home-recommend__list-item-img-tt':'home-recommend__list-item-img'} onClick={this.handleShowDetail.bind(this, categoryItem)}>
+                    <Image className={process.env.TARO_ENV === 'tt'?'home-recommend__list-item-img-tt-ins':'home-recommend__list-item-img-ins'} 
+                      src={ localUrl + categoryItem.listPicUrl } />
                   </View>
                   <View className = 'home-recommend__list-item-desc' onClick={this.handleShowDetail.bind(this, categoryItem)}>
                   {seriesContent.map((value, key) => {

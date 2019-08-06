@@ -47,10 +47,11 @@ export default class Recommend extends Component {
                   <Text className='home-recommend-sec__list-item-name' numberOfLines={1}>
                     {categoryItem.name}
                   </Text>
-                  <View className='home-recommend-sec__list-item-img'>
-                    <Image className='home-recommend-sec__list-item-img-ins' src={localUrl + categoryItem.listPicUrl} />
+                  <View className={process.env.TARO_ENV === 'tt'?'home-recommend-sec__list-item-img-tt':'home-recommend-sec__list-item-img'}>
+                    <Image className={process.env.TARO_ENV === 'tt'?'home-recommend-sec__list-item-img-tt-ins':'home-recommend-sec__list-item-img-ins'} 
+                      src={ localUrl + categoryItem.listPicUrl } />
                   </View>
-                  <View className='home-recommend-sec__list-item-btn'>
+                  <View className={process.env.TARO_ENV === 'tt'?'home-recommend-sec__list-item-btn-tt':'home-recommend-sec__list-item-btn'}>
                     <View 
                       className={process.env.TARO_ENV === 'rn' ? 'home-recommend-sec__list-item-btn-ins':'home-recommend-sec__list-item-btn-ins-h5'}
                       onClick={this.handleClick.bind(this, cardId)}

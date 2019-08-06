@@ -103,9 +103,19 @@ class Home extends Component {
         height:this.state.height - 138
       })
     }
-    else {
+    else if (process.env.TARO_ENV === 'weapp'){
       this.setState({
         height:this.state.height - 139
+      })
+    }
+    else if (process.env.TARO_ENV === 'alipay'){
+      this.setState({
+        height:this.state.height - 85
+      })
+    }
+    else if (process.env.TARO_ENV === 'swan'){
+      this.setState({
+        height:this.state.height - 120
       })
     }
     if (LOCAL_HOST !== 'null'){
