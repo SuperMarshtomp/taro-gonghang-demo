@@ -46,7 +46,7 @@ export default class BaseInfo extends Component {
                     cardName: cardData[0].cardTitle,
                     cardImage: LOCAL_HOST + '/' + cardData[0].cardPicture,
                     myPoints: seriesData[0].seriesProperty,
-                    introduce: seriesData[0].seriesContent
+                    introduce: seriesData[0].seriesContent.join('，')
                 })
             })
         }
