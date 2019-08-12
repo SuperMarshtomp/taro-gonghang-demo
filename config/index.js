@@ -24,7 +24,7 @@ const config = {
     '828': 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'dist/alipay',
+  outputRoot: 'dist/h5',
   plugins: {
     babel: {
       sourceMap: true,
@@ -101,7 +101,7 @@ const config = {
     }
   },
   h5: {
-    publicPath: '/',
+    publicPath: './',
     devServer: {
       port: 10088
     },
