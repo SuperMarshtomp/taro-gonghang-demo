@@ -101,7 +101,7 @@ const config = {
     }
   },
   h5: {
-    publicPath: './',
+    publicPath: '/',
     devServer: {
       port: 10088
     },
