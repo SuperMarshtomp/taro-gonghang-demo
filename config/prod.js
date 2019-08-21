@@ -25,6 +25,11 @@ module.exports = {
         }
       }
     }
+  },
+  rn: {
+    appJson: {
+        "name": "test",
+    }
   }
 }
 

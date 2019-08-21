@@ -276,13 +276,15 @@ export default class DetailInfo extends Component {
                 this.setState({
                     userSpell: userSpell,
                 })
+            }, err => {
+                console.log("here")
             })
         }
     }
 
     componentWillMount() {
 
-        this.getDetailInfo()
+        // this.getDetailInfo()
 
         // 支付宝小程序 地区列表
         let list = this.state.list;
@@ -606,8 +608,11 @@ export default class DetailInfo extends Component {
         }
     }
     onConfirmClick = () => {
-        console.log('onConfirmClick');
-        this.submitDetailInfo();
+        // console.log('onConfirmClick');
+        // this.submitDetailInfo();
+        Taro.navigateTo({
+            url: '/pages/success-info/success-info?userIdCard=' + this.userIdCard
+        })
     }
 
     onProviceChange = (data) => {
