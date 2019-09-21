@@ -792,6 +792,11 @@ export default class DetailInfo extends Component {
                                   placeholder='请具体到门牌号且不少于3个字'
                                   onInput={this.onHouseDetailAddressInput.bind(this, this.state.houseAddress.name)}
                                   value={this.state.houseAddress.detailAddress}
+                                  placeholder-style={
+                                    process.env.TARO_ENV === 'swan'
+                                    ? 'color: #999999'
+                                    : null
+                                  }
                                 />
                             </View>
                         </View>
@@ -887,6 +892,11 @@ export default class DetailInfo extends Component {
                                   placeholder='请具体到门牌号且不少于3个字'
                                   onInput={this.onHouseDetailAddressInput.bind(this, this.state.companyAddress.name)}
                                   value={this.state.companyAddress.detailAddress}
+                                  placeholder-style={
+                                    process.env.TARO_ENV === 'swan'
+                                    ? 'color: #999999'
+                                    : null
+                                  }
                                 />
                             </View>
                         </View>
@@ -925,6 +935,11 @@ export default class DetailInfo extends Component {
                                   className='info-input-company-phone-prefix' 
                                   onInput={this.onCompanyPhoneInput.bind(this, 'prefix')}
                                   value={this.state.companyPhone.prefix}
+                                  placeholder-style={
+                                    process.env.TARO_ENV === 'swan'
+                                    ? 'color: #999999'
+                                    : null
+                                  }
                                 />
                             </View>
                             <View className='info-input-company-phone-divide'>
@@ -937,6 +952,11 @@ export default class DetailInfo extends Component {
                                   className='info-input-company-phone-phone' 
                                   onInput={this.onCompanyPhoneInput.bind(this, 'phone')}
                                   value={this.state.companyPhone.phone}
+                                  placeholder-style={
+                                    process.env.TARO_ENV === 'swan'
+                                    ? 'color: #999999'
+                                    : null
+                                  }
                                 />
                             </View>
                             <View className='info-input-company-phone-divide'>
@@ -949,6 +969,11 @@ export default class DetailInfo extends Component {
                                   className='info-input-company-phone-suffix' 
                                   onInput={this.onCompanyPhoneInput.bind(this, 'suffix')}
                                   value={this.state.companyPhone.suffix}
+                                  placeholder-style={
+                                    process.env.TARO_ENV === 'swan'
+                                    ? 'color: #999999'
+                                    : null
+                                  }
                                 />
                             </View>
                         </View>

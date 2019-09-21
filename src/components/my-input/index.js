@@ -54,6 +54,11 @@ export default class MyInput extends Component {
                       placeholder={this.props.noPlaceholder ? '' :'请输入' + this.props.inputName} 
                       onInput={this.props.onInput}
                       value={this.props.value}
+                      placeholder-style={
+                        process.env.TARO_ENV === 'swan'
+                        ? 'color: #999999'
+                        : null
+                      }
                     />
                 </View>
             </View>

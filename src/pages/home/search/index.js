@@ -15,7 +15,16 @@ export default class Search extends Component {
                 </View>
                 <View className='input-view'>
                     <View className='input'>
-                        <Input className='card-input' type='text' placeholder='想要什么卡？' />
+                        <Input 
+                          className='card-input' 
+                          type='text' 
+                          placeholder='想要什么卡？' 
+                          placeholder-style={
+                            process.env.TARO_ENV === 'swan'
+                            ? 'color: #999999'
+                            : null
+                          }
+                        />
                     </View>
                 </View>
                 <View onClick={this.props.onClick} className='button-view'>

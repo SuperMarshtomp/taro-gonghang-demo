@@ -26,6 +26,11 @@ export default class BaseInfoInput extends Component {
                               placeholder='请输入短信验证码' 
                               onInput={this.props.onVerifyCodeInput}
                               value={this.props.baseInfo.verifyCode}
+                              placeholder-style={
+                                process.env.TARO_ENV === 'swan'
+                                ? 'color: #999999'
+                                : null
+                              }
                             />
                         </View>
                         
